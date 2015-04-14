@@ -1,0 +1,53 @@
+:set t_Co=256
+"Pytest
+nmap <silent><Leader>f <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bdelete py.test\ --ipdb\ <BAR>:endif<BAR>:Pytest file --ipdb<CR>
+nmap <silent><Leader>c <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bdelete py.test\ --ipdb\ <BAR>:endif<BAR>:Pytest class --ipdb<CR>
+nmap <silent><Leader>m <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bdelete py.test\ --ipdb\ <BAR>:endif<BAR>:Pytest method --ipdb<CR>
+
+
+"misc other
+nmap <F9> :set ignorecase! ignorecase?
+set gdefault
+nmap <F5> :setlocal spell! spelllang=en_us<CR>
+set nospell
+
+
+"jedi vim"
+autocmd FileType python setlocal completeopt-=preview
+
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_enabled = 0
+
+au BufRead,BufNewFile *.md setlocal textwidth=80
+au BufRead,BufNewFile *.markdown setlocal textwidth=80
+
+"max charwidth indicator
+let &colorcolumn=join(range(81,999),",")
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+
+
+set noswapfile
+set relativenumber
+
+"remap ,w to :w
+nmap <leader>w <Esc>:w<Enter>
+
+"resize window alias
+nmap + <C-w>+
+nmap - <C-w>-
+
+" autowrite on buffer focus lost"
+augroup AutoWrite
+    autocmd! BufLeave * :update
+augroup END
+set autowrite
+let g:airline_section_z = '%t'
+let g:airline_section_c = ''
+
+let g:ctrlp_cmd = 'CtrlPMRU'
