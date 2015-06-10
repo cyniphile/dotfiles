@@ -44,6 +44,7 @@ nmap <leader>w <Esc>:w<Enter>
 nmap + <C-w>+
 nmap - <C-w>-
 
+" autowrite on buffer focus lost"
 let g:airline_section_z = '%t'
 let g:airline_section_c = ''
 

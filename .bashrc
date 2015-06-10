@@ -53,7 +53,11 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 
 
 if [ "$color_prompt" = yes ]; then
+<<<<<<< HEAD
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[$(tput setaf 5)\]\e[95m$(__git_ps1 " (%s)")\[$(tput setaf 2)\]]\n \$\[$(tput sgr0)\] '
+=======
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[$(tput setaf 5)\]$(__git_ps1 " (%s)")\[$(tput setaf 2)\]] \n \$\[$(tput sgr0)\] '
+>>>>>>> a2ae1de7a6c6e5e988e5ae033d26f28e3dfbad71
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -122,6 +126,7 @@ export PYLEARN2_VIEWER_COMMAND="eog --new-instance"
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/anaconda/bin # anaconda
@@ -151,7 +156,7 @@ alias drmia='sudo docker rmi $(sudo docker images | grep "^<none>" | awk "{print
 export DOCKER_HOST=tcp://localhost:4243
 
 
-#cyniphile_blog
+#cyniphile_blog 
 function post_cyniphile() {
     cd ~/Dropbox/Projects/cyniphile_blog/_posts/;
     today=$(date +'%Y-%m-%d');
