@@ -53,11 +53,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 
 
 if [ "$color_prompt" = yes ]; then
-<<<<<<< HEAD
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[$(tput setaf 5)\]\e[95m$(__git_ps1 " (%s)")\[$(tput setaf 2)\]]\n \$\[$(tput sgr0)\] '
-=======
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[$(tput setaf 5)\]$(__git_ps1 " (%s)")\[$(tput setaf 2)\]] \n \$\[$(tput sgr0)\] '
->>>>>>> a2ae1de7a6c6e5e988e5ae033d26f28e3dfbad71
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
