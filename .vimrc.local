@@ -30,7 +30,7 @@ au BufRead,BufNewFile *.markdown setlocal textwidth=80
 
 "max charwidth indicator
 let &colorcolumn=join(range(81,999),",")
-highlight ColorColumn ctermbg=235 
+highlight ColorColumn ctermbg=235
 "guibg=#2c2d27
 
 
@@ -54,7 +54,9 @@ autocmd bufwritepost .vimrc.local source $MYVIMRC
 
 let g:ConqueTerm_CloseOnEnd = 1
 
+hi Visual ctermfg=NONE ctermbg=237
 hi Normal ctermbg=234 cterm=NONE
+hi LineNr ctermfg=102 ctermbg=235
 "au! FileType conque_term 
 "au! CursorHoldI,CursorMovedI *ipdb*
 
