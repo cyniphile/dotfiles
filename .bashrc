@@ -107,7 +107,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 alias szd='cd ~/sumzero/sumzero-data-analytics; source ~/sumzero/sumzero-data-analytics/env_szanal/bin/activate; ./manage.py shell_plus --notebook'
-alias sz='cd ~/sumzero/sumzero-data-analytics; source ~/sumzero/sumzero-data-analytics/env_szanal/bin/activate; ipython notebook --profile dark'
+alias sz='cd ~/sumzero/sumzero-data-analytics; source ~/sumzero/sumzero-data-analytics/env_szanal/bin/activate; jupyter notebook'
 alias h2o='cd ~/Downloads/h2o-2.8.1.1; java -jar h2o.jar'
 alias nnet='cd ~/sumzero/sumzero-data-analytics/neural_networks/; source env_neural/bin/activate'
 alias tmux='tmux -2'
@@ -122,11 +122,13 @@ export PYLEARN2_VIEWER_COMMAND="eog --new-instance"
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
+#export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/anaconda/bin # anaconda
+PATH=$PATH:$HOME/bin # lein
 
+export PYTHONPATH=/home/cyniphile/caffe/python/:$PYTHONPATH
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 # added by Anaconda 1.9.1 installer
@@ -150,6 +152,7 @@ alias drmi='sudo docker rmi -f'
 alias drma='sudo docker rm -f $(sudo docker ps -a -q)'
 alias drmia='sudo docker rmi $(sudo docker images | grep "^<none>" | awk "{print $3}")'
 export DOCKER_HOST=tcp://localhost:4243
+alias dcrwbb='docker-compose run web /bin/bash'
 
 
 #cyniphile_blog 

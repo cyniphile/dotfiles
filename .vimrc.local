@@ -4,6 +4,13 @@ nmap <silent><Leader>f <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bd
 nmap <silent><Leader>c <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bdelete py.test\ --ipdb\ <BAR>:endif<BAR>:Pytest class --ipdb --capture="no"<CR>
 nmap <silent><Leader>m <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bdelete py.test\ --ipdb\ <BAR>:endif<BAR>:Pytest method --ipdb --capture="no"<CR>
 
+if exists("g:ctrl_user_command")
+  unlet g:ctrlp_user_command
+endif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/.git/*
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\vendor$',
+    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
 
 "misc other
@@ -14,16 +21,20 @@ set nospell
 
 
 "jedi vim"
-autocmd FileType python setlocal completeopt-=preview
+"autocmd FileType python setlocal completeopt-=preview
 
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
+let g:jedi#documentation_command = "Y"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 0
+
+nmap U :join<CR>
+nmap J <C-D>
+nmap K <C-U>
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.markdown setlocal textwidth=80
@@ -33,9 +44,10 @@ let &colorcolumn=join(range(81,999),",")
 highlight ColorColumn ctermbg=235
 "guibg=#2c2d27
 
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 set noswapfile
-set relativenumber
+"set relativenumber
 
 "remap ,w to :w
 nmap <leader>w <Esc>:w<Enter>
@@ -48,10 +60,7 @@ nmap - <C-w>-
 let g:airline_section_z = '%t'
 let g:airline_section_c = ''
 
-let g:ctrlp_cmd = 'CtrlPMRU'
-let g:ctrlp_working_path_mode = 'r'
-
-autocmd bufwritepost .vimrc.local source $MYVIMRC
+"autocmd bufwritepost .vimrc.local source $MYVIMRC
 
 let g:ConqueTerm_CloseOnEnd = 1
 
