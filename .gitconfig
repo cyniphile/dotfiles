@@ -1,0 +1,9 @@
+[user]
+	email = luke.schiefelbein@gmail.com
+[push]
+	merge
+
+tool = mymeld
+conflictstyle = diff3
+[mergetool "mymeld"]
+cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $BASE $REMOTE $MERGEDdefault = simple
