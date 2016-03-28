@@ -47,10 +47,11 @@ highlight ColorColumn ctermbg=235
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 set noswapfile
-"set relativenumber
+set norelativenumber
 
 "remap ,w to :w
 nmap <leader>w <Esc>:w<Enter>
+nmap <leader>a :Ack 
 
 "resize window alias
 nmap + <C-w>+

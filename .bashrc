@@ -7,7 +7,7 @@
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
+HISTCONTROL=ignoredups:ignorespaceG
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -123,12 +123,15 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 #export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/anaconda/bin # anaconda
 PATH=$PATH:$HOME/bin # lein
 
 export PYTHONPATH=/home/cyniphile/caffe/python/:$PYTHONPATH
+export PYTHONPATH=/usr/lib/gimp/2.0/python:$PYTHONPATH
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 # added by Anaconda 1.9.1 installer
@@ -141,7 +144,7 @@ set -o vi
 bind -m vi-insert "\C-l":clear-screen
 
 #sumzero
-alias latest_ideas='cd ~/sumzero/sumzero-data-analytics/dataframes/; today=$(date +'%m-%d-%Y'); curl -o "szapidata_$today.json" -u access:2Ej8Ggb1Utmr https://sumzero.com/api/analysis/ideas'
+alias cdsz='cd ~/sumzero/webapp/sumzero/'
 
 #docker
 alias docker_dev='sudo docker run  -P -v /home/cyniphile/sumzero/analytics-web-interface:/home/analytics-web-interface --name webapp -i cyniphile/analytics-web-interface:latest python run.py; sudo docker ps'
@@ -171,3 +174,8 @@ export SPARK_HOME='/home/cyniphile/Downloads/spark-1.3.1/'
 export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
 export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$PYTHONPATH
 #export PYSPARK_SUBMIT_ARGS='--master local[-1]'
+
+export EDITOR='vim'
+
+
+. /home/cyniphile/torch/install/bin/torch-activate
