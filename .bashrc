@@ -156,6 +156,7 @@ alias drma='sudo docker rm -f $(sudo docker ps -a -q)'
 alias drmia='sudo docker rmi $(sudo docker images | grep "^<none>" | awk "{print $3}")'
 export DOCKER_HOST=tcp://localhost:4243
 alias dcrwbb='docker-compose run web /bin/bash'
+alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
 
 
 #cyniphile_blog 

@@ -2,8 +2,10 @@
 	email = luke.schiefelbein@gmail.com
 [push]
     default = simple
-[merge]
-    tool = mymeld
-    conflictstyle = diff3
-[mergetool "mymeld"]
-    cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $BASE $REMOTE --output $MERGED
+;[merge]
+    ;tool = mymeld
+    ;conflictstyle = diff3
+;[mergetool "mymeld"]
+    ;cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $BASE $REMOTE --output $MERGED
+[mergetool]
+	keepBackup = false

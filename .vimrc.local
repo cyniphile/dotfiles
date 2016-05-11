@@ -11,7 +11,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/.git/*
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\vendor$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
-
+let g:ctrlp_regexp = 1
+let g:ctrlp_max_files=0
 
 "misc other
 nmap <F9> :set ignorecase! ignorecase?
@@ -45,6 +46,7 @@ highlight ColorColumn ctermbg=235
 "guibg=#2c2d27
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ag_working_path_mode = 'r'
 
 set noswapfile
 set norelativenumber
@@ -71,3 +73,8 @@ hi LineNr ctermfg=102 ctermbg=235
 "au! FileType conque_term 
 "au! CursorHoldI,CursorMovedI *ipdb*
 
+set wrap
+set linebreak
+set nolist  " list disables linebreak
+set textwidth=0
+set wrapmargin=0
