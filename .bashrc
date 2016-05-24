@@ -157,7 +157,11 @@ alias drmia='sudo docker rmi $(sudo docker images | grep "^<none>" | awk "{print
 export DOCKER_HOST=tcp://localhost:4243
 alias dcrwbb='docker-compose run web /bin/bash'
 alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
+#may need to be changed in future
+export COMPOSE_API_VERSION=1.18
 
+
+alias find='find . -name $1'
 
 #cyniphile_blog 
 function post_cyniphile() {

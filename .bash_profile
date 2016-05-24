@@ -9,3 +9,6 @@ export MAHOUT_LOCAL=true # for running standalone on your dev machine,
 # unset MAHOUT_LOCAL for running on a cluster
 
 source ~/.bashrc
+
+# OPAM configuration
+. /home/cyniphile/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
