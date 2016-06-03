@@ -48,9 +48,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-source ~/git-prompt.sh
-export GIT_PS1_SHOWDIRTYSTATE=1
-
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[$(tput setaf 5)\]\e[95m$(__git_ps1 " (%s)")\[$(tput setaf 2)\]]\n \$\[$(tput sgr0)\] '
@@ -72,8 +69,8 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    # alias dir='dir --color=auto'
+    # alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -84,7 +81,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-#defined my meee
+# defined my meee
 alias setscreen='xset s off'
 alias clmk='setxkbmap us -variant colemak'
 alias qwrt='setxkbmap us'
@@ -122,7 +119,7 @@ export PYLEARN2_VIEWER_COMMAND="eog --new-instance"
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-#export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
+# export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
@@ -139,14 +136,14 @@ export PATH="/home/anaconda/bin:$PATH"
 
 fortune -s -n 250 | hsterminal
 
-#vi keybindings in shell
+# vi keybindings in shell
 set -o vi
 bind -m vi-insert "\C-l":clear-screen
 
-#sumzero
+# sumzero
 alias cdsz='cd ~/sumzero/webapp/sumzero/'
 
-#docker
+# docker
 alias docker_dev='sudo docker run  -P -v /home/cyniphile/sumzero/analytics-web-interface:/home/analytics-web-interface --name webapp -i cyniphile/analytics-web-interface:latest python run.py; sudo docker ps'
 alias dps='sudo docker ps -a'
 alias di='sudo docker images'
@@ -157,13 +154,14 @@ alias drmia='sudo docker rmi $(sudo docker images | grep "^<none>" | awk "{print
 export DOCKER_HOST=tcp://localhost:4243
 alias dcrwbb='docker-compose run web /bin/bash'
 alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
-#may need to be changed in future
+# may need to be changed in future
 export COMPOSE_API_VERSION=1.18
 
+source `which virtualenvwrapper.sh`
 
 alias find='find . -name $1'
 
-#cyniphile_blog 
+# cyniphile_blog 
 function post_cyniphile() {
     cd ~/Dropbox/Projects/cyniphile_blog/_posts/;
     today=$(date +'%Y-%m-%d');
@@ -178,9 +176,11 @@ source ~/.autoenv/activate.sh
 export SPARK_HOME='/home/cyniphile/Downloads/spark-1.3.1/'
 export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
 export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$PYTHONPATH
-#export PYSPARK_SUBMIT_ARGS='--master local[-1]'
+# export PYSPARK_SUBMIT_ARGS='--master local[-1]'
 
 export EDITOR='vim'
 
+source ~/.bash-git-prompt/gitprompt.sh
+GIT_PROMPT_ONLY_IN_REPO=1
 
 . /home/cyniphile/torch/install/bin/torch-activate

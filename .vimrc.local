@@ -4,6 +4,7 @@ nmap <silent><Leader>f <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bd
 nmap <silent><Leader>c <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bdelete py.test\ --ipdb\ <BAR>:endif<BAR>:Pytest class --ipdb --capture="no"<CR>
 nmap <silent><Leader>m <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bdelete py.test\ --ipdb\ <BAR>:endif<BAR>:Pytest method --ipdb --capture="no"<CR>
 
+
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
@@ -36,6 +37,12 @@ let g:jedi#completions_enabled = 0
 nmap U :join<CR>
 nmap J <C-D>
 nmap K <C-U>
+
+
+
+let g:syntastic_python_flake8_args='--ignore=E501'
+
+let g:molokai_original = 1
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.markdown setlocal textwidth=80
@@ -78,3 +85,5 @@ set linebreak
 set nolist  " list disables linebreak
 set textwidth=0
 set wrapmargin=0
+
+highlight Comment ctermfg=green
