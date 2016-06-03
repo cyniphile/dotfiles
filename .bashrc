@@ -48,6 +48,9 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+source ~/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
+
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[$(tput setaf 5)\]\e[95m$(__git_ps1 " (%s)")\[$(tput setaf 2)\]]\n \$\[$(tput sgr0)\] '
@@ -180,7 +183,5 @@ export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$PYTHONPATH
 
 export EDITOR='vim'
 
-source ~/.bash-git-prompt/gitprompt.sh
-GIT_PROMPT_ONLY_IN_REPO=1
 
 . /home/cyniphile/torch/install/bin/torch-activate
