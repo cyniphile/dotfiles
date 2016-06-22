@@ -8,9 +8,9 @@ nmap <silent><Leader>m <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bd
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/.git/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/.git/*,*/db/migrate*,*/old_migrations*,*/fixtures*,'*/log/*,*/node_modules*
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\vendor$',
+    \ 'dir':  '\vendor$|\migrate$|\old_migrations$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 let g:ctrlp_regexp = 1
 let g:ctrlp_max_files=0
@@ -37,7 +37,6 @@ let g:jedi#completions_enabled = 0
 nmap U :join<CR>
 nmap J <C-D>
 nmap K <C-U>
-
 
 
 let g:syntastic_python_flake8_args='--ignore=E501'
@@ -74,7 +73,6 @@ let g:airline_section_c = ''
 
 let g:ConqueTerm_CloseOnEnd = 1
 
-hi Visual ctermfg=NONE ctermbg=237
 hi Normal ctermbg=234 cterm=NONE
 hi LineNr ctermfg=102 ctermbg=235
 "au! FileType conque_term 
@@ -87,3 +85,20 @@ set textwidth=0
 set wrapmargin=0
 
 highlight Comment ctermfg=green
+
+" Your vimrc
+filetype plugin indent on
+syntax enable
+
+" Vim needs to be built with Python scripting support, and must be
+" able to find Merlin's executable on PATH.
+if executable('ocamlmerlin') && has('python')
+  let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/ocamlmerlin"
+  execute "set rtp+=".s:ocamlmerlin."/vim"
+  execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
+endif
+
+" Your vimrc
+autocmd FileType ocaml source substitute(system('opam config var share'), '\n$', '', '''') . "/typerex/ocp-indent/ocp-indent.vim"
+
+hi Visual ctermfg=NONE ctermbg=137
