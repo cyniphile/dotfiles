@@ -1,9 +1,4 @@
 :set t_Co=256
-"Pytestjj
-nmap <silent><Leader>f <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bdelete py.test\ --ipdb\ <BAR>:endif<BAR>:Pytest file --ipdb --capture="no"<CR>
-nmap <silent><Leader>c <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bdelete py.test\ --ipdb\ <BAR>:endif<BAR>:Pytest class --ipdb --capture="no"<CR>
-nmap <silent><Leader>m <Esc>:w<Esc><BAR>:if bufexists('py.test --ipdb ')<BAR>:bdelete py.test\ --ipdb\ <BAR>:endif<BAR>:Pytest method --ipdb --capture="no"<CR>
-
 
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
@@ -101,4 +96,16 @@ endif
 " Your vimrc
 autocmd FileType ocaml source substitute(system('opam config var share'), '\n$', '', '''') . "/typerex/ocp-indent/ocp-indent.vim"
 
+nmap <silent> <leader>r :so $MYVIMRC<CR>
 hi Visual ctermfg=NONE ctermbg=137
+
+let test#python#runner = 'pytest'
+let test#strategy = "dispatch"
+nmap <silent> <leader>T :TestNearest --pdb<CR>
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>f :TestFile<CR>
+nmap <silent> <leader>F :TestFile --pdb<CR>
+nmap <silent> <leader>s :TestSuite<CR>
+nmap <silent> <leader>S :TestSuite --pdb<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>G :TestVisit<CR>

@@ -142,10 +142,11 @@ fortune -s -n 250 | hsterminal
 set -o vi
 bind -m vi-insert "\C-l":clear-screen
 
+alias doom2='chocolate-doom -iwad ~/Documents/Doom2.wad'
 # sumzero
 alias cdsz='cd ~/sumzero/webapp/sumzero/'
 alias get_all_data='workon awi; python ~/sumzero/analytics-web-interface/get_all_data.py; deactivate;'
-alias tmux='TERM=screen-256color-bce tmux new-session -A -s main'
+alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
 
 # docker
 alias docker_dev='docker run  -P -v /home/cyniphile/sumzero/analytics-web-interface:/home/analytics-web-interface --name webapp -i cyniphile/analytics-web-interface:latest python run.py; sudo docker ps'
@@ -172,10 +173,6 @@ function post_cyniphile() {
     cp template.markdown $today-$1.markdown
     vim $today-$1.markdown
 }
-
-source ~/.autoenv/activate.sh
-
-
 
 export SPARK_HOME='/home/cyniphile/Downloads/spark-1.3.1/'
 export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
