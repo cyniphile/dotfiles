@@ -151,6 +151,7 @@ alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
 # docker
 alias docker_dev='docker run  -P -v /home/cyniphile/sumzero/analytics-web-interface:/home/analytics-web-interface --name webapp -i cyniphile/analytics-web-interface:latest python run.py; sudo docker ps'
 alias dps='docker ps -a'
+alias dcu='docker-compose up'
 alias di='docker images'
 alias drm='docker rm -f'
 alias drmi='docker rmi -f'
