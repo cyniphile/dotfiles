@@ -136,6 +136,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # added by Anaconda 1.9.1 installer
 export PATH="/home/anaconda/bin:$PATH"
 
+stty -ixon
 fortune -s -n 250 | hsterminal
 
 # vi keybindings in shell
@@ -147,6 +148,7 @@ alias doom2='chocolate-doom -iwad ~/Documents/Doom2.wad'
 alias cdsz='cd ~/sumzero/webapp/sumzero/'
 alias get_all_data='workon awi; python ~/sumzero/analytics-web-interface/get_all_data.py; deactivate;'
 alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
+
 
 # docker
 alias docker_dev='docker run  -P -v /home/cyniphile/sumzero/analytics-web-interface:/home/analytics-web-interface --name webapp -i cyniphile/analytics-web-interface:latest python run.py; sudo docker ps'

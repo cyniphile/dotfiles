@@ -42,9 +42,9 @@ au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.markdown setlocal textwidth=80
 
 "max charwidth indicator
-let &colorcolumn=join(range(81,999),",")
+let &colorcolumn=join(range(81,81),",")
 highlight ColorColumn ctermbg=235
-"guibg=#2c2d27
+"guibg=#6600ff
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ag_working_path_mode = 'r'
@@ -109,3 +109,5 @@ nmap <silent> <leader>s :TestSuite<CR>
 nmap <silent> <leader>S :TestSuite --pdb<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>G :TestVisit<CR>
+
+map <leader>r :NERDTreeFind<cr>

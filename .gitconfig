@@ -9,3 +9,8 @@
     ;cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $BASE $REMOTE --output $MERGED
 [mergetool]
 	keepBackup = false
+[rerere]
+	enabled = 1
+	autoupdate = true
+[merge]
+	tool = meld
