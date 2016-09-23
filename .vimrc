@@ -1,10 +1,5 @@
 set nocompatible        " Must be first line
 
-
-
-
-
-
 " General {
 
     set background=dark         " Assume a dark background
@@ -86,7 +81,7 @@ set nocompatible        " Must be first line
     set showmode                    " Display the current mode
 
     set cursorline                  " Highlight current line
-    hi CursorLine   cterm=NONE ctermbg=233
+    hi CursorLine   cterm=NONE ctermbg=232
     highlight clear SignColumn      " SignColumn should match background
 
 
@@ -305,11 +300,6 @@ set nocompatible        " Must be first line
         endif
     " }
 
-    " AutoCloseTag {
-        " Make it so AutoCloseTag works for xml and xhtml files as well
-        au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
-        nmap <Leader>ac <Plug>ToggleAutoCloseMappings
-    " }
 
     " NerdTree {
         if isdirectory(expand("~/.vim/bundle/nerdtree"))
@@ -635,16 +625,17 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'airblade/vim-gitgutter'
 "to add migrating from spf"
-            Plugin 'scrooloose/nerdtree'
-            Plugin 'mileszs/ack.vim'
-            Plugin 'gmarik/vundle'
-            Plugin 'mbbill/undotree'
-            Plugin 'kien/ctrlp.vim'
-            Plugin 'tpope/vim-fugitive'
-            Plugin 'tpope/vim-rails'
-            Plugin 'tpope/vim-markdown'
-            Plugin 'gcmt/wildfire.vim'
-            Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
+Plugin 'mileszs/ack.vim'
+Plugin 'gmarik/vundle'
+Plugin 'mbbill/undotree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-markdown'
+Plugin 'gcmt/wildfire.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'zaiste/tmux.vim'
 "
 
 " All of your Plugins must be added before the following line
