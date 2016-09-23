@@ -7,6 +7,8 @@ set nocompatible        " Must be first line
     syntax on                   " Syntax highlighting
     set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
+
+
     scriptencoding utf-8
 
     if has('clipboard')
@@ -636,6 +638,7 @@ Plugin 'tpope/vim-markdown'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'zaiste/tmux.vim'
+Plugin 'jistr/vim-nerdtree-tabs'
 "
 
 " All of your Plugins must be added before the following line
@@ -664,3 +667,4 @@ filetype plugin indent on    " required
     " }
 
 hi Normal ctermbg=none
+set showcmd                 " Show partial commands in status line and
