@@ -196,10 +196,9 @@ nmap <leader>f8 :set foldlevel=8<CR>
 nmap <leader>f9 :set foldlevel=9<CR>
 
 " Most prefer to toggle search highlighting rather than clear the current
-" search results. To clear search highlighting rather than toggle it on
-" and off, add the following to your .vimrc.before.local file:
-"   let g:spf13_clear_search_highlight = 1
-    nmap <silent> <leader>/ :set invhlsearch<CR>
+" search results. 
+nmap <silent> <leader>/ :set invhlsearch<CR>
+
 
 
 
@@ -541,6 +540,7 @@ call vundle#begin()
     Plugin 'zaiste/tmux.vim'
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'scrooloose/syntastic'
+    Plugin 'scrooloose/nerdcommenter'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
