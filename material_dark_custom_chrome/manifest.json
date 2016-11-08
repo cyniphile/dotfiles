@@ -1,0 +1,35 @@
+{
+   "description": "A theme that adds the dark Incognito Mode colour scheme to the normal mode of Chrome.",
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqyleM7oMWbOzCTd5mPI2cHrcwsgon+1VwvWdEYcC6BgjrCQ8jt6PrrfWt+IMk7xqeeJpEne9GsjvVCtLyFnBkHT1O83tZs08S7TFwuxMhbR6qd9W/AaWhlwNVOf/rZZBqVS2jaMGuu1nU18Cuf1va2CnFzGHSZlnruCJluAkM1/gZvbe5LJK8WYSNTiQDYoPBLjwij+DqBppt6eCqvgL8bkRih7mWJSIAKbNWcR0gKJEe6sfcIW1ef5BDlnKRG7mLyjUf6CNvSGPHxa2hgeR0XM265SqBo7imcVicvFC8ol5gZqDuRvWXYcH6tapRUShOM9+qcfNx2rLRpPuPnquWwIDAQAB",
+   "manifest_version": 2,
+   "name": "Material Incognito Dark Theme",
+   "theme": {
+      "colors": {
+         "bookmark_text": [ 255, 255, 255 ],
+         "frame": [ 70, 70, 70 ],
+         "frame_inactive": [ 20, 20, 20 ],
+         "frame_incognito": [ 255, 70, 70 ],
+         "frame_incognito_inactive": [ 255, 255, 255 ],
+         "ntp_background": [ 50, 50, 50 ],
+         "ntp_text": [ 255, 255, 255 ],
+         "tab_background_text": [ 255, 255, 255 ],
+         "tab_text": [ 255, 255, 255 ],
+         "toolbar": [ 80, 80, 80 ]
+      },
+      "images": {
+         "theme_ntp_background": "images/theme_ntp_background.png",
+         "theme_tab_background": "images/theme_tab_background.png",
+         "theme_tab_background_incognito": "images/theme_tab_background.png",
+         "theme_tab_background_v": "images/theme_tab_background.png",
+         "theme_toolbar": "images/theme_toolbar.png"
+      },
+      "properties": {
+         "ntp_logo_alternate": 1
+      },
+      "tints": {
+         "buttons": [ 0, 0, 0.85 ]
+      }
+   },
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2.1.0"
+}

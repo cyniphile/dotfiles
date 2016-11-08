@@ -34,8 +34,6 @@ au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
 " Restore cursor to file position in previous editing session
-" To disable this, add the following to your .vimrc.before.local file:
-"   let g:spf13_no_restore_cursor = 1
 function! ResCur()
         if line("'\"") <= line("$")
             normal! g`"
@@ -68,6 +66,7 @@ set showmode                    " Display the current mode
 set cursorline                  " Highlight current line
 hi CursorLine   cterm=NONE ctermbg=232
 highlight clear SignColumn      " SignColumn should match background
+hi Search ctermbg=200 guifg=wheat
 
 
 if has('statusline')
@@ -116,12 +115,10 @@ autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,pe
 let mapleader = ','
 
 " Easier moving in tabs and windows
-if !exists('g:spf13_no_easyWindows')
     map <C-J> <C-W>j<C-W>_
     map <C-K> <C-W>k<C-W>_
     map <C-L> <C-W>l<C-W>_
     map <C-H> <C-W>h<C-W>_
-endif
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -238,8 +235,9 @@ nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
     endif
 " }
 
+noremap <C-_> :call NERDComment(0,"toggle")<C-m>
 
-" NerdTree {
+ "NerdTree {
     if isdirectory(expand("~/.vim/bundle/nerdtree"))
         map <C-e> <plug>NERDTreeTabsToggle<CR>
         map <leader>e :NERDTreeFind<CR>
@@ -259,6 +257,7 @@ nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
 " ctrlp {
     if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
         let g:ctrlp_working_path_mode = 'ra'
+        let g:ctrlp_max_height = 20
         nnoremap <silent> <D-t> :CtrlP<CR>
         nnoremap <silent> <D-r> :CtrlPMRU<CR>
 
@@ -408,16 +407,15 @@ nmap <F5> :setlocal spell! spelllang=en_us<CR>
 set nospell
 
 
-"jedi vim"
-"autocmd FileType python setlocal completeopt-=preview
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "Y"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#popup_on_dot = 0
-let g:jedi#completions_enabled = 0
+"jedi vim
+autocmd FileType python setlocal completeopt-=preview
+"let g:jedi#goto_assignments_command = "<leader>g"
+"let g:jedi#goto_definitions_command = "<leader>d"
+"let g:jedi#usages_command = "<leader>n"
+"let g:jedi#completions_command = "<C-Space>"
+"let g:jedi#rename_command = "<leader>r"
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#completions_enabled = 0
 
 let g:syntastic_python_flake8_args='--ignore=E501'
 
@@ -500,6 +498,10 @@ let g:ctrlp_regexp = 1
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
+let g:ctrlp_prompt_mappings = {
+    \   'AcceptSelection("v")':   ['<C-s>'],
+    \   'AcceptSelection("h")': ['<C-i>'],
+    \ }
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -541,9 +543,12 @@ call vundle#begin()
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'scrooloose/syntastic'
     Plugin 'scrooloose/nerdcommenter'
+    Plugin 'edkolev/tmuxline.vim'
+    Plugin 'chun-yang/auto-pairs'
+    Plugin 'kchmck/vim-coffee-script'
+    Plugin 'tpope/vim-surround'
 call vundle#end()            " required
 filetype plugin indent on    " required
-
 
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
     let g:solarized_termcolors=256
@@ -564,5 +569,10 @@ if isdirectory(expand("~/.vim/bundle/vim-airline/"))
     endif
 endif
 
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd InsertEnter,InsertLeave * set cul!
+
 hi Normal ctermbg=none
 set showcmd                 " Show partial commands in status line and
+

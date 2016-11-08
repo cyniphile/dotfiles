@@ -1,7 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-stty intr ^J
+stty intr \^n
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -145,6 +145,8 @@ set -o vi
 bind -m vi-insert "\C-l":clear-screen
 
 alias doom2='chocolate-doom -iwad ~/Documents/Doom2.wad'
+alias doom1='chocolate-doom -iwad ~/Documents/Doom1.wad'
+alias doomp='chocolate-doom -iwad ~/Documents/Plutonia.wad'
 # sumzero
 alias cdsz='cd ~/sumzero/webapp/sumzero/'
 alias get_all_data='workon awi; python ~/sumzero/analytics-web-interface/get_all_data.py; deactivate;'
@@ -160,7 +162,6 @@ alias di='docker images'
 alias drm='docker rm -f'
 alias drmi='docker rmi -f'
 alias drmia='docker rmi $(sudo docker images | grep "^<none>" | awk "{print $3}")'
-export DOCKER_HOST=tcp://localhost:4243
 alias dcrwbb='docker-compose run web /bin/bash'
 alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
 # may need to be changed in future
