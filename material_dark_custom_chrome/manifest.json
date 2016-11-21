@@ -1,15 +1,15 @@
 {
    "description": "A theme that adds the dark Incognito Mode colour scheme to the normal mode of Chrome.",
-   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqyleM7oMWbOzCTd5mPI2cHrcwsgon+1VwvWdEYcC6BgjrCQ8jt6PrrfWt+IMk7xqeeJpEne9GsjvVCtLyFnBkHT1O83tZs08S7TFwuxMhbR6qd9W/AaWhlwNVOf/rZZBqVS2jaMGuu1nU18Cuf1va2CnFzGHSZlnruCJluAkM1/gZvbe5LJK8WYSNTiQDYoPBLjwij+DqBppt6eCqvgL8bkRih7mWJSIAKbNWcR0gKJEe6sfcIW1ef5BDlnKRG7mLyjUf6CNvSGPHxa2hgeR0XM265SqBo7imcVicvFC8ol5gZqDuRvWXYcH6tapRUShOM9+qcfNx2rLRpPuPnquWwIDAQAB",
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm52RWN/ezyhhqxr3Ba1PZjCknekAyaRpfydOcRALBRON4LcVzQOzZskKx4518IYogrxyq2USSRE+N1Pul0HriL5Wy9V8tMSCKS6PbX8bxf4lcf8zYV6A44C5KXv7xK1eD31AqjG2mqJ+E0nIPbjlHD4ipMc2X24n8XhWKznorm467Q8bJLz41VciaSbtz0YVF1juY8I7Yny8pU2GRYrhTXkn9ekKWprdOhI8IUPn6Rf/ouTdCYrHvHBwkV8SNClD9hVLJr7xoiAPQPoVLmcxkWR0md0l5mxw13AiPVHj83F579UvXSaBL9yZ045UJkB4H+qbrwpLOOfGRLYSgqdLxwIDAQAB",
    "manifest_version": 2,
    "name": "Material Incognito Dark Theme",
    "theme": {
       "colors": {
          "bookmark_text": [ 255, 255, 255 ],
          "frame": [ 70, 70, 70 ],
-         "frame_inactive": [ 20, 20, 20 ],
+         "frame_inactive": [ 0, 0, 70 ],
          "frame_incognito": [ 255, 70, 70 ],
-         "frame_incognito_inactive": [ 255, 255, 255 ],
+         "frame_incognito_inactive": [ 255, 70, 70 ],
          "ntp_background": [ 50, 50, 50 ],
          "ntp_text": [ 255, 255, 255 ],
          "tab_background_text": [ 255, 255, 255 ],
