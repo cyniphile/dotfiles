@@ -273,6 +273,12 @@ noremap <C-_> :call NERDComment(0,"toggle")<C-m>
         endif
 
     endif
+    
+" agvim
+    let g:ack_mappings = { 
+                \ "i": "<C-W><CR><C-W>K",
+                \ "s": "<C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t"}
+
 " Fugitive {
     if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
         nnoremap <silent> <leader>gs :Gstatus<CR>

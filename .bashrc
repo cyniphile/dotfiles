@@ -108,7 +108,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 alias szd='cd ~/sumzero/sumzero-data-analytics; source ~/sumzero/sumzero-data-analytics/env_szanal/bin/activate; ./manage.py shell_plus --notebook'
-alias sz='cd ~/sumzero/sumzero-data-analytics; source ~/sumzero/sumzero-data-analytics/env_szanal/bin/activate; jupyter notebook'
+alias sz='cd ~/sumzero/sumzero-data-analytics; workon sz-data-analytics; jupyter notebook'
 alias h2o='cd ~/Downloads/h2o-2.8.1.1; java -jar h2o.jar'
 alias nnet='cd ~/sumzero/sumzero-data-analytics/neural_networks/; source env_neural/bin/activate'
 
