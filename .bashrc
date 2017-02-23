@@ -92,7 +92,9 @@ alias qwrt='setxkbmap us'
 alias gc='git commit -a -m'
 alias gs='git status'
 alias gpff='git pull --ff-only'
+alias gpr='git pull --rebase'
 alias sshls='ssh -i aws_blog1.pem ubuntu@ec2-54-191-16-100.us-west-2.compute.amazonaws.com'
+alias netstat='netstat -tulpn'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -165,7 +167,7 @@ alias drmia='docker rmi $(sudo docker images | grep "^<none>" | awk "{print $3}"
 alias dcrwbb='docker-compose run web /bin/bash'
 alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
 # may need to be changed in future
-export COMPOSE_API_VERSION=1.18
+export COMPOSE_API_VERSION=1.21
 
 source `which virtualenvwrapper.sh`
 

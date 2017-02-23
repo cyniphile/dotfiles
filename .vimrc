@@ -120,6 +120,9 @@ let mapleader = ','
     map <C-L> <C-W>l<C-W>_
     map <C-H> <C-W>h<C-W>_
 
+    map ` gt
+    map ~ gT
+    map <C-y> <C-r> 
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
 noremap k gk
@@ -507,6 +510,7 @@ let g:ctrlp_max_depth=40
 let g:ctrlp_prompt_mappings = {
     \   'AcceptSelection("v")':   ['<C-s>'],
     \   'AcceptSelection("h")': ['<C-i>'],
+    \   'AcceptSelection("t")': ['<C-x>'],
     \ }
 
 set nocompatible              " be iMproved, required
