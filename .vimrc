@@ -510,7 +510,7 @@ let g:ctrlp_max_depth=40
 let g:ctrlp_prompt_mappings = {
     \   'AcceptSelection("v")':   ['<C-s>'],
     \   'AcceptSelection("h")': ['<C-i>'],
-    \   'AcceptSelection("t")': ['<C-x>'],
+    \   'AcceptSelection("t")': ['<C-n>'],
     \ }
 
 set nocompatible              " be iMproved, required

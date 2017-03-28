@@ -117,6 +117,8 @@ alias nnet='cd ~/sumzero/sumzero-data-analytics/neural_networks/; source env_neu
 alias ihaskell='docker run -it --volume $(pwd):/notebooks --publish 8888:8888 gibiansky/ihaskell:latest'
 alias h2o='cd ~/Downloads/h2o-2.8.1.1; java -jar h2o.jar'
 
+
+export SECDATA_SECRET='something-really-secret'
 #pylearn vars
 export PYLEARN2_DATA_PATH=~/sumzero/sumzero-data-analytics/neural_networks/data
 export PYLEARN2_VIEWER_COMMAND="eog --new-instance"
