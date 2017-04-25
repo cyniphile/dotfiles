@@ -193,5 +193,5 @@ export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$PYTHONPATH
 
 export EDITOR='vim'
 
-
+. ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 . /home/cyniphile/torch/install/bin/torch-activate
