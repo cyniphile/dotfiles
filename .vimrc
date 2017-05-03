@@ -19,7 +19,8 @@ endif
 " Most prefer to automatically switch to the current file directory when
 " a new buffer is opened; to prevent this behavior
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+"set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+set shortmess+=O
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore             " Allow for cursor beyond last character
 set history=1000                    " Store a ton of history (default is 20)
@@ -578,6 +579,13 @@ if isdirectory(expand("~/.vim/bundle/vim-airline/"))
         let g:airline_right_sep='‹' " Slightly fancier than '<'
     endif
 endif
+
+" ocaml
+set rtp+=/home/cyniphile/.opam/4.02.3/share/merlin/vim
+let g:syntastic_ocaml_checkers = ['merlin']
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" end ocaml
 
 autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab

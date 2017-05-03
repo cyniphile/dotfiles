@@ -109,7 +109,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-alias szd='cd ~/sumzero/sumzero-data-analytics; source ~/sumzero/sumzero-data-analytics/env_szanal/bin/activate; ./manage.py shell_plus --notebook'
 alias sz='cd ~/sumzero/sumzero-data-analytics; workon sz-data-analytics; jupyter notebook'
 alias nnet='cd ~/sumzero/sumzero-data-analytics/neural_networks/; source env_neural/bin/activate'
 
@@ -119,9 +118,6 @@ alias h2o='cd ~/Downloads/h2o-2.8.1.1; java -jar h2o.jar'
 
 
 export SECDATA_SECRET='something-really-secret'
-#pylearn vars
-export PYLEARN2_DATA_PATH=~/sumzero/sumzero-data-analytics/neural_networks/data
-export PYLEARN2_VIEWER_COMMAND="eog --new-instance"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -133,16 +129,7 @@ fi
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/anaconda/bin # anaconda
-PATH=$PATH:$HOME/bin # lein
-
-export PYTHONPATH=/home/cyniphile/caffe/python/:$PYTHONPATH
-export PYTHONPATH=/usr/lib/gimp/2.0/python:$PYTHONPATH
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-# added by Anaconda 1.9.1 installer
-export PATH="/home/anaconda/bin:$PATH"
+#export PATH="~/.local/bin:$PATH"
 
 stty -ixon
 fortune -s -n 250 | hsterminal
@@ -190,6 +177,7 @@ export SPARK_HOME='/home/cyniphile/Downloads/spark-1.3.1/'
 export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
 export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$PYTHONPATH
 # export PYSPARK_SUBMIT_ARGS='--master local[-1]'
+
 
 export EDITOR='vim'
 
