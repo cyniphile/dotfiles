@@ -64,11 +64,6 @@ let g:skipview_files = [
 set tabpagemax=15               " Only show 15 tabs
 set showmode                    " Display the current mode
 
-set cursorline                  " Highlight current line
-hi CursorLine   cterm=NONE ctermbg=232
-highlight clear SignColumn      " SignColumn should match background
-hi Search ctermbg=200 guifg=wheat
-
 
 if has('statusline')
     set laststatus=2
@@ -434,9 +429,6 @@ let g:syntastic_python_flake8_args='--ignore=E501'
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.markdown setlocal textwidth=80
 
-"max charwidth indicator
-let &colorcolumn=join(range(81,81),",")
-highlight ColorColumn ctermbg=235
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ag_working_path_mode = 'r'
@@ -457,11 +449,19 @@ nmap - <C-w>-
 let g:airline_section_z = '%t'
 let g:airline_section_c = ''
 
-
-let g:ConqueTerm_CloseOnEnd = 1
-
-hi Normal ctermbg=234 cterm=NONE
-hi LineNr ctermfg=102 ctermbg=235
+autocmd ColorScheme * hi Visual ctermfg=NONE ctermbg=DarkGrey
+autocmd ColorScheme * hi Normal ctermbg=234 cterm=NONE
+autocmd ColorScheme * hi LineNr ctermfg=102 ctermbg=235
+autocmd ColorScheme * hi Normal ctermbg=none
+autocmd ColorScheme * set cursorline                  " Highlight current line
+autocmd ColorScheme * hi CursorLine   cterm=NONE ctermbg=234
+autocmd ColorScheme * highlight clear SignColumn      " SignColumn should match background
+autocmd ColorScheme * hi Search ctermfg=102 ctermbg=LightGrey 
+"autocmd ColorScheme * hi Comment ctermfg=green
+"max charwidth indicator
+let &colorcolumn=join(range(81,81),",")
+autocmd ColorScheme * hi ColorColumn ctermbg=235
+colorscheme slate
 
 set wrap
 set linebreak
@@ -469,13 +469,11 @@ set nolist  " list disables linebreak
 set textwidth=0
 set wrapmargin=0
 
-highlight Comment ctermfg=green
 
 filetype plugin indent on
 syntax enable
 
 nmap <silent> <leader>r :so $MYVIMRC<CR>
-hi Visual ctermfg=NONE ctermbg=DarkGrey
 
 let test#python#runner = 'pytest'
 let test#strategy = "dispatch"
@@ -591,6 +589,5 @@ autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd InsertEnter,InsertLeave * set cul!
 
-hi Normal ctermbg=none
 set showcmd                 " Show partial commands in status line and
 
