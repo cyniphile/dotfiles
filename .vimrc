@@ -449,19 +449,6 @@ nmap - <C-w>-
 let g:airline_section_z = '%t'
 let g:airline_section_c = ''
 
-autocmd ColorScheme * hi Visual ctermfg=NONE ctermbg=DarkGrey
-autocmd ColorScheme * hi Normal ctermbg=234 cterm=NONE
-autocmd ColorScheme * hi LineNr ctermfg=102 ctermbg=235
-autocmd ColorScheme * hi Normal ctermbg=none
-autocmd ColorScheme * set cursorline                  " Highlight current line
-autocmd ColorScheme * hi CursorLine   cterm=NONE ctermbg=234
-autocmd ColorScheme * highlight clear SignColumn      " SignColumn should match background
-autocmd ColorScheme * hi Search ctermfg=102 ctermbg=LightGrey 
-"autocmd ColorScheme * hi Comment ctermfg=green
-"max charwidth indicator
-let &colorcolumn=join(range(81,81),",")
-autocmd ColorScheme * hi ColorColumn ctermbg=235
-colorscheme slate
 
 set wrap
 set linebreak
@@ -556,6 +543,9 @@ call vundle#begin()
     Plugin 'chun-yang/auto-pairs'
     Plugin 'kchmck/vim-coffee-script'
     Plugin 'tpope/vim-surround'
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'othree/javascript-libraries-syntax.vim'
+    Plugin 'mxw/vim-jsx'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -587,7 +577,22 @@ execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd InsertEnter,InsertLeave * set cul!
 
 set showcmd                 " Show partial commands in status line and
 
+
+autocmd ColorScheme * hi Visual ctermfg=NONE ctermbg=DarkGrey
+autocmd ColorScheme * hi Normal ctermbg=234 cterm=NONE
+autocmd ColorScheme * hi LineNr ctermfg=102 ctermbg=235
+autocmd ColorScheme * hi Normal ctermbg=none
+autocmd ColorScheme * set cursorline                  " Highlight current line
+autocmd ColorScheme * hi CursorLine   cterm=NONE ctermbg=234
+autocmd ColorScheme * highlight clear SignColumn      " SignColumn should match background
+autocmd ColorScheme * hi Search ctermfg=102 ctermbg=LightGrey 
+"autocmd ColorScheme * hi Comment ctermfg=green
+"max charwidth indicator
+let &colorcolumn=join(range(81,81),",")
+autocmd ColorScheme * hi ColorColumn ctermbg=235
+colorscheme monokain

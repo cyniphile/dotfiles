@@ -125,7 +125,7 @@ export SECDATA_SECRET='something-really-secret'
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-# export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
