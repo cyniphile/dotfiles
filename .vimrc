@@ -19,8 +19,6 @@ endif
 " Most prefer to automatically switch to the current file directory when
 " a new buffer is opened; to prevent this behavior
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-"set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
-set shortmess+=O
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore             " Allow for cursor beyond last character
 set history=1000                    " Store a ton of history (default is 20)
@@ -28,6 +26,7 @@ set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
+set shortmess=aoOtIFT               " Abbrev. of messages (avoids 'hit enter')
 
 " Instead of reverting the cursor to the last position in the buffer, we
 " set it to the first line when editing a git commit message
@@ -460,7 +459,6 @@ set wrapmargin=0
 filetype plugin indent on
 syntax enable
 
-nmap <silent> <leader>r :so $MYVIMRC<CR>
 
 let test#python#runner = 'pytest'
 let test#strategy = "dispatch"
@@ -473,7 +471,6 @@ nmap <silent> <leader>S :TestSuite --pdb<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>G :TestVisit<CR>
 
-map <leader>r :NERDTreeFind<cr>
 
 
 " The Silver Searcher
@@ -502,6 +499,10 @@ let g:ctrlp_prompt_mappings = {
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+"clostag.vim
+" filenames like *.xml, *.html, *.xhtml, ...
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb,*.xml"
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -512,6 +513,8 @@ call vundle#begin()
     Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'stephpy/vim-yaml'
     Plugin 'othree/html5.vim'
+    Plugin 'valloric/matchtagalways'
+    Plugin 'alvan/vim-closetag'
     Plugin 'davidhalter/jedi-vim'
     Plugin 'mustache/vim-mustache-handlebars'
     Plugin 'vim-ruby/vim-ruby'
@@ -546,6 +549,7 @@ call vundle#begin()
     Plugin 'pangloss/vim-javascript'
     Plugin 'othree/javascript-libraries-syntax.vim'
     Plugin 'mxw/vim-jsx'
+    Plugin 'jmcantrell/vim-virtualenv'
 call vundle#end()            " required
 filetype plugin indent on    " required
 

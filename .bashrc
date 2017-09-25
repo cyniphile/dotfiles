@@ -92,9 +92,10 @@ alias qwrt='setxkbmap us'
 alias gc='git commit -a -m'
 alias gs='git status'
 alias gpff='git pull --ff-only'
-alias gpr='git pull --rebase'
+alias gpr='git stash; git pull --rebase; git stash pop'
 alias sshls='ssh -i aws_blog1.pem ubuntu@ec2-54-191-16-100.us-west-2.compute.amazonaws.com'
 alias netstat='netstat -tulpn'
+alias vi='nvim'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -156,6 +157,7 @@ alias di='docker images'
 alias drm='docker rm -f'
 alias drmi='docker rmi -f'
 alias drmia='docker rmi $(sudo docker images | grep "^<none>" | awk "{print $3}")'
+alias dcrwbbw='docker-compose run -p 127.0.0.1:9999:9999 web /bin/bash'
 alias dcrwbb='docker-compose run web /bin/bash'
 alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
 # may need to be changed in future
@@ -179,7 +181,8 @@ export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$PYTHONPATH
 # export PYSPARK_SUBMIT_ARGS='--master local[-1]'
 
 
-export EDITOR='vim'
+export PATH="$HOME/neovim/bin:$PATH"
+export EDITOR='nvim'
 
 . ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 . /home/cyniphile/torch/install/bin/torch-activate
