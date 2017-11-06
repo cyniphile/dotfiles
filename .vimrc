@@ -5,6 +5,10 @@ syntax on                   " Syntax highlighting
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 
+" autopep8 shortcut mapping
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+" option to ignore certin pep8 rules
+ "let g:autopep8_ignore="E501,W293"
 
 scriptencoding utf-8
 
@@ -419,10 +423,9 @@ autocmd FileType python setlocal completeopt-=preview
 "let g:jedi#completions_command = "<C-Space>"
 "let g:jedi#rename_command = "<leader>r"
 "let g:jedi#popup_on_dot = 0
-"let g:jedi#completions_enabled = 0
-
+let g:jedi#completions_enabled = 0
 let g:syntastic_python_flake8_args='--ignore=E501'
-
+nnoremap <leader>p oimport ipdb; ipdb.set_trace()<Esc>
 "let g:molokai_original = 1
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
@@ -550,6 +553,8 @@ call vundle#begin()
     Plugin 'othree/javascript-libraries-syntax.vim'
     Plugin 'mxw/vim-jsx'
     Plugin 'jmcantrell/vim-virtualenv'
+    Plugin 'tmux-plugins/vim-tmux-focus-events'
+    Plugin 'tell-k/vim-autopep8'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
