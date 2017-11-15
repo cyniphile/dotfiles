@@ -256,26 +256,7 @@ noremap <C-_> :call NERDComment(0,"toggle")<C-m>
     endif
 " }
 
-" ctrlp {
-    if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
-        let g:ctrlp_working_path_mode = 'ra'
-        let g:ctrlp_max_height = 20
-        nnoremap <silent> <D-t> :CtrlP<CR>
-        nnoremap <silent> <D-r> :CtrlPMRU<CR>
-
-
-    if executable('ag')
-            let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
-        elseif executable('ack-grep')
-            let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
-        elseif executable('ack')
-            let s:ctrlp_fallback = 'ack %s --nocolor -f'
-        else
-            let s:ctrlp_fallback = 'find %s -type f'
-        endif
-
-    endif
-    
+   
 " agvim
     let g:ack_mappings = { 
                 \ "i": "<C-W><CR><C-W>K",
@@ -424,7 +405,7 @@ autocmd FileType python setlocal completeopt-=preview
 "let g:jedi#rename_command = "<leader>r"
 "let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 0
-let g:syntastic_python_flake8_args='--ignore=E501'
+"let g:syntastic_python_flake8_args='--ignore=E501'
 nnoremap <leader>p oimport ipdb; ipdb.set_trace()<Esc>
 "let g:molokai_original = 1
 
@@ -478,26 +459,20 @@ nmap <silent> <leader>G :TestVisit<CR>
 
 " The Silver Searcher
 if executable('ag')
-  " Use ag over grep
+   "Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-
 endif
 
-if exists("g:ctrl_user_command")
-  unlet g:ctrlp_user_command
-endif
-let g:ctrlp_regexp = 1
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
-let g:ctrlp_prompt_mappings = {
-    \   'AcceptSelection("v")':   ['<C-s>'],
-    \   'AcceptSelection("h")': ['<C-i>'],
-    \   'AcceptSelection("t")': ['<C-n>'],
-    \ }
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-n': 'tab split',
+  \ 'ctrl-i': 'split',
+  \ 'ctrl-s': 'vsplit' }
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+noremap <C-p> :FZF<CR>
+
+nmap <leader>y <Plug>yankstack_substitute_older_paste
+nmap <leader>Y <Plug>yankstack_substitute_newer_paste
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -535,7 +510,6 @@ call vundle#begin()
     Plugin 'mileszs/ack.vim'
     Plugin 'gmarik/vundle'
     Plugin 'mbbill/undotree'
-    Plugin 'kien/ctrlp.vim'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-rails'
     Plugin 'tpope/vim-markdown'
@@ -543,7 +517,7 @@ call vundle#begin()
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'zaiste/tmux.vim'
     Plugin 'jistr/vim-nerdtree-tabs'
-    Plugin 'scrooloose/syntastic'
+    "Plugin 'scrooloose/syntastic'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'edkolev/tmuxline.vim'
     Plugin 'chun-yang/auto-pairs'
@@ -555,6 +529,10 @@ call vundle#begin()
     Plugin 'jmcantrell/vim-virtualenv'
     Plugin 'tmux-plugins/vim-tmux-focus-events'
     Plugin 'tell-k/vim-autopep8'
+    Plugin 'junegunn/fzf'
+    Plugin 'maxbrunsfeld/vim-yankstack'
+    Plugin 'junegunn/fzf.vim'
+    Plugin 'w0rp/ale'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -579,7 +557,7 @@ endif
 
 " ocaml
 set rtp+=/home/cyniphile/.opam/4.02.3/share/merlin/vim
-let g:syntastic_ocaml_checkers = ['merlin']
+"let g:syntastic_ocaml_checkers = ['merlin']
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " end ocaml
