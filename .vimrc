@@ -394,7 +394,15 @@ let g:airline_powerline_fonts=1
 set gdefault
 nmap <F5> :setlocal spell! spelllang=en_us<CR>
 set nospell
-
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
 
 "jedi vim
 autocmd FileType python setlocal completeopt-=preview
@@ -403,11 +411,10 @@ autocmd FileType python setlocal completeopt-=preview
 "let g:jedi#usages_command = "<leader>n"
 "let g:jedi#completions_command = "<C-Space>"
 "let g:jedi#rename_command = "<leader>r"
-"let g:jedi#popup_on_dot = 0
+let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 0
-"let g:syntastic_python_flake8_args='--ignore=E501'
-nnoremap <leader>p oimport ipdb; ipdb.set_trace()<Esc>
-"let g:molokai_original = 1
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
+nnoremap <leader>b oimport ipdb; ipdb.set_trace()<Esc>
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.markdown setlocal textwidth=80
@@ -455,7 +462,7 @@ nmap <silent> <leader>S :TestSuite --pdb<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>G :TestVisit<CR>
 
-
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " The Silver Searcher
 if executable('ag')
@@ -470,9 +477,6 @@ let g:fzf_action = {
   \ 'ctrl-s': 'vsplit' }
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 noremap <C-p> :FZF<CR>
-
-nmap <leader>y <Plug>yankstack_substitute_older_paste
-nmap <leader>Y <Plug>yankstack_substitute_newer_paste
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -500,7 +504,6 @@ call vundle#begin()
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'tpope/vim-obsession'
     Plugin 'airblade/vim-rooter'
-    Plugin 'nvie/vim-flake8'
     Plugin 'janko-m/vim-test'
     Plugin 'tpope/vim-dispatch'
     Plugin 'vim-airline/vim-airline'
@@ -517,7 +520,6 @@ call vundle#begin()
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'zaiste/tmux.vim'
     Plugin 'jistr/vim-nerdtree-tabs'
-    "Plugin 'scrooloose/syntastic'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'edkolev/tmuxline.vim'
     Plugin 'chun-yang/auto-pairs'
@@ -530,7 +532,6 @@ call vundle#begin()
     Plugin 'tmux-plugins/vim-tmux-focus-events'
     Plugin 'tell-k/vim-autopep8'
     Plugin 'junegunn/fzf'
-    Plugin 'maxbrunsfeld/vim-yankstack'
     Plugin 'junegunn/fzf.vim'
     Plugin 'w0rp/ale'
 call vundle#end()            " required

@@ -147,6 +147,24 @@ alias cdsz='cd ~/sumzero/webapp/sumzero/'
 alias get_all_data='workon awi; python ~/sumzero/analytics-web-interface/get_all_data.py; deactivate;'
 alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
 
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore-dir Downloads -g ""'
+
+function smart_open() {
+    if [ "$1" = "" ]
+    then
+        return 1
+    fi
+    file_kind=$(xdg-mime query filetype $1 | xargs xdg-mime query default)
+    if [ "$file_kind" = "sublime_text.desktop" ] || [ "$file_kind" = "" ] || [ "$file_kind" = "atom.desktop" ] || [ "$file_kind" = "gvim.desktop" ]
+    then
+        vi $1
+    else
+        xdg-open $1
+    fi
+}
+
+# fzf shortcut (cool!)
+bind -x '"\C-p": cd && smart_open $(fzf-tmux)'
 
 # docker
 alias docker_dev='docker run  -P -v /home/cyniphile/sumzero/analytics-web-interface:/home/analytics-web-interface --name webapp -i cyniphile/analytics-web-interface:latest python run.py; sudo docker ps'
@@ -186,3 +204,5 @@ export EDITOR='nvim'
 
 . ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 . /home/cyniphile/torch/install/bin/torch-activate
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
