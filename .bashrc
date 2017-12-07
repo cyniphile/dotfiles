@@ -147,8 +147,10 @@ alias cdsz='cd ~/sumzero/webapp/sumzero/'
 alias get_all_data='workon awi; python ~/sumzero/analytics-web-interface/get_all_data.py; deactivate;'
 alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
 
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore-dir Downloads -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
+# ctrl-p: open fuzzy finder, search for files, use default program to open 
+# and cd to dir of file
 function smart_open() {
     if [ "$1" = "" ]
     then
@@ -161,10 +163,16 @@ function smart_open() {
     else
         xdg-open $1
     fi
+    dir=$(dirname "$1") && cd "$dir"
 }
 
 # fzf shortcut (cool!)
 bind -x '"\C-p": cd && smart_open $(fzf-tmux)'
+cdf() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
 
 # docker
 alias docker_dev='docker run  -P -v /home/cyniphile/sumzero/analytics-web-interface:/home/analytics-web-interface --name webapp -i cyniphile/analytics-web-interface:latest python run.py; sudo docker ps'

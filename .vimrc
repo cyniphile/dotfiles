@@ -465,17 +465,24 @@ nmap <silent> <leader>G :TestVisit<CR>
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " The Silver Searcher
-if executable('ag')
+"if executable('ag')
+   ""Use ag over grep
+  "set grepprg=ag\ --nogroup\ --nocolor
+"endif
+" ripgrep 
+if executable('rg')
    "Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag
 endif
+
 
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-n': 'tab split',
   \ 'ctrl-i': 'split',
   \ 'ctrl-s': 'vsplit' }
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
 noremap <C-p> :FZF<CR>
 
 set nocompatible              " be iMproved, required
