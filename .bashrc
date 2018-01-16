@@ -80,27 +80,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-alias h='htop'
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-# defined my meee
-alias setscreen='xset s off'
-alias clmk='setxkbmap us -variant colemak'
-alias qwrt='setxkbmap us'
-alias gc='git commit -a -m'
-alias gs='git status'
-alias gpff='git pull --ff-only'
-alias gpr='git stash; git pull --rebase; git stash pop'
-alias sshls='ssh -i aws_blog1.pem ubuntu@ec2-54-191-16-100.us-west-2.compute.amazonaws.com'
-alias netstat='netstat -tulpn'
-alias vi='nvim'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -109,16 +88,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
-alias sz='cd ~/sumzero/sumzero-data-analytics; workon sz-data-analytics; jupyter notebook'
-alias nnet='cd ~/sumzero/sumzero-data-analytics/neural_networks/; source env_neural/bin/activate'
-
-#random bs
-alias ihaskell='docker run -it --volume $(pwd):/notebooks --publish 8888:8888 gibiansky/ihaskell:latest'
-alias h2o='cd ~/Downloads/h2o-2.8.1.1; java -jar h2o.jar'
-
-
-export SECDATA_SECRET='something-really-secret'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -138,14 +107,6 @@ fortune -s -n 250 | hsterminal
 # vi keybindings in shell
 set -o vi
 bind -m vi-insert "\C-l":clear-screen
-
-alias doom2='chocolate-doom -iwad ~/Documents/Doom2.wad'
-alias doom1='chocolate-doom -iwad ~/Documents/Doom1.wad'
-alias doomp='chocolate-doom -iwad ~/Documents/Plutonia.wad'
-# sumzero
-alias cdsz='cd ~/sumzero/webapp/sumzero/'
-alias get_all_data='workon awi; python ~/sumzero/analytics-web-interface/get_all_data.py; deactivate;'
-alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
@@ -174,18 +135,6 @@ cdf() {
    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
-# docker
-alias docker_dev='docker run  -P -v /home/cyniphile/sumzero/analytics-web-interface:/home/analytics-web-interface --name webapp -i cyniphile/analytics-web-interface:latest python run.py; sudo docker ps'
-alias drma='docker rm $(comm -13 <(docker ps -a -q --filter="name=data" | sort) <(docker ps -a -q | sort))'
-alias dps='docker ps -a'
-alias dcu='docker-compose up'
-alias di='docker images'
-alias drm='docker rm -f'
-alias drmi='docker rmi -f'
-alias drmia='docker rmi $(sudo docker images | grep "^<none>" | awk "{print $3}")'
-alias dcrwbbw='docker-compose run -p 127.0.0.1:9999:9999 web /bin/bash'
-alias dcrwbb='docker-compose run web /bin/bash'
-alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
 # may need to be changed in future
 export COMPOSE_API_VERSION=1.21
 

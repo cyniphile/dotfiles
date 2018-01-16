@@ -464,11 +464,6 @@ nmap <silent> <leader>G :TestVisit<CR>
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-" The Silver Searcher
-"if executable('ag')
-   ""Use ag over grep
-  "set grepprg=ag\ --nogroup\ --nocolor
-"endif
 " ripgrep 
 if executable('rg')
    "Use ag over grep
