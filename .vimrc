@@ -414,7 +414,9 @@ autocmd FileType python setlocal completeopt-=preview
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 0
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
-nnoremap <leader>b oimport ipdb; ipdb.set_trace()<Esc>
+
+autocmd Filetype python nnoremap <leader>b oimport ipdb; ipdb.set_trace()<Esc>
+autocmd Filetype ruby nnoremap <leader>b orequire 'byebug'; byebug<Esc>
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.markdown setlocal textwidth=80
