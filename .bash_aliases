@@ -25,7 +25,7 @@ alias doom1='chocolate-doom -iwad ~/Documents/Doom1.wad'
 alias doomp='chocolate-doom -iwad ~/Documents/Plutonia.wad'
 # sumzero
 alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
-alias sz='cd ~/sumzero/sumzero-data-analytics; workon sz-data-analytics; jupyter notebook'
+alias sz='cd ~/sumzero/sumzero-data-analytics; workon sz-data-analytics; jupyter lab'
 
 
 

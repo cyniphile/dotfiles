@@ -108,6 +108,7 @@ fortune -s -n 250 | hsterminal
 set -o vi
 set keymap vi-command                                                                            
 bind -m vi-command "v":""
+bind -m vi-insert "\C-l":clear-screen
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
