@@ -583,8 +583,9 @@ autocmd ColorScheme * set cursorline                  " Highlight current line
 autocmd ColorScheme * hi CursorLine   cterm=NONE ctermbg=234
 autocmd ColorScheme * highlight clear SignColumn      " SignColumn should match background
 autocmd ColorScheme * hi Search ctermfg=102 ctermbg=LightGrey 
-"autocmd ColorScheme * hi Comment ctermfg=green
+autocmd ColorScheme * hi Comment ctermfg=DarkGrey
 "max charwidth indicator
 let &colorcolumn=join(range(81,81),",")
 autocmd ColorScheme * hi ColorColumn ctermbg=235
-colorscheme monokain
+colorscheme seoul256
+"colorscheme monokain

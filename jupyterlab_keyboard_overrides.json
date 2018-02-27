@@ -1,0 +1,109 @@
+{
+
+    // [missing schema title]
+    // [missing schema description]
+    "notebook:run-cell-and-select-next-1": {
+      "command": "notebook:run-cell-and-select-next",
+      "keys": [
+        "Ctrl Enter"
+      ],
+      "selector": ".jp-Notebook.jp-mod-editMode"
+    },
+    
+    // [missing schema title]
+    // [missing schema description]
+    "notebook:run-cell-and-select-next-2": {
+      "command": "notebook:run-cell-and-select-next",
+      "keys": [
+        "Ctrl Enter"
+      ],
+      "selector": ".jp-Notebook:focus"
+    },
+        
+    // [missing schema title]
+    // [missing schema description]
+    "notebook:run-cell-1": {
+      "command": "notebook:run-cell",
+      "keys": [
+        "Shift Enter"
+      ],
+      "selector": ".jp-Notebook:focus"
+    },
+
+    // [missing schema title]
+    // [missing schema description]
+    "notebook:run-cell-2": {
+      "command": "notebook:run-cell",
+      "keys": [
+        "Shift Enter"
+      ],
+      "selector": ".jp-Notebook.jp-mod-editMode"
+    },
+    // [missing schema title]
+    // [missing schema description]
+    "notebook:insert-cell-below": {
+      "command": "notebook:insert-cell-below",
+      "keys": [
+        "O"
+      ],
+      "selector": ".jp-Notebook:focus"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "notebook:enter-edit-mode-2": {
+      "command": "notebook:enter-edit-mode",
+      "keys": [
+        "I"
+      ],
+      "selector": ".jp-Notebook:focus"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "notebook:enter-command-mode-1": {
+      "command": "notebook:enter-command-mode",
+      "keys": [
+        "Ctrl Escape"
+      ],
+      "selector": ".jp-Notebook.jp-mod-editMode"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "kernelmenu:interrupt": {
+      "command": "kernelmenu:interrupt",
+      "keys": [
+        "Shift I",
+        "Shift I"
+      ],
+      "selector": "[data-jp-kernel-user]:focus"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "notebook:paste-cell-below": {
+      "command": "notebook:paste-cell-below",
+      "keys": [
+        "P"
+      ],
+      "selector": ".jp-Notebook:focus"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "notebook:cut-cell": {
+      "command": "notebook:cut-cell",
+      "keys": [
+        "D",
+        "D"
+      ],
+      "selector": ".jp-Notebook:focus"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "notebook:delete-cell": {
+      "command": "notebook:delete-cell",
+      "keys": [
+        "",
+        ""
+      ],
+      "selector": ".jp-Notebook:focus"
+    }
+
+}
