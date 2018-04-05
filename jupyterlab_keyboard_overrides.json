@@ -1,5 +1,4 @@
 {
-
     // [missing schema title]
     // [missing schema description]
     "notebook:run-cell-and-select-next-1": {
@@ -104,6 +103,51 @@
         ""
       ],
       "selector": ".jp-Notebook:focus"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "notebook:undo-cell-action": {
+      "command": "notebook:undo-cell-action",
+      "keys": [
+        "U"
+      ],
+      "selector": ".jp-Notebook:focus"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "notebook:redo-cell-action": {
+      "command": "notebook:redo-cell-action",
+      "keys": [
+        "R"
+      ],
+      "selector": ".jp-Notebook:focus"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "notebook:change-cell-to-raw": {
+      "command": "notebook:change-cell-to-raw",
+      "keys": [
+        "Shift R"
+      ],
+      "selector": ".jp-Notebook:focus"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "notebook:change-cell-to-code": {
+      "command": "notebook:change-cell-to-code",
+      "keys": [
+        "C"
+      ],
+      "selector": ".jp-Notebook:focus"
+    },
+        // [missing schema title]
+    // [missing schema description]
+    "notebook:copy-cell": {
+      "command": "notebook:copy-cell",
+      "keys": [
+        "Y",
+        "Y"
+      ],
+      "selector": ".jp-Notebook:focus"
     }
-
 }

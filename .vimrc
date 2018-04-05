@@ -498,6 +498,7 @@ call vundle#begin()
     Plugin 'xolox/vim-misc'
     Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'stephpy/vim-yaml'
+    Plugin 'Vimjas/vim-python-pep8-indent'
     Plugin 'othree/html5.vim'
     Plugin 'valloric/matchtagalways'
     Plugin 'alvan/vim-closetag'
