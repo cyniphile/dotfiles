@@ -489,6 +489,9 @@ filetype off                  " required
 " filenames like *.xml, *.html, *.xhtml, ...
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb,*.xml"
 
+"mypy for ale
+let g:ale_python_mypy_options = '--ignore-missing-imports'
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
