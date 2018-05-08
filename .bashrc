@@ -152,11 +152,6 @@ function post_cyniphile() {
     vim $today-$1.markdown
 }
 
-export SPARK_HOME='/home/cyniphile/Downloads/spark-1.3.1/'
-export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
-export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$PYTHONPATH
-# export PYSPARK_SUBMIT_ARGS='--master local[-1]'
-
 
 export PATH="$HOME/neovim/bin:$PATH"
 export EDITOR='nvim'

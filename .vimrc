@@ -255,7 +255,7 @@ noremap <C-_> :call NERDComment(0,"toggle")<C-m>
         let g:nerdtree_tabs_open_on_gui_startup=0
     endif
 " }
-
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
    
 " agvim
     let g:ack_mappings = { 
@@ -414,6 +414,8 @@ autocmd FileType python setlocal completeopt-=preview
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 0
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
+"let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
+"let g:ycm_python_binary_path = '/usr/bin/python3'
 
 autocmd Filetype python nnoremap <leader>b oimport ipdb; ipdb.set_trace()<Esc>
 autocmd Filetype ruby nnoremap <leader>b orequire 'byebug'; byebug<Esc>
@@ -464,7 +466,7 @@ nmap <silent> <leader>S :TestSuite --pdb<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>G :TestVisit<CR>
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " ripgrep 
 if executable('rg')
@@ -542,7 +544,10 @@ call vundle#begin()
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
     Plugin 'w0rp/ale'
+    "Plugin 'zchee/deoplete-jedi'
+    "Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call vundle#end()            " required
+let g:deoplete#enable_at_startup = 1
 filetype plugin indent on    " required
 
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
