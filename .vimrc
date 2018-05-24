@@ -105,7 +105,6 @@ set softtabstop=4               " Let backspace delete indent
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
-set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 " Remove trailing whitespaces and ^M chars
 " To disable the stripping of whitespace, add the following to your
 autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> call StripTrailingWhitespace()
@@ -414,8 +413,26 @@ autocmd FileType python setlocal completeopt-=preview
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 0
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_semantic_triggers = {'python': ['re!from\s+\S+\s+import\s']}
 "let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
 "let g:ycm_python_binary_path = '/usr/bin/python3'
+
+" Point YCM to the Pipenv created virtualenv, if possible
+" At first, get the output of 'pipenv --venv' command.
+let pipenv_venv_path = system('pipenv --venv')
+" The above system() call produces a non zero exit code whenever
+" a proper virtual environment has not been found.
+" So, second, we only point YCM to the virtual environment when
+" the call to 'pipenv --venv' was successful.
+" Remember, that 'pipenv --venv' only points to the root directory
+" of the virtual environment, so we have to append a full path to
+" the python executable.
+if shell_error == 0
+  let venv_path = substitute(pipenv_venv_path, '\n', '', '')
+  let g:ycm_python_binary_path = venv_path . '/bin/python'
+else
+  let g:ycm_python_binary_path = 'python'
+endif
 
 autocmd Filetype python nnoremap <leader>b oimport ipdb; ipdb.set_trace()<Esc>
 autocmd Filetype ruby nnoremap <leader>b orequire 'byebug'; byebug<Esc>
@@ -525,7 +542,7 @@ call vundle#begin()
     Plugin 'mbbill/undotree'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-rails'
-    Plugin 'tpope/vim-markdown'
+    "Plugin 'tpope/vim-markdown'
     Plugin 'gcmt/wildfire.vim'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'zaiste/tmux.vim'
@@ -544,11 +561,17 @@ call vundle#begin()
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
     Plugin 'w0rp/ale'
-    "Plugin 'zchee/deoplete-jedi'
-    "Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
+    Plugin 'plasticboy/vim-markdown'
 call vundle#end()            " required
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on    " required
+
+" http://stackoverflow.com/a/21687112
+let loaded_netrwPlugin=1           
+let NERDTreeIgnore=['\.o$', '\~$', '__pycache__[[dir]]', '.pytest_cache[[dir]]', '.idea', '.mypy_cache[[dir]]',  '.git[[dir]]']
+"autorefresh nerdtree https://askubuntu.com/questions/523822/vim-nerdtree-auto-fresh-the-directory-pane
+"autocmd CursorHold,CursorHoldI * call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | wincmd w
 
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
     let g:solarized_termcolors=256
