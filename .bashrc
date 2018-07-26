@@ -130,7 +130,7 @@ function smart_open() {
 }
 
 # fzf shortcut (cool!)
-bind -x '"\C-p": cd && smart_open $(fzf-tmux)'
+bind -x '"\C-p": smart_open $(fzf-tmux)'
 cdf() {
    local file
    local dir
@@ -138,7 +138,7 @@ cdf() {
 }
 
 # may need to be changed in future
-export COMPOSE_API_VERSION=1.21
+export COMPOSE_API_VERSION=1.23
 
 source `which virtualenvwrapper.sh`
 
