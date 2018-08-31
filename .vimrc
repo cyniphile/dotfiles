@@ -394,14 +394,14 @@ set gdefault
 nmap <F5> :setlocal spell! spelllang=en_us<CR>
 set nospell
 "python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+  "project_base_dir = os.environ['VIRTUAL_ENV']
+  "activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  "execfile(activate_this, dict(__file__=activate_this))
+"EOF
 
 "jedi vim
 autocmd FileType python setlocal completeopt-=preview
@@ -412,7 +412,7 @@ autocmd FileType python setlocal completeopt-=preview
 "let g:jedi#rename_command = "<leader>r"
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 0
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
 let g:ycm_semantic_triggers = {'python': ['re!from\s+\S+\s+import\s']}
 "let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
 "let g:ycm_python_binary_path = '/usr/bin/python3'
@@ -441,7 +441,7 @@ au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.markdown setlocal textwidth=80
 
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'rg --vimgrep --no-heading'
 let g:ag_working_path_mode = 'r'
 
 set noswapfile
@@ -593,10 +593,10 @@ if isdirectory(expand("~/.vim/bundle/vim-airline/"))
 endif
 
 " ocaml
-set rtp+=/home/cyniphile/.opam/4.02.3/share/merlin/vim
+"set rtp+=/home/cyniphile/.opam/4.02.3/share/merlin/vim
 "let g:syntastic_ocaml_checkers = ['merlin']
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+"execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " end ocaml
 
 autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab

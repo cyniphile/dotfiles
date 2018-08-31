@@ -48,7 +48,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-source ~/git-prompt.sh
+source ~/dotfiles/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
 
 
@@ -75,9 +75,9 @@ if [ -x /usr/bin/dircolors ]; then
     # alias dir='dir --color=auto'
     # alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    #alias grep='grep --color=auto'
+    #alias fgrep='fgrep --color=auto'
+    #alias egrep='egrep --color=auto'
 fi
 
 
@@ -89,15 +89,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+ #enable programmable completion features (you don't need to enable
+ #this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+ #sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 #export PATH="~/.local/bin:$PATH"
 
@@ -131,6 +128,10 @@ function smart_open() {
 
 # fzf shortcut (cool!)
 bind -x '"\C-p": smart_open $(fzf-tmux)'
+
+#case insensitive tab completion
+bind "set completion-ignore-case on"
+bind "set show-all-if-ambiguous on"
 cdf() {
    local file
    local dir
@@ -140,23 +141,19 @@ cdf() {
 # may need to be changed in future
 export COMPOSE_API_VERSION=1.23
 
-source `which virtualenvwrapper.sh`
+#source `which virtualenvwrapper.sh`
 
 alias find='find . -name $1'
-
-# cyniphile_blog 
-function post_cyniphile() {
-    cd ~/Dropbox/Projects/cyniphile_blog/_posts/;
-    today=$(date +'%Y-%m-%d');
-    cp template.markdown $today-$1.markdown
-    vim $today-$1.markdown
-}
-
 
 export PATH="$HOME/neovim/bin:$PATH"
 export EDITOR='nvim'
 
 . ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-. /home/cyniphile/torch/install/bin/torch-activate
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# custora cli
+export PATH="#{~/custora_cli/bin}:$PATH"
+# fixes mac forking problems: 
+# https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES 
