@@ -123,20 +123,19 @@ function smart_open() {
     else
         xdg-open $1
     fi
-    dir=$(dirname "$1") && cd "$dir"
 }
 
+function smart_cd() {
+   dir=$(dirname "$1") && cd "$dir"
+}
 # fzf shortcut (cool!)
 bind -x '"\C-p": smart_open $(fzf-tmux)'
+bind -x '"\C-q": smart_cd $(fzf-tmux)'
 
 #case insensitive tab completion
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
-cdf() {
-   local file
-   local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
-}
+
 
 # may need to be changed in future
 export COMPOSE_API_VERSION=1.23
