@@ -23,9 +23,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias doom2='chocolate-doom -iwad ~/Documents/Doom2.wad'
 alias doom1='chocolate-doom -iwad ~/Documents/Doom1.wad'
 alias doomp='chocolate-doom -iwad ~/Documents/Plutonia.wad'
-# sumzero
 alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
-alias sz='cd ~/sumzero/sumzero-data-analytics; workon sz-data-analytics; jupyter lab'
 
 
 
@@ -44,3 +42,6 @@ alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
 
 #random bs
 alias ihaskell='docker run -it --volume $(pwd):/notebooks --publish 8888:8888 gibiansky/ihaskell:latest'
+
+# custora
+alias cspark='cd ~/custora && opt/spark/bin/spark-shell --jars spark/apps/target/scala-2.11/custora-spark-apps.jar'

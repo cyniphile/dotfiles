@@ -19,7 +19,7 @@ badd +1 .bash_aliases
 badd +1 .bash_profile
 argglobal
 silent! argdel *
-argadd .vimrc
+$argadd .vimrc
 edit .bashrc
 set splitbelow splitright
 wincmd t
@@ -34,7 +34,7 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 29) / 58)
+let s:l = 1 - ((0 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt

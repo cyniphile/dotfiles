@@ -136,7 +136,6 @@ bind -x '"\C-q": smart_cd $(fzf-tmux)'
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
 
-
 # may need to be changed in future
 export COMPOSE_API_VERSION=1.23
 
