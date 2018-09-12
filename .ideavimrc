@@ -1,3 +1,5 @@
 set clipboard+=unnamed
 let mapleader = ","
 map <leader>e :action SelectInProjectView<CR>
+map <leader>w :action SaveAll<CR>
+map <leader>r :action RenameElement<CR>

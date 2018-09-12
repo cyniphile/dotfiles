@@ -4,17 +4,14 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 # defined my meee
-alias setscreen='xset s off'
-alias clmk='setxkbmap us -variant colemak'
-alias qwrt='setxkbmap us'
 alias gc='git commit -a -m'
 alias gs='git status'
 alias gpff='git pull --ff-only'
 alias gprs='git stash; git pull --rebase; git stash pop'
-alias gpr='git pull --rebase;'
-alias sshls='ssh -i aws_blog1.pem ubuntu@ec2-54-191-16-100.us-west-2.compute.amazonaws.com'
+alias gpr='git pull --rebase origin master;'
 alias netstat='netstat -tulpn'
 alias vi='nvim'
+alias r='quick_grep'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -28,7 +25,6 @@ alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
 
 
 # docker
-alias docker_dev='docker run  -P -v /home/cyniphile/sumzero/analytics-web-interface:/home/analytics-web-interface --name webapp -i cyniphile/analytics-web-interface:latest python run.py; sudo docker ps'
 alias drma='docker rm $(comm -13 <(docker ps -a -q --filter="name=data" | sort) <(docker ps -a -q | sort))'
 alias dps='docker ps -a'
 alias dcu='docker-compose up'

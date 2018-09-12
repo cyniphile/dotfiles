@@ -530,6 +530,7 @@ call vundle#begin()
     Plugin 'vim-airline/vim-airline-themes'
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'tpope/vim-obsession'
+    "Plugin 'thaerkh/vim-workspace'
     Plugin 'airblade/vim-rooter'
     Plugin 'janko-m/vim-test'
     Plugin 'tpope/vim-dispatch'
@@ -563,6 +564,9 @@ call vundle#begin()
     Plugin 'w0rp/ale'
     Plugin 'Xuyuanp/nerdtree-git-plugin'
     Plugin 'plasticboy/vim-markdown'
+    Plugin 'kshenoy/vim-signature'
+    Plugin 'tpope/vim-sleuth'
+    Plugin 'wellle/targets.vim'
 call vundle#end()            " required
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on    " required

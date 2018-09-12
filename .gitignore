@@ -1,2 +1,4 @@
 myVim.log
-hunter_s_terminal/
+.idea
+Session.vim
+.byebug_history

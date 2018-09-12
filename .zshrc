@@ -8,7 +8,7 @@ export ZSH="/Users/cyniphile/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="luke-robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -100,3 +100,15 @@ source $ZSH/oh-my-zsh.sh
 PATH=/bin:/usr/bin:/usr/local/bin:${PATH}
 export PATH
 [[ -e ~/.profile  ]] && emulate sh -c 'source ~/.profile'
+
+# fzf shortcut (cool!)
+bindkey -s '^p' 'smart_open $(fzf-tmux)^M'
+bindkey -s '^q' 'smart_cd $(fzf-tmux)^M'
+#
+# Load rbenv automatically by appending
+# the following to ~/.zshrc:
+
+eval "$(rbenv init -)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
