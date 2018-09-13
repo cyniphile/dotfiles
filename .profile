@@ -22,7 +22,7 @@ function join () {
 
 function quick_grep() {
    args=$(echo "$*")
-   if [ "$1" = "" ]
+   if [ "$args" = "" ]
    then
       return 1
    fi
@@ -32,22 +32,24 @@ function quick_grep() {
 # open fuzzy finder, search for files, use default program to open 
 # and cd to dir of file
 function smart_open() {
-    if [ "$1" = "" ]
+    args=$(echo "$*")
+    if [ "$args" = "" ]
     then
         return 1
     fi
-    file_kind=$(xdg-mime query filetype $1 | xargs xdg-mime query default)
+    file_kind=$(xdg-mime query filetype $args | xargs xdg-mime query default)
     if [ "$file_kind" = "sublime_text.desktop" ] || [ "$file_kind" = "" ] || [ "$file_kind" = "atom.desktop" ] || [ "$file_kind" = "gvim.desktop" ]
     then
-        vi $1
+        vi "$args"
     else
-        xdg-open $1
+        xdg-open "$args"
     fi
 }
 
 
 function smart_cd() {
-   dir=$(dirname "$1") && cd "$dir"
+   args=$(echo "$*")
+   dir=$(dirname "$args") && cd "$dir"
 }
 
 # interrupt with c-n 

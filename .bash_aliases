@@ -11,7 +11,7 @@ alias gprs='git stash; git pull --rebase; git stash pop'
 alias gpr='git pull --rebase origin master;'
 alias netstat='netstat -tulpn'
 alias vi='nvim'
-alias r='quick_grep'
+alias ,a='quick_grep'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
