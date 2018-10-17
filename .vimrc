@@ -181,6 +181,7 @@ cmap Tabe tabe
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
+nmap <F6> :TagbarToggle<CR>
 " Code folding options
 nmap <leader>f0 :set foldlevel=0<CR>
 nmap <leader>f1 :set foldlevel=1<CR>
@@ -518,6 +519,9 @@ call vundle#begin()
     "call vundle#begin('~/some/path/here')
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'xolox/vim-misc'
+    "scala
+    Plugin 'derekwyatt/vim-scala'
+    Plugin 'ensime/ensime-vim'
     Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'stephpy/vim-yaml'
     Plugin 'Vimjas/vim-python-pep8-indent'
@@ -538,6 +542,8 @@ call vundle#begin()
     Plugin 'flazz/vim-colorschemes'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'scrooloose/nerdtree'
+    Plugin 'majutsushi/tagbar'
+    Plugin 'tpope/vim-endwise'
     Plugin 'mileszs/ack.vim'
     Plugin 'gmarik/vundle'
     Plugin 'mbbill/undotree'
@@ -602,6 +608,16 @@ endif
 "let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 "execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " end ocaml
+
+
+" cursor shape adjuster for iterm: https://gist.github.com/andyfowler/1195581
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab

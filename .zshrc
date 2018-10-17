@@ -97,6 +97,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+#completions for poetry
+#fpath+=~/.zfunc
+#poetry completions zsh > ~/.zfunc/_poetry
+
 PATH=/bin:/usr/bin:/usr/local/bin:${PATH}
 export PATH
 [[ -e ~/.profile  ]] && emulate sh -c 'source ~/.profile'
@@ -111,4 +115,3 @@ bindkey -s '^q' 'smart_cd $(fzf-tmux)^M'
 eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-

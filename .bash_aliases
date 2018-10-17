@@ -4,14 +4,17 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 # defined my meee
-alias gc='git commit -a -m'
+alias gc='git commit -m'
+alias gca='git commit -a -m'
 alias gs='git status'
-alias gpff='git pull --ff-only'
-alias gprs='git stash; git pull --rebase; git stash pop'
+alias gl='git log'
+alias gprs='git stash; git pull --rebase origin master; git stash pop'
 alias gpr='git pull --rebase origin master;'
 alias netstat='netstat -tulpn'
 alias vi='nvim'
 alias ,a='quick_grep'
+alias gpf='git push --force-with-lease'
+alias gp='git push'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -41,3 +44,5 @@ alias ihaskell='docker run -it --volume $(pwd):/notebooks --publish 8888:8888 gi
 
 # custora
 alias cspark='cd ~/custora && opt/spark/bin/spark-shell --jars spark/apps/target/scala-2.11/custora-spark-apps.jar'
+# jupyter spark
+alias js='cd ~/projects/spark-jupyter && source spark-jupyter-env/bin/activate && jupyter notebook'

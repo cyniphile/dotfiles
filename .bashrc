@@ -1,7 +1,11 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-stty intr \^n
+
+if [ -f ~/.profile ]; then
+    . ~/.profile
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -81,14 +85,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
  #enable programmable completion features (you don't need to enable
  #this, if it's already enabled in /etc/bash.bashrc and /etc/profile
  #sources /etc/bash.bashrc).
@@ -118,9 +114,6 @@ bind "set show-all-if-ambiguous on"
 # may need to be changed in future
 export COMPOSE_API_VERSION=1.23
 
-#source `which virtualenvwrapper.sh`
-
-alias find='find . -name $1'
 
 export PATH="$HOME/neovim/bin:$PATH"
 export EDITOR='nvim'
@@ -128,3 +121,4 @@ export EDITOR='nvim'
 . ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH="/Users/cyniphile/Library/Python/3.7/bin:$PATH"

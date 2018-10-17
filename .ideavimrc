@@ -3,3 +3,5 @@ let mapleader = ","
 map <leader>e :action SelectInProjectView<CR>
 map <leader>w :action SaveAll<CR>
 map <leader>r :action RenameElement<CR>
+map <leader>b :action ToggleLineBreakpoint<CR>
+map Y y$

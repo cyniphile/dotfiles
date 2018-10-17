@@ -1,4 +1,4 @@
-fortune -s -n 200 | hsterminal
+fortune -s | hsterminal
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -9,7 +9,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # custora cli
-export PATH="#{~/custora_cli/bin}:$PATH"
+export PATH="#{$HOME/custora_cli/bin}:$PATH"
 # fixes mac forking problems: 
 # https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES 
@@ -55,4 +55,6 @@ function smart_cd() {
 # interrupt with c-n 
 stty intr \^n
 
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+PATH="/usr/local/bin/ctags:$PATH"
