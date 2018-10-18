@@ -4,4 +4,7 @@ map <leader>e :action SelectInProjectView<CR>
 map <leader>w :action SaveAll<CR>
 map <leader>r :action RenameElement<CR>
 map <leader>b :action ToggleLineBreakpoint<CR>
-map Y y$
+map <leader>d :action GotoDeclaration<CR>
+map <leader><C-l> :action MoveRight<CR>
+map <leader><C-j> :action MoveDown<CR>
+map Y y$k

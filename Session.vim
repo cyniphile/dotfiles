@@ -7,7 +7,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +4 .vimrc
+badd +2 .vimrc
 badd +1 .bashrc
 badd +48 .tmux.conf
 badd +1 material_dark_custom_chrome/Cached\ Theme.pak
@@ -22,7 +22,7 @@ badd +2 .ideavimrc
 argglobal
 silent! argdel *
 $argadd .vimrc
-edit .bash_aliases
+edit .ideavimrc
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
