@@ -7,4 +7,4 @@ map <leader>b :action ToggleLineBreakpoint<CR>
 map <leader>d :action GotoDeclaration<CR>
 map <leader><C-l> :action MoveRight<CR>
 map <leader><C-j> :action MoveDown<CR>
-map Y y$k
+map Y y$
