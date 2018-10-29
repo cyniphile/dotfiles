@@ -1,31 +1,30 @@
-alias h='htop'
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-# defined my meee
+
+# git
 alias gc='git commit -m'
 alias gca='git commit -a -m'
 alias gs='git status'
 alias gl='git log'
-alias gprs='git stash; git pull --rebase origin master; git stash pop'
+alias ga='git add'
+alias gd='git diff'
 alias gpr='git pull --rebase origin master;'
+alias gprs='git stash; gpr; git stash pop'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+
+# random
 alias netstat='netstat -tulpn'
 alias vi='nvim'
 alias ,a='quick_grep'
-alias gpf='git push --force-with-lease'
-alias gp='git push'
+alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
+alias h='htop'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-alias doom2='chocolate-doom -iwad ~/Documents/Doom2.wad'
-alias doom1='chocolate-doom -iwad ~/Documents/Doom1.wad'
-alias doomp='chocolate-doom -iwad ~/Documents/Plutonia.wad'
-alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
-
-
 
 # docker
 alias drma='docker rm $(comm -13 <(docker ps -a -q --filter="name=data" | sort) <(docker ps -a -q | sort))'
@@ -44,5 +43,4 @@ alias ihaskell='docker run -it --volume $(pwd):/notebooks --publish 8888:8888 gi
 
 # custora
 alias cspark='cd ~/custora && opt/spark/bin/spark-shell --jars spark/apps/target/scala-2.11/custora-spark-apps.jar'
-# jupyter spark
 alias js='cd ~/projects/spark-jupyter && source spark-jupyter-env/bin/activate && jupyter notebook'
