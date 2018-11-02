@@ -9,7 +9,8 @@ map <leader>w :action SaveAll<CR>
 map <leader>r :action RenameElement<CR>
 map <leader>b :action ToggleLineBreakpoint<CR>
 map <leader>d :action GotoDeclaration<CR>
-map <leader><C-l> :action MoveRight<CR>
-map <leader><C-j> :action MoveDown<CR>
+map <leader>h :action TypeHierarchy<CR>
+map <leader>gb :action Annotate<CR>
 
-map Y y$
+"sane Y remapping (default is inconsistent, with D convention)
+map Y y$ 
