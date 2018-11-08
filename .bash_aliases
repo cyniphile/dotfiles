@@ -5,6 +5,7 @@ alias l='ls -CF'
 
 # git
 alias gc='git commit -m'
+alias gk='git checkout'
 alias gca='git commit -a -m'
 alias gs='git status'
 alias gl='git log'
