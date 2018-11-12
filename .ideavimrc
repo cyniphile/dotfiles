@@ -10,6 +10,8 @@ map <leader>r :action RenameElement<CR>
 map <leader>b :action ToggleLineBreakpoint<CR>
 map <leader>d :action GotoDeclaration<CR>
 map <leader>h :action TypeHierarchy<CR>
+"use register 1, a little easier to type than just typing "1
+map <leader>f "1 
 map <leader>gb :action Annotate<CR>
 
 "sane Y remapping (default is inconsistent, with D convention)

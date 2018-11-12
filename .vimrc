@@ -10,6 +10,8 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 " option to ignore certin pep8 rules
  "let g:autopep8_ignore="E501,W293"
 
+"use register 1, a little easier to type than just typing "1
+map <leader>f "1 
 scriptencoding utf-8
 
 if has('clipboard')

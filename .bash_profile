@@ -11,3 +11,5 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 eval "$(rbenv init -)"
+
+export PATH="$HOME/.poetry/bin:$PATH"
