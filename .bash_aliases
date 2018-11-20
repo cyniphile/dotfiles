@@ -43,6 +43,5 @@ alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
 alias ihaskell='docker run -it --volume $(pwd):/notebooks --publish 8888:8888 gibiansky/ihaskell:latest'
 
 # custora
-alias cspark='cd ~/custora && opt/spark/bin/spark-shell --jars spark/apps/target/scala-2.11/custora-spark-apps.jar'
-alias cs=cspark
-alias js='cd ~/jupyter-spark && source jupyter-spark-env/bin/activate && jupyter notebook'
+alias cs='cd ~/custora_stuff/custora && opt/spark/bin/spark-shell --jars spark/apps/target/scala-2.11/custora-spark-apps.jar'
+alias js='cd ~/custora_stuff/sparkscratch && source jupyter-spark-env/bin/activate && jupyter notebook'

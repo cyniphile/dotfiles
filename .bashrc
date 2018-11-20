@@ -96,7 +96,6 @@ fi
 #export PATH="~/.local/bin:$PATH"
 
 stty -ixon
-fortune -s -n 250 | hsterminal
 
 # vi keybindings in shell
 set -o vi
