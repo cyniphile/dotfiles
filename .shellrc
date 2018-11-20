@@ -1,3 +1,8 @@
+# PATH="/bin:/usr/bin:/usr/local/bin:${PATH}"
+# export PATH
+# messing up path per https://github.com/sdispater/poetry/issues/198#issuecomment-430742299
+
+HISTCONTROL=ignoreboth:erasedups
 fortune -s | hsterminal
 
 # Alias definitions.
@@ -55,4 +60,5 @@ stty intr \^n
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 PATH="/usr/local/bin/ctags:$PATH"
+export PATH
 

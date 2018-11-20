@@ -2,17 +2,18 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-if [ -f ~/.profile ]; then
-    . ~/.profile
+#if [ -f ~/.profile ]; then
+    #. ~/.profile
+#fi
+
+if [ -f ~/.shellrc ]; then
+    . ~/.shellrc
 fi
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespaceG
-
+HISTCONTROL=ignoreboth:erasedups
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -122,3 +123,5 @@ export EDITOR='nvim'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH="/Users/cyniphile/Library/Python/3.7/bin:$PATH"
+
+

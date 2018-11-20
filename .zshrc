@@ -34,6 +34,8 @@ plugins=(
   git
 )
 
+setopt HIST_IGNORE_ALL_DUPS
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
