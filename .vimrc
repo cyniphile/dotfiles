@@ -552,6 +552,7 @@ call vundle#begin()
     "Plugin 'tpope/vim-markdown'
     Plugin 'gcmt/wildfire.vim'
     Plugin 'altercation/vim-colors-solarized'
+    Plugin 'rizzatti/dash.vim'
     Plugin 'zaiste/tmux.vim'
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'scrooloose/nerdcommenter'
@@ -576,6 +577,9 @@ call vundle#begin()
 call vundle#end()            " required
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on    " required
+
+" remap search key
+nmap <silent> <leader>d <Plug>DashSearch<CR>
 
 " http://stackoverflow.com/a/21687112
 let loaded_netrwPlugin=1           

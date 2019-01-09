@@ -11,7 +11,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # custora cli
-export PATH="#{$HOME/custora_cli/bin}:$PATH"
+export PATH=~/custora_stuff/custora_cli/bin:$PATH
 # fixes mac forking problems: 
 # https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES 
@@ -44,7 +44,7 @@ function smart_open() {
     then
         vi "$args"
     else
-        xdg-open "$args"
+        open "$args"
     fi
 }
 
@@ -61,4 +61,3 @@ export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 PATH="/usr/local/bin/ctags:$PATH"
 export PATH
-
