@@ -84,3 +84,5 @@ bindkey -s '^q' 'smart_cd $(fzf-tmux)^M'
 eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"

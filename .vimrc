@@ -605,6 +605,7 @@ if isdirectory(expand("~/.vim/bundle/vim-airline/"))
         let g:airline_right_sep='‹' " Slightly fancier than '<'
     endif
 endif
+let g:airline#extensions#tmuxline#enabled = 0
 
 " ocaml
 "set rtp+=/home/cyniphile/.opam/4.02.3/share/merlin/vim
