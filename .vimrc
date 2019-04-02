@@ -7,6 +7,7 @@ set mousehide               " Hide the mouse cursor while typing
 
 " autopep8 shortcut mapping
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+autocmd FileType ruby noremap <buffer> <F8> :ALEFix rubocop<CR>
 " option to ignore certin pep8 rules
  "let g:autopep8_ignore="E501,W293"
 
@@ -182,17 +183,10 @@ cmap Tabe tabe
 nnoremap Y y$
 
 nmap <F6> :TagbarToggle<CR>
+
 " Code folding options
-nmap <leader>f0 :set foldlevel=0<CR>
-nmap <leader>f1 :set foldlevel=1<CR>
-nmap <leader>f2 :set foldlevel=2<CR>
-nmap <leader>f3 :set foldlevel=3<CR>
-nmap <leader>f4 :set foldlevel=4<CR>
-nmap <leader>f5 :set foldlevel=5<CR>
-nmap <leader>f6 :set foldlevel=6<CR>
-nmap <leader>f7 :set foldlevel=7<CR>
-nmap <leader>f8 :set foldlevel=8<CR>
-nmap <leader>f9 :set foldlevel=9<CR>
+set foldmethod=indent
+set foldopen+=jump  "auto open folds when jumping
 
 " Most prefer to toggle search highlighting rather than clear the current
 " search results. 
@@ -436,7 +430,11 @@ else
 endif
 
 autocmd Filetype python nnoremap <leader>b oimport ipdb; ipdb.set_trace()<Esc>
+
 autocmd Filetype ruby nnoremap <leader>b orequire 'byebug'; byebug<Esc>
+
+nnoremap <leader>r *``cgn
+
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.markdown setlocal textwidth=80
@@ -531,6 +529,7 @@ call vundle#begin()
     Plugin 'davidhalter/jedi-vim'
     Plugin 'mustache/vim-mustache-handlebars'
     Plugin 'vim-ruby/vim-ruby'
+    Plugin 'ecomba/vim-ruby-refactoring'
     Plugin 'vim-airline/vim-airline-themes'
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'tpope/vim-obsession'

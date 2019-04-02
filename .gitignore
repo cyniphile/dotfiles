@@ -3,3 +3,4 @@ myVim.log
 Session.vim
 .byebug_history
 hunter_s_terminal/
+*.iml
