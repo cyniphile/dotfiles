@@ -1,0 +1,15 @@
+toolbar#TabsToolbar:-moz-window-inactive  {
+  background-color: #6f7989 !important;
+}
+
+/* show bookmarks toolbar on new tab only */
+#main-window #PersonalToolbar {
+  visibility: collapse !important;
+}
+#main-window[title^="about:newtab"] #PersonalToolbar,
+#main-window[title^="New Tab"] #PersonalToolbar,
+#main-window[title^="Nightly"] #PersonalToolbar,
+#main-window[title^="Mozilla Firefox"] #PersonalToolbar, 
+#main-window[title^="Firefox"] #PersonalToolbar {
+  visibility: visible !important;
+}

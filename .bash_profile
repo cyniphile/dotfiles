@@ -13,3 +13,5 @@ fi
 eval "$(rbenv init -)"
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+export PATH="$HOME/.cargo/bin:$PATH"

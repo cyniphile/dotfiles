@@ -10,6 +10,7 @@ map <leader>r :action RenameElement<CR>
 map <leader>b :action ToggleLineBreakpoint<CR>
 map <leader>d :action GotoDeclaration<CR>
 map <leader>h :action TypeHierarchy<CR>
+map <leader>t :action Scala.TypeInfo<CR>
 "use register 1, a little easier to type than just typing "1
 map <leader>f "1 
 map <leader>gb :action Annotate<CR>
