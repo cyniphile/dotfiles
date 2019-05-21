@@ -194,8 +194,6 @@ nmap <silent> <leader>/ :set invhlsearch<CR>
 
 
 
-
-
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
@@ -648,3 +646,8 @@ colorscheme seoul256
 
 "use register 1, a little easier to type than just typing "1
 map <leader>f "1
+
+
+" set fold color so as not to confuse with window border
+hi Folded ctermbg=101
+
