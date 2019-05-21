@@ -649,5 +649,6 @@ map <leader>f "1
 
 
 " set fold color so as not to confuse with window border
-hi Folded ctermbg=101
+hi Folded ctermbg=017
+hi Folded ctermfg=DarkGrey
 
