@@ -212,6 +212,7 @@ map <Leader>= <C-w>=
 " and ask which one to jump to
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
+nmap zo zO
 
 " Misc {
     if isdirectory(expand("~/.vim/bundle/nerdtree"))
@@ -638,9 +639,8 @@ autocmd ColorScheme * hi CursorLine   cterm=NONE ctermbg=234
 autocmd ColorScheme * highlight clear SignColumn      " SignColumn should match background
 autocmd ColorScheme * hi Search ctermfg=102 ctermbg=LightGrey 
 autocmd ColorScheme * hi Comment ctermfg=DarkGrey
-"max charwidth indicator
-let &colorcolumn=join(range(81,81),",")
-autocmd ColorScheme * hi ColorColumn ctermbg=235
+
+
 colorscheme seoul256
 "colorscheme monokain
 
@@ -649,6 +649,9 @@ map <leader>f "1
 
 
 " set fold color so as not to confuse with window border
-hi Folded ctermbg=017
+hi Folded ctermbg=16
 hi Folded ctermfg=DarkGrey
 
+"max charwidth indicator
+highlight ColorColumn ctermbg=235
+call matchadd('ColorColumn', '\%81v', 100)
