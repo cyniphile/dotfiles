@@ -45,3 +45,5 @@ alias ihaskell='docker run -it --volume $(pwd):/notebooks --publish 8888:8888 gi
 # custora
 alias cs='cd ~/custora_stuff/custora && opt/spark/bin/spark-shell --jars spark/apps/target/scala-2.11/custora-spark-apps.jar'
 alias js='cd ~/custora_stuff/sparkscratch && source jupyter-spark-env/bin/activate && jupyter notebook'
+alias rcli='cd ~/custora_stuff/custora_cli && gpr'
+alias scratch='vi ~/custora_stuff/scripts/scratchpad.rb'

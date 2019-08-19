@@ -4,6 +4,7 @@ set ignorecase
 
 let mapleader = ","
 
+set ideajoin
 map <leader>e :action SelectInProjectView<CR>
 map <leader>w :action SaveAll<CR>
 map <leader>r :action RenameElement<CR>
