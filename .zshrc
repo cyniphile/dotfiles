@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/cyniphile/.oh-my-zsh"
+export ZSH="/Users/luke/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -77,10 +77,7 @@ source $ZSH/oh-my-zsh.sh
 bindkey -s '^p' 'smart_open $(fzf-tmux)^M'
 bindkey -s '^q' 'smart_cd $(fzf-tmux)^M'
 #
-# Load rbenv automatically by appending
-# the following to ~/.zshrc:
 
-eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
