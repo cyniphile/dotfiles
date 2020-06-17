@@ -7,7 +7,6 @@ set mousehide               " Hide the mouse cursor while typing
 
 " autopep8 shortcut mapping
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-autocmd FileType ruby noremap <buffer> <F8> :ALEFix rubocop<CR>
 " option to ignore certin pep8 rules
  "let g:autopep8_ignore="E501,W293"
 
@@ -254,7 +253,6 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr
                 \ "s": "<C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t"}
 
 " Fugitive {
-    if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -267,16 +265,13 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr
         " Mnemonic _i_nteractive
         nnoremap <silent> <leader>gi :Git add -p %<CR>
         nnoremap <silent> <leader>gg :SignifyToggle<CR>
-    endif
 "}
 
 
 " UndoTree {
-    if isdirectory(expand("~/.vim/bundle/undotree/"))
         nnoremap <Leader>u :UndotreeToggle<CR>
         " If undotree is opened, it is likely one wants to interact with it.
         let g:undotree_SetFocusWhenToggle=1
-    endif
 " }
 
 " Wildfire {
@@ -472,19 +467,13 @@ filetype off                  " required
 " filenames like *.xml, *.html, *.xhtml, ...
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb,*.xml"
 
-"mypy for ale
-let g:ale_python_mypy_options = '--ignore-missing-imports'
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" set the runtime path to include Vundle and initialize
 call plug#begin('~/.vim/plugged')
-    " alternatively, pass a path where Vundle should install plugins
-    "call vundle#begin('~/some/path/here')
-    Plug 'VundleVim/Vundle.vim'
     Plug 'xolox/vim-misc'
     Plug 'autozimu/LanguageClient-neovim', {
         \ 'branch': 'next',
@@ -512,7 +501,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'majutsushi/tagbar'
     Plug 'tpope/vim-endwise'
     Plug 'mileszs/ack.vim'
-    Plug 'gmarik/vundle'
     Plug 'mbbill/undotree'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rails'
@@ -535,7 +523,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'tell-k/vim-autopep8'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
-    Plug 'w0rp/ale'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'plasticboy/vim-markdown'
     Plug 'kshenoy/vim-signature'

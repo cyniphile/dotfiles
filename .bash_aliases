@@ -22,6 +22,7 @@ alias vi='nvim'
 alias ,a='quick_grep'
 alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
 alias h='htop'
+alias ps='poetry shell'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -39,11 +40,4 @@ alias dcrwbbw='docker-compose run -p 127.0.0.1:9999:9999 web /bin/bash'
 alias dcrwbb='docker-compose run web /bin/bash'
 alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
 
-#random bs
-alias ihaskell='docker run -it --volume $(pwd):/notebooks --publish 8888:8888 gibiansky/ihaskell:latest'
 
-# custora
-alias cs='cd ~/custora_stuff/custora && opt/spark/bin/spark-shell --jars spark/apps/target/scala-2.11/custora-spark-apps.jar'
-alias js='cd ~/custora_stuff/sparkscratch && source jupyter-spark-env/bin/activate && jupyter notebook'
-alias rcli='cd ~/custora_stuff/custora_cli && gpr'
-alias scratch='vi ~/custora_stuff/scripts/scratchpad.rb'
