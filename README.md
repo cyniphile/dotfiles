@@ -42,6 +42,8 @@ ln -s dotfiles/vimrc
 ln -s dotfiles/.bashrc
 ln -s dotfiles/.tmux.conf
 ln -s dotfiles/.shellrc
+ln -s dotfiles/.gitconfig
+ln -s dotfiles/.gitignore
 
 brew install tmux
 ```

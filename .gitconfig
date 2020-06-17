@@ -4,3 +4,6 @@
 	templatedir = ~/.git_template
 [push]
 	default = current
+[user]
+	name = Luke Schiefelbein
+	email = luke.schiefelbein@gmail.com

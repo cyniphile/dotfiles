@@ -2,7 +2,4 @@ myVim.log
 .idea
 Session.vim
 .byebug_history
-hunter_s_terminal/
 *.iml
-spark/apps/src/main/scala/com.custora.spark/stats/AttributeTest.scala
-spark/apps/src/main/scala/com.custora.spark/stats/ALSUserRecommender.scala
