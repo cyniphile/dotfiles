@@ -233,7 +233,6 @@ nmap zo zO
 noremap <C-_> :call NERDComment(0,"toggle")<C-m>
 
  "NerdTree {
-    if isdirectory(expand("~/.vim/bundle/nerdtree"))
         map <C-e> <plug>NERDTreeTabsToggle<CR>
         map <leader>e :NERDTreeFind<CR>
         nmap <leader>nt :NERDTreeFind<CR>
@@ -246,7 +245,6 @@ noremap <C-_> :call NERDComment(0,"toggle")<C-m>
         let NERDTreeShowHidden=1
         let NERDTreeKeepTreeInNewTab=1
         let g:nerdtree_tabs_open_on_gui_startup=0
-    endif
 " }
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
    
@@ -397,21 +395,6 @@ set nospell
   "execfile(activate_this, dict(__file__=activate_this))
 "EOF
 
-"jedi vim
-autocmd FileType python setlocal completeopt-=preview
-"let g:jedi#goto_assignments_command = "<leader>g"
-"let g:jedi#goto_definitions_command = "<leader>d"
-"let g:jedi#usages_command = "<leader>n"
-"let g:jedi#completions_command = "<C-Space>"
-"let g:jedi#rename_command = "<leader>r"
-let g:jedi#popup_on_dot = 0
-let g:jedi#completions_enabled = 0
-"let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
-let g:ycm_semantic_triggers = {'python': ['re!from\s+\S+\s+import\s']}
-"let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
-"let g:ycm_python_binary_path = '/usr/bin/python3'
-
-autocmd Filetype python nnoremap <leader>b oimport ipdb; ipdb.set_trace()<Esc>
 
 autocmd Filetype ruby nnoremap <leader>b orequire 'byebug'; byebug<Esc>
 
@@ -492,71 +475,82 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb,*.xml"
 "mypy for ale
 let g:ale_python_mypy_options = '--ignore-missing-imports'
 
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
     " alternatively, pass a path where Vundle should install plugins
     "call vundle#begin('~/some/path/here')
-    Plugin 'VundleVim/Vundle.vim'
-    Plugin 'xolox/vim-misc'
-    "scala
-    Plugin 'derekwyatt/vim-scala'
-    Plugin 'ensime/ensime-vim'
-    Plugin 'christoomey/vim-tmux-navigator'
-    Plugin 'stephpy/vim-yaml'
-    Plugin 'Vimjas/vim-python-pep8-indent'
-    Plugin 'othree/html5.vim'
-    Plugin 'valloric/matchtagalways'
-    Plugin 'alvan/vim-closetag'
-    Plugin 'davidhalter/jedi-vim'
-    Plugin 'mustache/vim-mustache-handlebars'
-    Plugin 'vim-ruby/vim-ruby'
-    Plugin 'ecomba/vim-ruby-refactoring'
-    Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'tpope/vim-obsession'
-    "Plugin 'thaerkh/vim-workspace'
-    Plugin 'airblade/vim-rooter'
-    Plugin 'janko-m/vim-test'
-    Plugin 'tpope/vim-dispatch'
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'flazz/vim-colorschemes'
-    Plugin 'airblade/vim-gitgutter'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'majutsushi/tagbar'
-    Plugin 'tpope/vim-endwise'
-    Plugin 'mileszs/ack.vim'
-    Plugin 'gmarik/vundle'
-    Plugin 'mbbill/undotree'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'tpope/vim-rails'
-    "Plugin 'tpope/vim-markdown'
-    Plugin 'gcmt/wildfire.vim'
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'rizzatti/dash.vim'
-    Plugin 'zaiste/tmux.vim'
-    Plugin 'jistr/vim-nerdtree-tabs'
-    Plugin 'scrooloose/nerdcommenter'
-    Plugin 'edkolev/tmuxline.vim'
-    Plugin 'chun-yang/auto-pairs'
-    Plugin 'kchmck/vim-coffee-script'
-    Plugin 'tpope/vim-surround'
-    Plugin 'pangloss/vim-javascript'
-    Plugin 'othree/javascript-libraries-syntax.vim'
-    Plugin 'mxw/vim-jsx'
-    Plugin 'jmcantrell/vim-virtualenv'
-    Plugin 'tmux-plugins/vim-tmux-focus-events'
-    Plugin 'tell-k/vim-autopep8'
-    Plugin 'junegunn/fzf'
-    Plugin 'junegunn/fzf.vim'
-    Plugin 'w0rp/ale'
-    Plugin 'Xuyuanp/nerdtree-git-plugin'
-    Plugin 'plasticboy/vim-markdown'
-    Plugin 'kshenoy/vim-signature'
-    Plugin 'tpope/vim-sleuth'
-    Plugin 'wellle/targets.vim'
-call vundle#end()            " required
-let g:deoplete#enable_at_startup = 1
+    Plug 'VundleVim/Vundle.vim'
+    Plug 'xolox/vim-misc'
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'stephpy/vim-yaml'
+    Plug 'Vimjas/vim-python-pep8-indent'
+    Plug 'othree/html5.vim'
+    Plug 'valloric/matchtagalways'
+    Plug 'alvan/vim-closetag'
+    Plug 'mustache/vim-mustache-handlebars'
+    Plug 'vim-ruby/vim-ruby'
+    Plug 'ecomba/vim-ruby-refactoring'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-obsession'
+    "Plug 'thaerkh/vim-workspace'
+    Plug 'airblade/vim-rooter'
+    Plug 'janko-m/vim-test'
+    Plug 'tpope/vim-dispatch'
+    Plug 'vim-airline/vim-airline'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'preservim/nerdtree'
+    Plug 'majutsushi/tagbar'
+    Plug 'tpope/vim-endwise'
+    Plug 'mileszs/ack.vim'
+    Plug 'gmarik/vundle'
+    Plug 'mbbill/undotree'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rails'
+    "Plug 'tpope/vim-markdown'
+    Plug 'gcmt/wildfire.vim'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'rizzatti/dash.vim'
+    Plug 'zaiste/tmux.vim'
+    Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'edkolev/tmuxline.vim'
+    Plug 'chun-yang/auto-pairs'
+    Plug 'kchmck/vim-coffee-script'
+    Plug 'tpope/vim-surround'
+    Plug 'pangloss/vim-javascript'
+    Plug 'othree/javascript-libraries-syntax.vim'
+    Plug 'mxw/vim-jsx'
+    Plug 'jmcantrell/vim-virtualenv'
+    Plug 'tmux-plugins/vim-tmux-focus-events'
+    Plug 'tell-k/vim-autopep8'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
+    Plug 'w0rp/ale'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'plasticboy/vim-markdown'
+    Plug 'kshenoy/vim-signature'
+    Plug 'tpope/vim-sleuth'
+    Plug 'wellle/targets.vim'
+    if has('nvim')
+      Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
+    else
+      Plug 'Shougo/deoplete.nvim'
+      Plug 'roxma/nvim-yarp'
+      Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+" Initialize plugin system
+call plug#end()
+
 filetype plugin indent on    " required
 
 " remap search key
@@ -638,3 +632,18 @@ hi Folded ctermfg=DarkGrey
 "max charwidth indicator
 highlight ColorColumn ctermbg=235
 call matchadd('ColorColumn', '\%81v', 100)
+
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['~/Library/Python/3.7/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> <leader>d :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <leader>r :call LanguageClient#textDocument_rename()<CR>

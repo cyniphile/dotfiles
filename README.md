@@ -25,7 +25,9 @@ ensure username is correct in zshrc
 install oh my zsh
 `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 
-install vundle
+install vim plug
+`sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
 Install vim plugins
 
 ```
@@ -69,4 +71,16 @@ pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 
 pip3 install neovim
+
+pip install 'python-language-server[all]'
+brew install rg
+pip install jupyterlab
+pip install jupyter-lsp
+pip install --user ipykernel
+
+jupyter labextension install @krassowski/jupyterlab-lsp   
+jupyter labextension install jupyterlab_vim
+jupyter labextension install @jupyterlab/debugger
+sudo jupyter serverextension enable --sys-prefix --py jupyter_lsp
+
 ```

@@ -32,7 +32,6 @@ ZSH_THEME="luke-robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -66,9 +65,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-#completions for poetry
-#fpath+=~/.zfunc
-#poetry completions zsh > ~/.zfunc/_poetry
+#
+#
+#
+fpath+=~/.zfunc
+compinit
+
+autoload -U bashcompinit
+bashcompinit
+
+eval "$(register-python-argcomplete pipx)"
+
 
 #[[ -e ~/.profile  ]] && emulate sh -c 'source ~/.profile'
 [[ -e ~/.shellrc ]] && emulate sh -c 'source ~/.shellrc'
@@ -84,6 +91,7 @@ export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -93,3 +101,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
+
+# Created by `userpath` on 2020-06-16 20:55:54
+export PATH="$PATH:/Users/luke/.local/bin"
