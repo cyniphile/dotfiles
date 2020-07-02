@@ -246,13 +246,7 @@ noremap <C-_> :call NERDComment(0,"toggle")<C-m>
         let g:nerdtree_tabs_open_on_gui_startup=0
 " }
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
-   
-" agvim
-    let g:ack_mappings = { 
-                \ "i": "<C-W><CR><C-W>K",
-                \ "s": "<C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t"}
-
-" Fugitive {
+   " Fugitive {
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -400,8 +394,14 @@ au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.markdown setlocal textwidth=80
 
 
+" agvim
 let g:ackprg = 'rg --vimgrep --no-heading'
 let g:ag_working_path_mode = 'r'
+nmap <leader>a :Ack!
+    let g:ack_mappings = { 
+                \ "i": "<C-W><CR><C-W>K",
+                \ "s": "<C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t"}
+
 
 set noswapfile
 set norelativenumber
@@ -409,7 +409,6 @@ set norelativenumber
 "remap ,w to :w
 nmap <leader>w <Esc>:w<Enter>
 nmap <leader>j <Esc>:q<Enter>
-nmap <leader>a :Ack!
 
 "resize window alias
 nmap + <C-w>+
@@ -441,6 +440,10 @@ nmap <silent> <leader>s :TestSuite<CR>
 nmap <silent> <leader>S :TestSuite --pdb<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>G :TestVisit<CR>
+
+" sane find and replace and select all shortcut
+nnoremap <leader>h yiw:%s/\<<C-r>"\>//gc<left><left><left>
+nnoremap <C-A> %y
 
 "let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -619,6 +622,9 @@ hi Folded ctermfg=DarkGrey
 "max charwidth indicator
 highlight ColorColumn ctermbg=235
 call matchadd('ColorColumn', '\%81v', 100)
+
+" set language to English to prevent unicode char copy paste probs
+lang en_US.UTF-8
 
 
 " Required for operations modifying multiple buffers like rename.

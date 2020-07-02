@@ -76,6 +76,9 @@ bashcompinit
 
 eval "$(register-python-argcomplete pipx)"
 
+eval "$(pyenv init -)"
+
+
 
 #[[ -e ~/.profile  ]] && emulate sh -c 'source ~/.profile'
 [[ -e ~/.shellrc ]] && emulate sh -c 'source ~/.shellrc'
@@ -104,3 +107,9 @@ setopt HIST_SAVE_NO_DUPS
 
 # Created by `userpath` on 2020-06-16 20:55:54
 export PATH="$PATH:/Users/luke/.local/bin"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/luke/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/luke/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/completion.zsh.inc'; fi

@@ -3,3 +3,7 @@ myVim.log
 Session.vim
 .byebug_history
 *.iml
+.DS_Store
+.ipynb_checkpoints/
+.venv
+.virtual_documents/
