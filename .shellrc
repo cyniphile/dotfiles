@@ -6,12 +6,8 @@ HISTCONTROL=ignoreboth:erasedups
 fortune -s | hsterminal
 
 # Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+. ~/.bash_aliases
 
-# custora cli
-export PATH=~/custora_stuff/custora/bin/:$PATH
 # fixes mac forking problems: 
 # https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES 
@@ -58,7 +54,3 @@ function smart_cd() {
 stty intr \^n
 
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
-PATH="/usr/local/bin/ctags:$PATH"
-export PATH
-

@@ -36,7 +36,7 @@ install vim plug
 rm ~/.zshrc
 
 ln -s dotfiles/.zshrc
-ln -S dotfiles/.bash_aliases
+ln -s dotfiles/.bash_aliases
 ln -s dotfiles/.bash_profile
 ln -s dotfiles/.vimrc
 ln -s dotfiles/.bashrc
