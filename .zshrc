@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/luke/.oh-my-zsh"
+export ZSH="/home/cyniphile/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -74,10 +74,6 @@ compinit
 autoload -U bashcompinit
 bashcompinit
 
-eval "$(register-python-argcomplete pipx)"
-
-eval "$(pyenv init -)"
-
 
 
 #[[ -e ~/.profile  ]] && emulate sh -c 'source ~/.profile'
@@ -105,11 +101,15 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
 
-# Created by `userpath` on 2020-06-16 20:55:54
 export PATH="$PATH:/Users/luke/.local/bin"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/luke/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/path.zsh.inc'; fi
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+ eval "$(pyenv init -)"
+fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/luke/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/completion.zsh.inc'; fi
+eval "$(pyenv init -)"
+
+# avoids ghostscrip in ubuntu
+alias gs='git status'
