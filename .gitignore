@@ -7,3 +7,5 @@ Session.vim
 .ipynb_checkpoints/
 .venv
 .virtual_documents/
+__pycache__/
+

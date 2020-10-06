@@ -15,6 +15,7 @@ alias gpr='git pull --rebase origin master;'
 alias gprs='git stash; gpr; git stash pop'
 alias gp='git push'
 alias gpf='git push --force-with-lease'
+alias gu='gitui'
 
 # random
 alias netstat='netstat -tulpn'

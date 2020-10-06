@@ -47,6 +47,7 @@ ln -s dotfiles/luke-robbyrussell.zsh-theme ./.oh-my-zsh/themes
 brew install tmux
 brew install rg
 brew install fzf
+brew install gitui
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
 
