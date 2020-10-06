@@ -43,6 +43,7 @@ ln -s dotfiles/.shellrc
 ln -s dotfiles/.gitconfig
 ln -s dotfiles/.gitignore
 ln -s dotfiles/luke-robbyrussell.zsh-theme ./.oh-my-zsh/themes
+ln -s dotfiles/key_config.ron $HOME/Library/Application Support/gitui/key_config.ron
 
 brew install tmux
 brew install rg
