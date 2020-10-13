@@ -1,0 +1,124 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.fontSize": 14,
+    "editor.wordWrap": "on",
+    "vim.useCtrlKeys": true,
+    "vim.useSystemClipboard": true,
+    "vim.leader": ",",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // {
+        //     "before": [
+        //         "<leader>",
+        //         "e"
+        //     ],
+        //     "when": "!sideBarFocus",
+        //     "commands": [
+        //         "workbench.files.action.showActiveFileInExplorer"
+        //     ]
+        // },
+        // {
+        //     "before": [
+        //         "<leader>",
+        //         "e"
+        //     ],
+        //     "when": "sideBarFocus",
+        //     "commands": [
+        //         "multiCommand.togglesidebar",
+        //     ]
+        // },
+        {
+            "before": [
+                "u"
+            ],
+            "commands": [
+                "undo"
+            ]
+        },
+        {
+            "before": [
+                "<C-r>"
+            ],
+            "commands": [
+                "redo"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "g",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "g",
+                "j"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "u"
+            ],
+            "commands": [
+                "undo"
+            ]
+        },
+        {
+            "before": [
+                "<C-r>"
+            ],
+            "commands": [
+                "redo"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "g",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "g",
+                "j"
+            ]
+        }
+    ],
+    "window.zoomLevel": 0,
+    "python.dataScience.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.languageServer": "Microsoft",
+    "editor.formatOnSave": true,
+    "multiCommand.commands": [
+        {
+            "command": "multiCommand.togglesidebar",
+            "sequence": [
+                // "workbench.view.explorer",
+                "workbench.action.toggleSidebarVisibility",
+                "workbench.action.toggleSidebarVisibility",
+                "workbench.action.toggleSidebarVisibility",
+            ]
+        }
+    ],
+    "editor.minimap.enabled": false,
+    "workbench.activityBar.visible": false,
+    "terminal.external.linuxExec": "",
+    "terminal.external.osxExec": "iterm"
+}

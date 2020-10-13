@@ -33,17 +33,19 @@ install vim plug
 #Install vim plugins, in vim
 :PlugInstall
 
-ln -s dotfiles/.zshrc
-ln -S dotfiles/.bash_aliases
-ln -s dotfiles/.bash_profile
-ln -s dotfiles/vimrc
-ln -s dotfiles/.bashrc
-ln -s dotfiles/.tmux.conf
-ln -s dotfiles/.shellrc
-ln -s dotfiles/.gitconfig
-ln -s dotfiles/.gitignore
-ln -s dotfiles/luke-robbyrussell.zsh-theme ./.oh-my-zsh/themes
-ln -s dotfiles/key_config.ron $HOME/Library/Application Support/gitui/key_config.ron
+ln -s $HOME/dotfiles/.zshrc
+ln -s $HOME/dotfiles/.bash_aliases
+ln -s $HOME/dotfiles/.bash_profile
+ln -s $HOME/dotfiles/vimrc
+ln -s $HOME/dotfiles/.bashrc
+ln -s $HOME/dotfiles/.tmux.conf
+ln -s $HOME/dotfiles/.shellrc
+ln -s $HOME/dotfiles/.gitconfig
+ln -s $HOME/dotfiles/.gitignore
+ln -s $HOME/dotfiles/luke-robbyrussell.zsh-theme ./.oh-my-zsh/themes
+ln -s $HOME/dotfiles/key_config.ron $HOME/Library/Application Support/gitui/key_config.ron
+ln -s $HOME/dotfiles/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+ln -s ~/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 
 brew install tmux
 brew install rg
