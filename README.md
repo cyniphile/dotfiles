@@ -24,17 +24,23 @@ sudo apt-get install neovim
 sudo apt-get install zsh
 ```
 install oh my zsh
-`sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+```sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"```
 install vim plug
-`sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
+```sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+ ```
+ 
+install vim plugins, in vim
+```:PlugInstall
 ```
-#Install vim plugins, in vim
-:PlugInstall
 
-# remove default created by Oh my zsh
+remove default created by Oh my zsh
+```
 rm ~/.zshrc
+```
 
+link config files
+```
 ln -s dotfiles/.zshrc
 ln -s dotfiles/.bash_aliases
 ln -s dotfiles/.bash_profile
@@ -55,8 +61,8 @@ sudo apt-get install fzf
 $(brew --prefix)/opt/fzf/install
 
 ```
-install tpm + prefix-I
 
+install tpm + prefix-I
 ```
 git clone git@github.com:cyniphile/hunter_s_terminal.git
 ./hunter_s_terminal/install.sh
