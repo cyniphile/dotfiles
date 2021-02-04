@@ -38,13 +38,15 @@ install vim plugins, in vim
 :PlugInstall
 ```
 
-remove default created by Oh my zsh
+remove defaults created by Oh my zsh etc
 ```
 rm ~/.zshrc
+rm ~/.bashrc
 ```
 
 link config files
 ```
+cd ~
 ln -s dotfiles/.zshrc
 ln -s dotfiles/.bash_aliases
 ln -s dotfiles/.bash_profile
