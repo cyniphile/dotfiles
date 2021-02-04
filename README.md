@@ -2,6 +2,7 @@ install guake, gnome extensions
 
 
 ```
+sudo apt-get update
 sudo apt-get install git
 ssh-keygen -t rsa
 ```
