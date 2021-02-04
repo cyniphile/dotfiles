@@ -58,23 +58,21 @@ ln -s dotfiles/.shellrc
 ln -s dotfiles/.gitconfig
 ln -s dotfiles/.gitignore
 # was having a weird permissions issue here, cped for now
-ln -s dotfiles/luke-robbyrussell.zsh-theme .oh-my-zsh/themes
+cp dotfiles/luke-robbyrussell.zsh-theme .oh-my-zsh/themes
 
 sudo apt-get install tmux
-sudo apt-get install rg
+sudo apt-get install ripgrep
 sudo apt-get install fzf
 ```
 
-To install useful key bindings and fuzzy completion:
-```
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
-```
-
 install tpm + prefix-I
+
+install hsterminal
 ```
+cd ~/dotfiles
 git clone git@github.com:cyniphile/hunter_s_terminal.git
-./hunter_s_terminal/install.sh
+cd hunter_s_terminal
+./install.sh
 sudo apt-get install fortune
 ```
 
