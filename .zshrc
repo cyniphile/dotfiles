@@ -110,3 +110,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 eval "$(pyenv init -)"
+
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh

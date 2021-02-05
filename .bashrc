@@ -5,6 +5,9 @@
 #if [ -f ~/.profile ]; then
     #. ~/.profile
 #fi
+if test -t 1; then
+exec zsh
+fi
 
 if [ -f ~/.shellrc ]; then
     . ~/.shellrc
@@ -53,7 +56,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-source ~/dotfiles/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
 
 
@@ -124,6 +126,11 @@ export EDITOR='nvim'
 export PATH="/Users/cyniphile/Library/Python/3.7/bin:$PATH"
 
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+ eval "$(pyenv init -)"
+fi
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then

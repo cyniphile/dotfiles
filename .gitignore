@@ -7,3 +7,5 @@ Session.vim
 .ipynb_checkpoints/
 .venv
 .virtual_documents/
+hunter_s_terminal/
+install.pl
