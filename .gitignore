@@ -8,4 +8,5 @@ Session.vim
 .venv
 .virtual_documents/
 hunter_s_terminal/
+*.pyc
 install.pl
