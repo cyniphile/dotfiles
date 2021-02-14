@@ -52,6 +52,7 @@ ln -s dotfiles/.zshrc
 ln -s dotfiles/.bash_aliases
 ln -s dotfiles/.bash_profile
 ln -s dotfiles/.vimrc
+ln -s ~/.vimrc to ~/.config/nvim/init.vim
 ln -s dotfiles/.bashrc
 ln -s dotfiles/.tmux.conf
 ln -s dotfiles/.shellrc
@@ -93,6 +94,7 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 pip3 install neovim
 pip install 'python-language-server[all]'
 pip install jupyterlab
+pip install pynvim
 pip install jupyter-lsp
 pip install --user ipykernel
 pip install poetry
@@ -102,3 +104,5 @@ jupyter labextension install jupyterlab_vim
 jupyter labextension install @jupyterlab/debugger
 sudo jupyter serverextension enable --sys-prefix --py jupyter_lsp
 ```
+for wsl:
+https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
