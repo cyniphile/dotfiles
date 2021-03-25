@@ -9,5 +9,7 @@ Session.vim
 .virtual_documents/
 ~/dotfiles/hunter_s_terminal/
 *.pyc
-.Data/
-.RHistory/
+.RData
+.Rhistory
+__pycache__/
+.pytest_cache/
