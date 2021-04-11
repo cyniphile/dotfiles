@@ -1,5 +1,10 @@
 install guake, gnome extensions
 
+windows install powertoys to remap keys
+use autohotkey scripts
+instal wsl2
+install xmeters
+
 
 ```
 sudo apt-get update
@@ -34,11 +39,6 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
  
-install vim plugins, in vim
-```
-:PlugInstall
-```
-
 remove defaults created by Oh my zsh etc
 ```
 rm ~/.zshrc
@@ -64,6 +64,7 @@ cp dotfiles/luke-robbyrussell.zsh-theme .oh-my-zsh/themes
 sudo apt-get install tmux
 sudo apt-get install ripgrep
 sudo apt-get install fzf
+
 ```
 
 install tpm + prefix-I
@@ -79,10 +80,17 @@ sudo apt-get install fortune
 
 link nvim to vim
 ```
-$ mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
-$ ln -s ~/.vim $XDG_CONFIG_HOME/nvim
-$ ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
+mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config/nvim}
+ln -s ~/.vim $XDG_CONFIG_HOME/nvim
+ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 ```
+
+install vim plugins, in vim
+```
+:PlugInstall
+```
+
 
 install pyenv
 https://www.liquidweb.com/kb/how-to-install-pyenv-on-ubuntu-18-04/
@@ -103,6 +111,7 @@ jupyter labextension install @krassowski/jupyterlab-lsp
 jupyter labextension install jupyterlab_vim
 jupyter labextension install @jupyterlab/debugger
 sudo jupyter serverextension enable --sys-prefix --py jupyter_lsp
+
 ```
 for wsl:
 https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
