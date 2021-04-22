@@ -107,11 +107,33 @@ pip install jupyter-lsp
 pip install --user ipykernel
 pip install poetry
 
+
 jupyter labextension install @krassowski/jupyterlab-lsp   
 jupyter labextension install jupyterlab_vim
 jupyter labextension install @jupyterlab/debugger
 sudo jupyter serverextension enable --sys-prefix --py jupyter_lsp
 
 ```
+
+In `~/.config/nvim/init.vim`
+```
+" update based on system
+let g:python3_host_prog='/home/cyniphile/.pyenv/shims/python3'
+```
+
+
+
 for wsl:
 https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
+
+
+it's just not a tech company
+    - product and project management
+        - unerealistic expectations, no planning or appreciation of such
+        - shifting goals, changing priorities
+    - learning
+        - no one to work with or learn from
+    - infrastructure
+        - old, and not too willing to update
+        - workable, but I don't want to spend time learning this
+    - location hard to get to

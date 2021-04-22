@@ -10,6 +10,9 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 " option to ignore certin pep8 rules
  "let g:autopep8_ignore="E501,W293"
 
+" update based on system
+let g:python3_host_prog='/home/cyniphile/.pyenv/shims/python3'
+
 scriptencoding utf-8
 
 if has('clipboard')
