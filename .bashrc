@@ -5,6 +5,9 @@
 #if [ -f ~/.profile ]; then
     #. ~/.profile
 #fi
+
+
+
 if test -t 1; then
 exec zsh
 fi
@@ -57,6 +60,8 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 export GIT_PS1_SHOWDIRTYSTATE=1
+
+# export LC_ALL=it_IT.UTF-8
 
 
 if [ "$color_prompt" = yes ]; then
