@@ -13,3 +13,4 @@ Session.vim
 .Rhistory
 __pycache__/
 .pytest_cache/
+*:Zone.Identifier
