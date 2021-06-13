@@ -1,31 +1,99 @@
 {
     "files.autoSave": "afterDelay",
     "editor.fontSize": 14,
-    "editor.wordWrap": "on",
+    "editor.wordWrap": "off",
     "vim.useCtrlKeys": true,
+    "[python]": {
+        // "editor.codeLens": false
+    },
     "vim.useSystemClipboard": true,
     "vim.leader": ",",
     "vim.normalModeKeyBindingsNonRecursive": [
-        // {
-        //     "before": [
-        //         "<leader>",
-        //         "e"
-        //     ],
-        //     "when": "!sideBarFocus",
-        //     "commands": [
-        //         "workbench.files.action.showActiveFileInExplorer"
-        //     ]
-        // },
-        // {
-        //     "before": [
-        //         "<leader>",
-        //         "e"
-        //     ],
-        //     "when": "sideBarFocus",
-        //     "commands": [
-        //         "multiCommand.togglesidebar",
-        //     ]
-        // },
+        {
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "y",
+                "$"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "g",
+                "c"
+            ],
+            "commands": [
+                "workbench.view.scm",
+            ],
+            "when": [
+                "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor && vim.mode != 'Insert'"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "g",
+                "p"
+            ],
+            "commands": [
+                "git.push",
+            ],
+            "when": [
+                "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor && vim.mode != 'Insert'"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "commands": [
+                "editor.action.peekDefinition",
+            ],
+            "when": [
+                "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor && vim.mode != 'Insert'"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r"
+            ],
+            "commands": [
+                "editor.action.rename",
+            ],
+            "when": [
+                "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor && vim.mode != 'Insert'"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "s"
+            ],
+            "commands": [
+                // "editor.action.openLink"
+                "editor.action.revealDefinition"
+                // "editor.action.revealDefinitionAside",
+            ],
+            "when": [
+                "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor && vim.mode != 'Insert'"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "workbench.files.action.focusFilesExplorer",
+            ],
+            "when": [
+                "editorTextFocus && vim.mode != 'Insert'"
+            ],
+        },
         {
             "before": [
                 "u"
@@ -97,28 +165,101 @@
             ]
         }
     ],
-    "window.zoomLevel": 0,
-    "python.dataScience.widgetScriptSources": [
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.formatOnSave": true,
+    "workbench.activityBar.visible": true,
+    "terminal.external.linuxExec": "",
+    "terminal.external.osxExec": "iterm",
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.executorMap": {
+        "python": "$pythonPath $fullFileName"
+    },
+    "python.languageServer": "Pylance",
+    "workbench.statusBar.visible": true,
+    "customizeUI.titleBar": "inline",
+    "workbench.useExperimentalGridLayout": true,
+    "customizeUI.activityBar": "bottom",
+    // hide top right icons
+    "customizeUI.stylesheet": {
+        ".actions-container[aria-label='Editor actions']": "display: none !important;"
+    },
+    "search.exclude": {
+        "**/*.ipynb_checkpoints": true,
+        "**/*.venv": true
+    },
+    "cSpell.userWords": [
+        "Schiefelbein",
+        "assymentical",
+        "groupby",
+        "iloc",
+        "ipykernel",
+        "ipython",
+        "isin",
+        "jupyter",
+        "jupyterlab",
+        "matplotlib",
+        "numpy",
+        "plotly",
+        "pytest",
+        "strategize",
+        "uncentered",
+        "xaxis",
+        "yaxis"
+    ],
+    // "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--ignore=E501"
+    ],
+    "jupyter.widgetScriptSources": [
         "jsdelivr.com",
         "unpkg.com"
     ],
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "python.languageServer": "Microsoft",
-    "editor.formatOnSave": true,
-    "multiCommand.commands": [
-        {
-            "command": "multiCommand.togglesidebar",
-            "sequence": [
-                // "workbench.view.explorer",
-                "workbench.action.toggleSidebarVisibility",
-                "workbench.action.toggleSidebarVisibility",
-                "workbench.action.toggleSidebarVisibility",
-            ]
-        }
+    "jupyter.alwaysTrustNotebooks": true,
+    "jupyter.askForKernelRestart": false,
+    "jupyter.themeMatplotlibPlots": true,
+    "jupyter.addGotoCodeLenses": false,
+    "jupyter.allowImportFromNotebook": false,
+    "cSpell.enabled": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "remote.extensionKind": {
+        "iocave.customize-ui": [
+            "ui"
+        ],
+        "iocave.monkey-patch": [
+            "ui"
+        ]
+    },
+    "projectManager.git.baseFolders": [
+        "/home/cyniphile/projects/"
+    ],
+    "workbench.startupEditor": "newUntitledFile",
+    "pythonTestExplorer.testFramework": "pytest",
+    "testing.enableCodeLens": false,
+    "git.autofetch": true,
+    "editor.rulers": [
+        79,
+        120
     ],
     "editor.minimap.enabled": false,
-    "workbench.activityBar.visible": false,
-    "terminal.external.linuxExec": "",
-    "terminal.external.osxExec": "iterm"
+    "window.menuBarVisibility": "toggle",
+    "tabnine.experimentalAutoImports": true,
+    "settingsSync.keybindingsPerPlatform": false,
+    "settingsSync.ignoredExtensions": [],
+    "python.venvPath": "/home/cyniphile/.cache/pypoetry/virtualenvs/",
+    "editor.tabSize": 8,
+    "editor.insertSpaces": false,
+    "[python]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+    "editor.cursorStyle": "line",
+    "editor.lineNumbers": "on",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    }
 }

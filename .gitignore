@@ -5,6 +5,7 @@ Session.vim
 *.iml
 .DS_Store
 .ipynb_checkpoints/
+.vscode/
 .venv
 .virtual_documents/
 __pycache__/

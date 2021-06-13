@@ -74,7 +74,7 @@ compinit
 autoload -U bashcompinit
 bashcompinit
 
-eval "$(register-python-argcomplete pipx)"
+#eval "$(register-python-argcomplete pipx)"
 
 eval "$(pyenv init -)"
 
@@ -93,8 +93,8 @@ bindkey -s '^q' 'smart_cd $(fzf-tmux)^M'
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$HOME/Library/Python/3.7/bin:$PATH"
+#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+#export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -129,3 +129,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+export PATH="$HOME/.poetry/bin:$PATH"
