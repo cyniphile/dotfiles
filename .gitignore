@@ -8,5 +8,5 @@ Session.vim
 .vscode/
 .venv
 .virtual_documents/
-__pycache__/
+*__pycache__/
 

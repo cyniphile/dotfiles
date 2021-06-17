@@ -615,7 +615,13 @@
     },
     {
         "key": "ctrl+b s",
-        "command": "projectManager.listProjects"
+        "command": "projectManager.listProjects",
+        "when": "isWindows"
+    },
+    {
+        "key": "cmd+b s",
+        "command": "projectManager.listProjects",
+        "when": "isMac"
     },
     {
         "key": "shift+alt+p",
@@ -674,11 +680,6 @@
         "when": "isMac"
     },
     {
-        "key": "shift+cmd+-",
-        "command": "notebook.cell.split",
-        "when": "config.jupyter.enableKeyboardShortcuts && editorTextFocus && inputFocus && notebookEditorFocused && notebookViewType == 'jupyter-notebook' && isMac"
-    },
-    {
         "key": "ctrl+shift+-",
         "command": "-notebook.cell.split",
         "when": "config.jupyter.enableKeyboardShortcuts && editorTextFocus && inputFocus && notebookEditorFocused && notebookViewType == 'jupyter-notebook' && isMac"
@@ -728,6 +729,26 @@
         "key": "enter",
         "command": "-renameFile",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus && isMac"
-    }
+    },
     // see for codes https://www.techonthenet.com/unicode/chart.php
+    {
+        "key": "shift+cmd+-",
+        "command": "notebook.cell.split",
+        "when": "config.jupyter.enableKeyboardShortcuts && editorTextFocus && inputFocus && notebookEditorFocused && notebookType == 'jupyter-notebook'"
+    },
+    {
+        "key": "ctrl+shift+-",
+        "command": "-notebook.cell.split",
+        "when": "config.jupyter.enableKeyboardShortcuts && editorTextFocus && inputFocus && notebookEditorFocused && notebookType == 'jupyter-notebook'"
+    },
+    {
+        "key": "tab",
+        "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "cmd+p",
+        "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
 ]

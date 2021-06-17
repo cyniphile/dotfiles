@@ -243,13 +243,12 @@
         79,
         120
     ],
-    "editor.minimap.enabled": false,
     "window.menuBarVisibility": "toggle",
     "tabnine.experimentalAutoImports": true,
     "settingsSync.keybindingsPerPlatform": false,
     "settingsSync.ignoredExtensions": [],
     "python.venvPath": "/home/cyniphile/.cache/pypoetry/virtualenvs/",
-    "editor.tabSize": 8,
+    "editor.tabSize": 4,
     "editor.insertSpaces": false,
     "[python]": {
         "editor.insertSpaces": true,
@@ -261,5 +260,8 @@
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
-    }
+    },
+    "python.insidersChannel": "weekly",
+    "markdown.preview.breaks": true,
+    "window.zoomLevel": 1
 }
