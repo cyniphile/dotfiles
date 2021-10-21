@@ -185,7 +185,7 @@
         "when": "terminalFocus && terminalProcessSupported && isWindows"
     },
     {
-        "key": "shift+ctrl+j",
+        "key": "ctrl+j",
         "command": "workbench.action.terminal.focusNextPane",
         "when": "terminalFocus && terminalProcessSupported && isWindows"
     },
@@ -195,7 +195,7 @@
         "when": "terminalFocus && terminalProcessSupported && isWindows"
     },
     {
-        "key": "shift+ctrl+k",
+        "key": "ctrl+k",
         "command": "workbench.action.terminal.focusNextPane",
         "when": "terminalFocus && terminalProcessSupported && isWindows"
     },
@@ -661,7 +661,7 @@
         "when": "editorTextFocus && vim.active && vim.use<C-f> && !inDebugRepl && vim.mode != 'Insert'"
     },
     {
-        "key": "ctrl+shift+b",
+        "key": "cmd+d",
         "command": "python.selectAndDebugTestMethod"
     },
     {
@@ -751,4 +751,60 @@
         "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
         "when": "inFilesPicker && inQuickOpen"
     },
+    {
+        "key": "cmd+enter",
+        "command": "jupyter.runcurrentcell",
+        "when": "editorTextFocus && isWorkspaceTrusted && jupyter.hascodecells && !editorHasSelection && !jupyter.havenativecells && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-jupyter.runcurrentcell",
+        "when": "editorTextFocus && isWorkspaceTrusted && jupyter.hascodecells && !editorHasSelection && !jupyter.havenativecells && !notebookEditorFocused"
+    },
+    {
+        "key": "f9",
+        "command": "-editor.debug.action.toggleBreakpoint",
+        "when": "debuggersAvailable && editorTextFocus"
+    },
+    {
+        "key": "cmd+d",
+        "command": "test-explorer.debug-test-at-cursor"
+    },
+    {
+        "key": "shift+cmd+l",
+        "command": "workbench.action.moveEditorToNextGroup"
+    },
+    {
+        "key": "ctrl+cmd+right",
+        "command": "-workbench.action.moveEditorToNextGroup"
+    },
+    {
+        "key": "shift+cmd+h",
+        "command": "workbench.action.moveEditorToPreviousGroup"
+    },
+    {
+        "key": "ctrl+cmd+left",
+        "command": "-workbench.action.moveEditorToPreviousGroup"
+    },
+    {
+        "key": "cmd+f12",
+        "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "alt+cmd+right",
+        "command": "-workbench.action.nextEditor"
+    },
+    {
+        "key": "cmd+f11",
+        "command": "workbench.action.previousEditor"
+    },
+    {
+        "key": "alt+cmd+left",
+        "command": "-workbench.action.previousEditor"
+    },
+    {
+        "key": "cmd+r",
+        "command": "rust-analyzer.run",
+        "when": "editorTextFocus"
+    }
 ]

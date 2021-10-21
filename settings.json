@@ -21,6 +21,18 @@
         {
             "before": [
                 "<leader>",
+                "b",
+            ],
+            "commands": [
+                "editor.debug.action.toggleBreakpoint",
+            ],
+            "when": [
+                "debuggersAvailable && editorTextFocus"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
                 "g",
                 "c"
             ],
@@ -189,9 +201,15 @@
         "**/*.venv": true
     },
     "cSpell.userWords": [
-        "Schiefelbein",
         "assymentical",
+        "Centricity",
+        "douchey",
+        "engineio",
         "groupby",
+        "hget",
+        "hincrby",
+        "hmset",
+        "hset",
         "iloc",
         "ipykernel",
         "ipython",
@@ -202,6 +220,7 @@
         "numpy",
         "plotly",
         "pytest",
+        "Schiefelbein",
         "strategize",
         "uncentered",
         "xaxis",
@@ -244,8 +263,6 @@
         120
     ],
     "window.menuBarVisibility": "toggle",
-    "tabnine.experimentalAutoImports": true,
-    "settingsSync.keybindingsPerPlatform": false,
     "settingsSync.ignoredExtensions": [],
     "python.venvPath": "/home/cyniphile/.cache/pypoetry/virtualenvs/",
     "editor.tabSize": 4,
@@ -261,7 +278,14 @@
         "default": "right",
         "jupyter-notebook": "left"
     },
-    "python.insidersChannel": "weekly",
     "markdown.preview.breaks": true,
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "workbench.enableExperiments": false,
+    "editor.minimap.enabled": false,
+    "emmet.includeLanguages": {
+        "rescript": "javascriptreact"
+    },
+    "[rescript]": {
+        "editor.autoClosingBrackets": "always"
+    },
 }

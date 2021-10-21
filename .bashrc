@@ -124,3 +124,4 @@ export EDITOR='nvim'
 export PATH="/Users/cyniphile/Library/Python/3.7/bin:$PATH"
 
 
+. "$HOME/.cargo/env"
