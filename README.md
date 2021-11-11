@@ -42,7 +42,7 @@ ln -s $HOME/dotfiles/.tmux.conf
 ln -s $HOME/dotfiles/.shellrc
 ln -s $HOME/dotfiles/.gitconfig
 ln -s $HOME/dotfiles/.gitignore
-ln -s $HOME/dotfiles/luke-robbyrussell.zsh-theme ./.oh-my-zsh/themes
+/* ln -s $HOME/dotfiles/luke-robbyrussell.zsh-theme ./.oh-my-zsh/themes */
 ln -s $HOME/dotfiles/key_config.ron $HOME/Library/Application Support/gitui/key_config.ron
 ln -s $HOME/dotfiles/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 ln -s ~/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
@@ -85,4 +85,22 @@ jupyter labextension install @krassowski/jupyterlab-lsp
 jupyter labextension install jupyterlab_vim
 jupyter labextension install @jupyterlab/debugger
 sudo jupyter serverextension enable --sys-prefix --py jupyter_lsp
+```
+
+install hack nerd font
+
+```
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font
+```
+
+```
+brew install lsd
+```
+
+https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+
+```
+brew install romkatv/powerlevel10k/powerlevel10k
+echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
 ```

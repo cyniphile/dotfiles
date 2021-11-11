@@ -231,19 +231,19 @@ nmap zo zO
 
 noremap <C-_> :call NERDComment(0,"toggle")<C-m>
 
- "NerdTree {
-        map <C-e> <plug>NERDTreeTabsToggle<CR>
+ "NerdTree/CHADTree {
+        "map <C-e> <plug>NERDTreeTabsToggle<CR>
+        map <C-e> :CHADopen<CR>
         map <leader>e :NERDTreeFind<CR>
         nmap <leader>nt :NERDTreeFind<CR>
-
-        let NERDTreeShowBookmarks=1
-        let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-        let NERDTreeChDirMode=0
-        let NERDTreeQuitOnOpen=1
-        let NERDTreeMouseMode=2
-        let NERDTreeShowHidden=1
-        let NERDTreeKeepTreeInNewTab=1
-        let g:nerdtree_tabs_open_on_gui_startup=0
+        "let NERDTreeShowBookmarks=1
+        "let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+        "let NERDTreeChDirMode=0
+        "let NERDTreeQuitOnOpen=1
+        "let NERDTreeMouseMode=2
+        "let NERDTreeShowHidden=1
+        "let NERDTreeKeepTreeInNewTab=1
+        "let g:nerdtree_tabs_open_on_gui_startup=0
 " }
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
    " Fugitive {
@@ -472,7 +472,7 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb,*.xml"
 
 
 " Use deoplete.
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -500,7 +500,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'flazz/vim-colorschemes'
     Plug 'airblade/vim-gitgutter'
-    Plug 'preservim/nerdtree'
+    "Plug 'preservim/nerdtree'
     Plug 'majutsushi/tagbar'
     Plug 'tpope/vim-endwise'
     Plug 'mileszs/ack.vim'
@@ -512,7 +512,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'altercation/vim-colors-solarized'
     Plug 'rizzatti/dash.vim'
     Plug 'zaiste/tmux.vim'
-    Plug 'jistr/vim-nerdtree-tabs'
+    "Plug 'jistr/vim-nerdtree-tabs'
     Plug 'scrooloose/nerdcommenter'
     Plug 'edkolev/tmuxline.vim'
     Plug 'chun-yang/auto-pairs'
@@ -526,20 +526,27 @@ call plug#begin('~/.vim/plugged')
     Plug 'tell-k/vim-autopep8'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
+    "Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
     Plug 'plasticboy/vim-markdown'
     Plug 'kshenoy/vim-signature'
     Plug 'tpope/vim-sleuth'
     Plug 'wellle/targets.vim'
-    if has('nvim')
-      Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
-    else
-      Plug 'Shougo/deoplete.nvim'
-      Plug 'roxma/nvim-yarp'
-      Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-" Initialize plugin system
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'ryanoasis/vim-devicons'
+  " main one
+    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+  " 9000+ Snippets
+    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 call plug#end()
+
+
+lua << EOF
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.rust_analyzer.setup{}
+EOF
+
+let g:coq_settings = { 'auto_start': 'shut-up' }
 
 filetype plugin indent on    " required
 
@@ -627,6 +634,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 lang en_US.UTF-8
 
 
+
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
@@ -640,3 +648,4 @@ let g:LanguageClient_serverCommands = {
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> <leader>d :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <leader>r :call LanguageClient#textDocument_rename()<CR>
+

@@ -9,4 +9,5 @@ Session.vim
 .venv
 .virtual_documents/
 *__pycache__/
+.mypy_cache/
 

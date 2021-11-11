@@ -300,7 +300,7 @@
   },
   "Blur" : true,
   "Vertical Spacing" : 1,
-  "Normal Font" : "MesloLGSForPowerline-Regular 14",
+  "Normal Font" : "MesloLGS-NF-Regular 16",
   "Ansi 7 Color" : {
     "Green Component" : 0.73333334922790527,
     "Red Component" : 0.73333334922790527,

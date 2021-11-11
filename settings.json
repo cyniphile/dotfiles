@@ -3,9 +3,6 @@
     "editor.fontSize": 14,
     "editor.wordWrap": "off",
     "vim.useCtrlKeys": true,
-    "[python]": {
-        // "editor.codeLens": false
-    },
     "vim.useSystemClipboard": true,
     "vim.leader": ",",
     "vim.normalModeKeyBindingsNonRecursive": [
@@ -202,9 +199,12 @@
     },
     "cSpell.userWords": [
         "assymentical",
+        "Bijective",
+        "bitshifting",
         "Centricity",
         "douchey",
         "engineio",
+        "exhaustivity",
         "groupby",
         "hget",
         "hincrby",
@@ -218,6 +218,7 @@
         "jupyterlab",
         "matplotlib",
         "numpy",
+        "ples",
         "plotly",
         "pytest",
         "Schiefelbein",
@@ -227,6 +228,7 @@
         "yaxis"
     ],
     // "python.linting.flake8Enabled": true,
+    "python.linting.mypyEnabled": true,
     "python.linting.flake8Args": [
         "--ignore=E501"
     ],
@@ -234,14 +236,13 @@
         "jsdelivr.com",
         "unpkg.com"
     ],
-    "jupyter.alwaysTrustNotebooks": true,
     "jupyter.askForKernelRestart": false,
     "jupyter.themeMatplotlibPlots": true,
     "jupyter.addGotoCodeLenses": false,
-    "jupyter.allowImportFromNotebook": false,
     "cSpell.enabled": false,
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+        "*.ipynb": "jupyter-notebook",
+        "*.xls": "default"
     },
     "remote.extensionKind": {
         "iocave.customize-ui": [
@@ -281,11 +282,23 @@
     "markdown.preview.breaks": true,
     "window.zoomLevel": 1,
     "workbench.enableExperiments": false,
-    "editor.minimap.enabled": false,
     "emmet.includeLanguages": {
         "rescript": "javascriptreact"
     },
     "[rescript]": {
         "editor.autoClosingBrackets": "always"
     },
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "rust-analyzer.procMacro.enable": false,
+    // "rust-analyzer.experimental.procAttrMacros": true,
+    "rust-analyzer.diagnostics.disabled": [
+        "macro-error",
+        "unresolved-macro-call"
+    ],
+    "mypy.runUsingActiveInterpreter": true,
+    "notebook.lineNumbers": "on",
+    "editor.minimap.enabled": false,
+    "search.useGlobalIgnoreFiles": true,
+    "editor.fontFamily": "MesloLGS NF, Menlo, Monaco, 'Courier New', monospace",
+    "terminal.integrated.fontFamily": "MesloLGS NF"
 }

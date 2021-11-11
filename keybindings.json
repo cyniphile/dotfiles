@@ -806,5 +806,10 @@
         "key": "cmd+r",
         "command": "rust-analyzer.run",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "0 0",
+        "command": "jupyter.restartkernel",
+        "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'"
     }
 ]

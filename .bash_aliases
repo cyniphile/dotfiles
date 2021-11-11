@@ -1,6 +1,7 @@
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
+alias ll='lsd -alF'
+alias ls='lsd'
+alias la='lsd -A'
 alias l='ls -CF'
 
 # git
