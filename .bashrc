@@ -96,6 +96,10 @@ fi
 #export PATH="~/.local/bin:$PATH"
 
 stty -ixon
+# interrupt with c-n 
+stty intr \^n
+
+
 
 # vi keybindings in shell
 set -o vi

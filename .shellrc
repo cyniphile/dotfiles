@@ -3,7 +3,10 @@
 # messing up path per https://github.com/sdispater/poetry/issues/198#issuecomment-430742299
 
 HISTCONTROL=ignoreboth:erasedups
-fortune -s | hsterminal
+
+if (( $COLUMNS >= 100)); then
+    fortune -s | hsterminal
+fi
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
@@ -53,9 +56,6 @@ function smart_cd() {
    args=$(echo "$*")
    dir=$(dirname "$args") && cd "$dir"
 }
-
-# interrupt with c-n 
-stty intr \^n
 
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
