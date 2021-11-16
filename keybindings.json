@@ -65,10 +65,6 @@
         "command": "-workbench.action.terminal.split",
         "when": "terminalFocus && terminalProcessSupported && isMac"
     },
-    // {
-    //     "key": "cmd+;",
-    //     "command": "workbench.action.terminal.toggleTerminal"
-    // },
     {
         "key": "cmd+;",
         "when": "panelFocus && isMac",
@@ -340,10 +336,6 @@
         "command": "-workbench.action.terminal.split",
         "when": "terminalFocus && terminalProcessSupported && isWindows"
     },
-    // {
-    //     "key": "ctrl+;",
-    //     "command": "workbench.action.terminal.toggleTerminal"
-    // },
     {
         "key": "ctrl+;",
         "when": "panelFocus && isWindows",
@@ -689,11 +681,6 @@
         "command": "-notebook.focusNextEditor",
         "when": "notebookEditorFocused && notebookOutputFocused"
     },
-    // {
-    //     "key": "shift+tab",
-    //     "command": "editor.action.triggerParameterHints",
-    //     "when": "editorHasSignatureHelpProvider && editorTextFocus"
-    // },
     {
         "key": "shift+tab",
         "command": "editor.action.showHover",
@@ -744,7 +731,12 @@
     {
         "key": "tab",
         "command": "workbench.action.quickOpenNavigateNextInFilePicker",
-        "when": "inFilesPicker && inQuickOpen"
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "shift+tab",
+        "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+        "when": "inQuickOpen"
     },
     {
         "key": "cmd+p",

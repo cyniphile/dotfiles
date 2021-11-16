@@ -3,6 +3,7 @@ alias ll='lsd -alF'
 alias ls='lsd'
 alias la='lsd -A'
 alias l='ls -CF'
+alias tree='ls --tree'
 
 # git
 alias gc='git commit -m'

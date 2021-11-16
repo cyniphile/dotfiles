@@ -300,5 +300,6 @@
     "editor.minimap.enabled": false,
     "search.useGlobalIgnoreFiles": true,
     "editor.fontFamily": "MesloLGS NF, Menlo, Monaco, 'Courier New', monospace",
-    "terminal.integrated.fontFamily": "MesloLGS NF"
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "workbench.editor.untitled.hint": "hidden"
 }
