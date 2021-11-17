@@ -1,3 +1,5 @@
+[[ -e ~/.shellrc ]] && emulate sh -c 'source ~/.shellrc'
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -37,9 +39,9 @@ export ZSH="/Users/luke/.oh-my-zsh"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-)
+# plugins=(
+#   git
+# )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -81,13 +83,9 @@ compinit
 autoload -U bashcompinit
 bashcompinit
 
-#eval "$(register-python-argcomplete pipx)"
 
 eval "$(pyenv init -)"
 
-
-#[[ -e ~/.profile  ]] && emulate sh -c 'source ~/.profile'
-[[ -e ~/.shellrc ]] && emulate sh -c 'source ~/.shellrc'
 
 # fzf shortcut (cool!)
 bindkey -s '^p' 'smart_open $(fzf-tmux)^M'
@@ -109,6 +107,7 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
+
 
 
 # Created by `userpath` on 2020-06-16 20:55:54
