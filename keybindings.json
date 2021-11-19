@@ -156,7 +156,7 @@
         "when": "terminalFocus && terminalProcessSupported && isMac"
     },
     {
-        "key": "cmd+b cmd+b",
+        "key": "cmd+b b",
         "command": "workbench.action.terminal.kill",
         "when": "isMac"
     },

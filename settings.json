@@ -301,5 +301,7 @@
     "search.useGlobalIgnoreFiles": true,
     "editor.fontFamily": "MesloLGS NF, Menlo, Monaco, 'Courier New', monospace",
     "terminal.integrated.fontFamily": "MesloLGS NF",
-    "workbench.editor.untitled.hint": "hidden"
+    "workbench.editor.untitled.hint": "hidden",
+    "terminal.integrated.tabs.enabled": false,
+    "terminal.integrated.showExitAlert": false
 }
