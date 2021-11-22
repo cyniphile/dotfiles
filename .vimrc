@@ -1,3 +1,6 @@
+set encoding=utf-8
+set hidden
+
 set mouse=a                 " Automatically enable mouse usage
 set ignorecase                  " Case insensitive search
 set nu                          " Line numbers on
@@ -39,14 +42,10 @@ cmap w!! w !sudo tee % >/dev/null
 
 nmap zo zO
 
-"noremap <C-_> :call NERDComment(0,"toggle")<C-m>
-
 "NerdTree/CHADTree {
         "map <C-e> <plug>NERDTreeTabsToggle<CR>
-        map <C-e> :CHADopen<CR>
-        map <leader>e :NERDTreeFind<CR>
-        nmap <leader>nt :NERDTreeFind<CR>
-" }
+        map <silent> <C-e> :CHADopen<CR>
+        "map <leader>e :NERDTreeFind<CR>
 "
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
    " Fugitive {
@@ -130,7 +129,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/seoul256.vim'
     "Plug 'xolox/vim-misc'
     Plug 'christoomey/vim-tmux-navigator'
-    "Plug 'airblade/vim-rooter'
+    Plug 'airblade/vim-rooter'
     Plug 'vim-airline/vim-airline'
     Plug 'airblade/vim-gitgutter'
     Plug 'mileszs/ack.vim'
@@ -147,6 +146,40 @@ call plug#begin('~/.vim/plugged')
     Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
     Plug 'ryanoasis/vim-devicons'
 call plug#end()
+
+
+" remap search key
+nmap <silent> <leader>dd :call CocAction('jumpDefinition', 'tab drop')<CR>
+nmap <silent> <leader>ds :call CocAction('jumpDefinition', 'vsplit')<CR>
+" Symbol renaming.
+nmap <leader>r <Plug>(coc-rename)
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent><F8> <Plug>(coc-diagnostic-next)
+
+" Use K to show documentation in preview window.
+nnoremap <silent>gh :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+
+" Remap <C-i> and <C-u> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-i> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-i>"
+  nnoremap <silent><nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-u>"
+  inoremap <silent><nowait><expr> <C-i> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-i> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-i>"
+  vnoremap <silent><nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-u>"
+endif
+
 
 
 "Use <Tab> and <S-Tab> to navigate the completion list:
@@ -168,10 +201,6 @@ augroup resCur
     autocmd!
     autocmd BufWinEnter * call ResCur()
 augroup END
-
-" remap search key
-nmap <silent> <leader>dd :call CocAction('jumpDefinition', 'tab drop')<CR>
-nmap <silent> <leader>ds :call CocAction('jumpDefinition', 'vsplit')<CR>
 
 
 let NERDTreeIgnore=['\.o$', '\~$', '__pycache__[[dir]]', '.pytest_cache[[dir]]', '.idea', '.mypy_cache[[dir]]',  '.git[[dir]]']
