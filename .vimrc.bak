@@ -553,7 +553,7 @@ let g:coq_settings = { 'auto_start': 'shut-up' }
 filetype plugin indent on    " required
 
 " remap search key
-nmap <silent> <leader>d <Plug>DashSearch<CR>
+nmap <silent> <leader>d :call CocAction('jumpDefinition', 'vsplit')<CR>
 
 " http://stackoverflow.com/a/21687112
 let loaded_netrwPlugin=1           

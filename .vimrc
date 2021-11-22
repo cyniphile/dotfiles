@@ -1,4 +1,4 @@
-
+set mouse=a                 " Automatically enable mouse usage
 set ignorecase                  " Case insensitive search
 set nu                          " Line numbers on
 
@@ -159,9 +159,23 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "To make <cr> select the first completion item and confirm the completion when no item has been selected:
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+" Restore cursor to file position in previous editing session
+function! ResCur()
+        if line("'\"") <= line("$")
+            normal! g`"
+                return 1
+        endif
+   endfunction
+
+augroup resCur
+    autocmd!
+    autocmd BufWinEnter * call ResCur()
+augroup END
 
 " remap search key
-"nmap <silent> <leader>d <Plug>DashSearch<CR>
+nmap <silent> <leader>d :call CocAction('jumpDefinition', 'tab drop')<CR>
+"nmap <silent> <leader>d :call CocAction('jumpDefinition', 'vsplit')<CR>
+
 
 let NERDTreeIgnore=['\.o$', '\~$', '__pycache__[[dir]]', '.pytest_cache[[dir]]', '.idea', '.mypy_cache[[dir]]',  '.git[[dir]]']
 
