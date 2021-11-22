@@ -17,6 +17,26 @@
         },
         {
             "before": [
+                "<Space>"
+            ],
+            "after": [
+                // "f",
+                // "\"",
+                "A"
+            ]
+        },
+        {       
+            "before": [
+                "enter"
+            ],
+            "after": [
+                "v",
+                "a",
+                "f"
+            ],
+        },
+        {
+            "before": [
                 "<leader>",
                 "b",
             ],
@@ -146,6 +166,23 @@
             "commands": [
                 "undo"
             ]
+        },
+        {
+            "before": [
+                "<Space>"
+            ],
+            "after": [
+                "$"
+            ]
+        },
+        {
+            "before": [
+                "enter"
+            ],
+            "after": [
+                "a",
+                "f"
+            ],
         },
         {
             "before": [
@@ -304,4 +341,5 @@
     "workbench.editor.untitled.hint": "hidden",
     "terminal.integrated.tabs.enabled": false,
     "terminal.integrated.showExitAlert": false
+
 }

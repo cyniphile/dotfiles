@@ -1,16 +1,6 @@
-set nocompatible        " Must be first line
-set background=dark         " Assume a dark background
-filetype plugin indent on   " Automatically detect file types.
-syntax on                   " Syntax highlighting
-set mouse=a                 " Automatically enable mouse usage
-set mousehide               " Hide the mouse cursor while typing
 
-" autopep8 shortcut mapping
-autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-" option to ignore certin pep8 rules
- "let g:autopep8_ignore="E501,W293"
-
-scriptencoding utf-8
+set ignorecase                  " Case insensitive search
+set nu                          " Line numbers on
 
 if has('clipboard')
    if has('unnamedplus')  " When possible use + register for copy-paste
@@ -20,95 +10,8 @@ if has('clipboard')
    endif
 endif
 
-" Most prefer to automatically switch to the current file directory when
-" a new buffer is opened; to prevent this behavior
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
-set virtualedit=onemore             " Allow for cursor beyond last character
-set history=1000                    " Store a ton of history (default is 20)
-set hidden                          " Allow buffer switching without saving
-set iskeyword-=.                    " '.' is an end of word designator
-set iskeyword-=#                    " '#' is an end of word designator
-set iskeyword-=-                    " '-' is an end of word designator
-set shortmess=aoOtIFT               " Abbrev. of messages (avoids 'hit enter')
 
-" Instead of reverting the cursor to the last position in the buffer, we
-" set it to the first line when editing a git commit message
-au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-
-" http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
-" Restore cursor to file position in previous editing session
-function! ResCur()
-        if line("'\"") <= line("$")
-            normal! g`"
-                return 1
-        endif
-   endfunction
-
-augroup resCur
-    autocmd!
-    autocmd BufWinEnter * call ResCur()
-augroup END
-
-" Setting up the directories {
-set backup                  " Backups are nice ...
-if has('persistent_undo')
-    set undofile                " So is persistent undo ...
-    set undolevels=1000         " Maximum number of changes that can be undone
-    set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
-endif
-
-" Add exclusions to mkview and loadview
-" eg: *.*, svn-commit.tmp
-let g:skipview_files = [
-     \ '\[example pattern\]'
-     \ ]
-
-set tabpagemax=15               " Only show 15 tabs
-set showmode                    " Display the current mode
-
-
-if has('statusline')
-    set laststatus=2
-    " Broken down into easily includeable segments
-    set statusline=%<%f\                     " Filename
-    set statusline+=%w%h%m%r                 " Options
-    set statusline+=%{fugitive#statusline()} " Git Hotness
-    set statusline+=\ [%{&ff}/%Y]            " Filetype
-    set statusline+=\ [%{getcwd()}]          " Current dir
-    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
-
-set backspace=indent,eol,start  " Backspace for dummies
-set linespace=0                 " No extra spaces between rows
-set nu                          " Line numbers on
-set showmatch                   " Show matching brackets/parenthesis
-set incsearch                   " Find as you type search
-set hlsearch                    " Highlight search terms
-set winminheight=0              " Windows can be 0 line high
-set ignorecase                  " Case insensitive search
-set smartcase                   " Case sensitive when uc present
-set wildmenu                    " Show list instead of just completing
-set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set scrolljump=5                " Lines to scroll when cursor leaves screen
-set scrolloff=3                 " Minimum lines to keep above and below cursor
-set foldenable                  " Auto fold code
-set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-
-set autoindent                  " Indent at the same level of the previous line
-set shiftwidth=4                " Use indents of 4 spaces
-set expandtab                   " Tabs are spaces, not tabs
-set tabstop=4                   " An indentation every four columns
-set softtabstop=4               " Let backspace delete indent
-set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
-set splitright                  " Puts new vsplit windows to the right of the current
-set splitbelow                  " Puts new split windows to the bottom of the current
-" Remove trailing whitespaces and ^M chars
-" To disable the stripping of whitespace, add the following to your
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-
+noremap <C-_> :call NERDComment(0,"toggle")<C-m>
 
 let mapleader = ','
 
@@ -117,7 +20,6 @@ let mapleader = ','
     map <C-K> <C-W>k<C-W>_
     map <C-L> <C-W>l<C-W>_
     map <C-H> <C-W>h<C-W>_
-
     map ` gt
     map ~ gT
     map <C-y> <C-r> 
@@ -125,140 +27,35 @@ let mapleader = ','
 noremap j gj
 noremap k gk
 
-" End/Start of line motion keys act relative to row/wrap width in the
-" presence of `:set wrap`, and relative to line for `:set nowrap`.
-" Same for 0, home, end, etc
-function! WrapRelativeMotion(key, ...)
-    let vis_sel=""
-    if a:0
-        let vis_sel="gv"
-    endif
-    if &wrap
-        execute "normal!" vis_sel . "g" . a:key
-    else
-        execute "normal!" vis_sel . a:key
-    endif
-endfunction
-
-" Map g* keys in Normal, Operator-pending, and Visual+select
-noremap $ :call WrapRelativeMotion("$")<CR>
-noremap <End> :call WrapRelativeMotion("$")<CR>
-noremap 0 :call WrapRelativeMotion("0")<CR>
-noremap <Home> :call WrapRelativeMotion("0")<CR>
-noremap ^ :call WrapRelativeMotion("^")<CR>
-" Overwrite the operator pending $/<End> mappings from above
-" to force inclusive motion with :execute normal!
-onoremap $ v:call WrapRelativeMotion("$")<CR>
-onoremap <End> v:call WrapRelativeMotion("$")<CR>
-" Overwrite the Visual+select mode mappings from above
-" to ensure the correct vis_sel flag is passed to function
-vnoremap $ :<C-U>call WrapRelativeMotion("$", 1)<CR>
-vnoremap <End> :<C-U>call WrapRelativeMotion("$", 1)<CR>
-vnoremap 0 :<C-U>call WrapRelativeMotion("0", 1)<CR>
-vnoremap <Home> :<C-U>call WrapRelativeMotion("0", 1)<CR>
-vnoremap ^ :<C-U>call WrapRelativeMotion("^", 1)<CR>
-
-" The following two lines conflict with moving to top and
-" bottom of the screen
-map <S-H> gT
-map <S-L> gt
-
-" Stupid shift key fixes
-if has("user_commands")
-    command! -bang -nargs=* -complete=file E e<bang> <args>
-    command! -bang -nargs=* -complete=file W w<bang> <args>
-    command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-    command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-    command! -bang Wa wa<bang>
-    command! -bang WA wa<bang>
-    command! -bang Q q<bang>
-    command! -bang QA qa<bang>
-    command! -bang Qa qa<bang>
-endif
-
-cmap Tabe tabe
-
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
-
-nmap <F6> :TagbarToggle<CR>
-
-" Code folding options
-set foldmethod=indent
-set foldopen+=jump  "auto open folds when jumping
-
-" Most prefer to toggle search highlighting rather than clear the current
-" search results. 
-nmap <silent> <leader>/ :set invhlsearch<CR>
-
-
 
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
 
-" Allow using the repeat operator with a visual selection (!)
-" http://stackoverflow.com/a/8064607/127816
-vnoremap . :normal .<CR>
-
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
 
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
-
-" Map <Leader>ff to display all lines with keyword under cursor
-" and ask which one to jump to
-nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-
 nmap zo zO
 
-" Misc {
-    if isdirectory(expand("~/.vim/bundle/nerdtree"))
-        let g:NERDShutUp=1
-    endif
-" }
+"noremap <C-_> :call NERDComment(0,"toggle")<C-m>
 
-    " Ctags {
-    set tags=./tags;/,~/.vimtags
-
-    " Make tags placed in .git/tags file available in all levels of a repository
-    let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-    if gitroot != ''
-        let &tags = &tags . ',' . gitroot . '/.git/tags'
-    endif
-" }
-
-noremap <C-_> :call NERDComment(0,"toggle")<C-m>
-
- "NerdTree/CHADTree {
+"NerdTree/CHADTree {
         "map <C-e> <plug>NERDTreeTabsToggle<CR>
         map <C-e> :CHADopen<CR>
         map <leader>e :NERDTreeFind<CR>
         nmap <leader>nt :NERDTreeFind<CR>
-        "let NERDTreeShowBookmarks=1
-        "let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-        "let NERDTreeChDirMode=0
-        "let NERDTreeQuitOnOpen=1
-        "let NERDTreeMouseMode=2
-        "let NERDTreeShowHidden=1
-        "let NERDTreeKeepTreeInNewTab=1
-        "let g:nerdtree_tabs_open_on_gui_startup=0
 " }
+"
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
    " Fugitive {
         nnoremap <silent> <leader>gs :Gstatus<CR>
-        nnoremap <silent> <leader>gd :Gdiff<CR>
+        "nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
-        nnoremap <silent> <leader>gr :Gread<CR>
-        nnoremap <silent> <leader>gw :Gwrite<CR>
-        nnoremap <silent> <leader>ge :Gedit<CR>
-        " Mnemonic _i_nteractive
-        nnoremap <silent> <leader>gi :Git add -p %<CR>
-        nnoremap <silent> <leader>gg :SignifyToggle<CR>
 "}
 
 
@@ -268,126 +65,14 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr
         let g:undotree_SetFocusWhenToggle=1
 " }
 
-" Wildfire {
-let g:wildfire_objects = {
-            \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
-            \ "html,xml" : ["at"],
-            \ }
-" }
 
-
-
-" Functions {
-
-    " Initialize directories {
-    function! InitializeDirectories()
-        let parent = $HOME
-        let prefix = 'vim'
-        let dir_list = {
-                    \ 'backup': 'backupdir',
-                    \ 'views': 'viewdir',
-                    \ 'swap': 'directory' }
-
-        if has('persistent_undo')
-            let dir_list['undo'] = 'undodir'
-        endif
-        let common_dir = parent . '/.' . prefix
-
-        for [dirname, settingname] in items(dir_list)
-            let directory = common_dir . dirname . '/'
-            if exists("*mkdir")
-                if !isdirectory(directory)
-                    call mkdir(directory)
-                endif
-            endif
-            if !isdirectory(directory)
-                echo "Warning: Unable to create backup directory: " . directory
-                echo "Try: mkdir -p " . directory
-            else
-                let directory = substitute(directory, " ", "\\\\ ", "g")
-                exec "set " . settingname . "=" . directory
-            endif
-        endfor
-    endfunction
-    call InitializeDirectories()
-    " }
-
-    " Initialize NERDTree as needed {
-    function! NERDTreeInitAsNeeded()
-        redir => bufoutput
-        buffers!
-        redir END
-        let idx = stridx(bufoutput, "NERD_tree")
-        if idx > -1
-            NERDTreeMirror
-            NERDTreeFind
-            wincmd l
-        endif
-    endfunction
-    " }
-
-    " Strip whitespace {
-    function! StripTrailingWhitespace()
-        " Preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
-        " do the business:
-        %s/\s\+$//e
-        " clean up: restore previous search history, and cursor position
-        let @/=_s
-        call cursor(l, c)
-    endfunction
-    " }
-
-    " Shell command {
-    function! s:RunShellCommand(cmdline)
-        botright new
-
-        setlocal buftype=nofile
-        setlocal bufhidden=delete
-        setlocal nobuflisted
-        setlocal noswapfile
-        setlocal nowrap
-        setlocal filetype=shell
-        setlocal syntax=shell
-
-        call setline(1, a:cmdline)
-        call setline(2, substitute(a:cmdline, '.', '=', 'g'))
-        execute 'silent $read !' . escape(a:cmdline, '%#')
-        setlocal nomodifiable
-        1
-    endfunction
-
-    command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
-    " e.g. Grep current file for <search_term>: Shell grep -Hn <search_term> %
-    " }
-
-" }
-"
-
-set t_Co=256
 
 let g:airline_powerline_fonts=1
 
-"misc other
-set gdefault
 nmap <F5> :setlocal spell! spelllang=en_us<CR>
 set nospell
-"python with virtualenv support
-"py << EOF
-"import os
-"import sys
-"if 'VIRTUAL_ENV' in os.environ:
-  "project_base_dir = os.environ['VIRTUAL_ENV']
-  "activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  "execfile(activate_this, dict(__file__=activate_this))
-"EOF
 
 
-autocmd Filetype ruby nnoremap <leader>b orequire 'byebug'; byebug<Esc>
-
-nnoremap <leader>r *``cgn
 
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
@@ -419,27 +104,6 @@ let g:airline_section_z = '%t'
 let g:airline_section_c = ''
 
 
-set wrap
-set linebreak
-set nolist  " list disables linebreak
-set textwidth=0
-set wrapmargin=0
-
-
-filetype plugin indent on
-syntax enable
-
-
-let test#python#runner = 'pytest'
-let test#strategy = "dispatch"
-nmap <silent> <leader>T :TestNearest --pdb<CR>
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>f :TestFile<CR>
-nmap <silent> <leader>F :TestFile --pdb<CR>
-nmap <silent> <leader>s :TestSuite<CR>
-nmap <silent> <leader>S :TestSuite --pdb<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>G :TestVisit<CR>
 
 " sane find and replace and select all shortcut
 nnoremap <leader>h yiw:%s/\<<C-r>"\>//gc<left><left><left>
@@ -463,108 +127,44 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.g
 
 noremap <C-p> :FZF<CR>
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-"clostag.vim
-" filenames like *.xml, *.html, *.xhtml, ...
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb,*.xml"
-
-
-" Use deoplete.
-" let g:deoplete#enable_at_startup = 1
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
 call plug#begin('~/.vim/plugged')
-    Plug 'xolox/vim-misc'
-    Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'bash install.sh',
-        \ }
+  " Use release branch (recommend)
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'junegunn/seoul256.vim'
+    "Plug 'xolox/vim-misc'
     Plug 'christoomey/vim-tmux-navigator'
-    Plug 'stephpy/vim-yaml'
-    Plug 'Vimjas/vim-python-pep8-indent'
-    Plug 'othree/html5.vim'
-    Plug 'valloric/matchtagalways'
-    Plug 'alvan/vim-closetag'
-    Plug 'mustache/vim-mustache-handlebars'
-    Plug 'vim-ruby/vim-ruby'
-    Plug 'ecomba/vim-ruby-refactoring'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'tpope/vim-obsession'
-    "Plug 'thaerkh/vim-workspace'
-    Plug 'airblade/vim-rooter'
-    Plug 'janko-m/vim-test'
-    Plug 'tpope/vim-dispatch'
+    "Plug 'airblade/vim-rooter'
     Plug 'vim-airline/vim-airline'
-    Plug 'flazz/vim-colorschemes'
     Plug 'airblade/vim-gitgutter'
-    "Plug 'preservim/nerdtree'
-    Plug 'majutsushi/tagbar'
-    Plug 'tpope/vim-endwise'
     Plug 'mileszs/ack.vim'
     Plug 'mbbill/undotree'
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-rails'
-    "Plug 'tpope/vim-markdown'
     Plug 'gcmt/wildfire.vim'
-    Plug 'altercation/vim-colors-solarized'
-    Plug 'rizzatti/dash.vim'
     Plug 'zaiste/tmux.vim'
-    "Plug 'jistr/vim-nerdtree-tabs'
     Plug 'scrooloose/nerdcommenter'
     Plug 'edkolev/tmuxline.vim'
-    Plug 'chun-yang/auto-pairs'
-    Plug 'kchmck/vim-coffee-script'
-    Plug 'tpope/vim-surround'
-    Plug 'pangloss/vim-javascript'
-    Plug 'othree/javascript-libraries-syntax.vim'
-    Plug 'mxw/vim-jsx'
-    Plug 'jmcantrell/vim-virtualenv'
+    "Plug 'tpope/vim-surround'
     Plug 'tmux-plugins/vim-tmux-focus-events'
-    Plug 'tell-k/vim-autopep8'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
-    "Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
-    Plug 'plasticboy/vim-markdown'
-    Plug 'kshenoy/vim-signature'
-    Plug 'tpope/vim-sleuth'
-    Plug 'wellle/targets.vim'
-    Plug 'neovim/nvim-lspconfig'
     Plug 'ryanoasis/vim-devicons'
-  " main one
-    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-  " 9000+ Snippets
-    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 call plug#end()
 
 
-lua << EOF
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.rust_analyzer.setup{}
-EOF
+"Use <Tab> and <S-Tab> to navigate the completion list:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-let g:coq_settings = { 'auto_start': 'shut-up' }
+"To make <cr> select the first completion item and confirm the completion when no item has been selected:
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-filetype plugin indent on    " required
 
 " remap search key
-nmap <silent> <leader>d <Plug>DashSearch<CR>
+"nmap <silent> <leader>d <Plug>DashSearch<CR>
 
-" http://stackoverflow.com/a/21687112
-let loaded_netrwPlugin=1           
 let NERDTreeIgnore=['\.o$', '\~$', '__pycache__[[dir]]', '.pytest_cache[[dir]]', '.idea', '.mypy_cache[[dir]]',  '.git[[dir]]']
-"autorefresh nerdtree https://askubuntu.com/questions/523822/vim-nerdtree-auto-fresh-the-directory-pane
-"autocmd CursorHold,CursorHoldI * call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | wincmd w
 
-if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
-    let g:solarized_termcolors=256
-    let g:solarized_termtrans=1
-    let g:solarized_contrast="normal"
-    let g:solarized_visibility="normal"
-endif
 " See `:echo g:airline_theme_map` for some more choices
 " Default in terminal vim is 'dark'
 if isdirectory(expand("~/.vim/bundle/vim-airline/"))
@@ -579,13 +179,6 @@ if isdirectory(expand("~/.vim/bundle/vim-airline/"))
 endif
 let g:airline#extensions#tmuxline#enabled = 0
 
-" ocaml
-"set rtp+=/home/cyniphile/.opam/4.02.3/share/merlin/vim
-"let g:syntastic_ocaml_checkers = ['merlin']
-"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-"execute "set rtp+=" . g:opamshare . "/merlin/vim"
-" end ocaml
-
 
 " cursor shape adjuster for iterm: https://gist.github.com/andyfowler/1195581
 if exists('$TMUX')
@@ -595,14 +188,6 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-
-autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd InsertEnter,InsertLeave * set cul!
-
-set showcmd                 " Show partial commands in status line and
-
 
 autocmd ColorScheme * hi Visual ctermfg=NONE ctermbg=DarkGrey
 autocmd ColorScheme * hi Normal ctermbg=234 cterm=NONE
@@ -621,7 +206,6 @@ colorscheme seoul256
 "use register 1, a little easier to type than just typing "1
 map <leader>f "1
 
-
 " set fold color so as not to confuse with window border
 hi Folded ctermbg=16
 hi Folded ctermfg=DarkGrey
@@ -629,23 +213,3 @@ hi Folded ctermfg=DarkGrey
 "max charwidth indicator
 highlight ColorColumn ctermbg=235
 call matchadd('ColorColumn', '\%81v', 100)
-
-" set language to English to prevent unicode char copy paste probs
-lang en_US.UTF-8
-
-
-
-" Required for operations modifying multiple buffers like rename.
-set hidden
-
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['~/Library/Python/3.7/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> <leader>d :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <leader>r :call LanguageClient#textDocument_rename()<CR>
-
