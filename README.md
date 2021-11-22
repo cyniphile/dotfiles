@@ -36,7 +36,7 @@ install vim plug
 ln -s $HOME/dotfiles/.zshrc
 ln -s $HOME/dotfiles/.bash_aliases
 ln -s $HOME/dotfiles/.bash_profile
-ln -s $HOME/dotfiles/vimrc
+<!--ln -s $HOME/dotfiles/vimrc-->
 ln -s $HOME/dotfiles/.bashrc
 ln -s $HOME/dotfiles/.tmux.conf
 ln -s $HOME/dotfiles/.shellrc
@@ -67,7 +67,7 @@ link nvim to vim
 ```
 $ mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
 $ ln -s ~/.vim $XDG_CONFIG_HOME/nvim
-$ ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
+$ ln -s ~/dotfiles/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 ```
 
 install pip and packages

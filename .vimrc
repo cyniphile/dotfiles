@@ -93,11 +93,8 @@ set norelativenumber
 
 "remap ,w to :w
 nmap <leader>w <Esc>:w<Enter>
-nmap <leader>j <Esc>:q<Enter>
 
-"resize window alias
-nmap + <C-w>+
-nmap - <C-w>-
+nmap <C-w> <Esc>:q<Enter>
 
 " autowrite on buffer focus lost"
 let g:airline_section_z = '%t'
@@ -173,8 +170,8 @@ augroup resCur
 augroup END
 
 " remap search key
-nmap <silent> <leader>d :call CocAction('jumpDefinition', 'tab drop')<CR>
-"nmap <silent> <leader>d :call CocAction('jumpDefinition', 'vsplit')<CR>
+nmap <silent> <leader>dd :call CocAction('jumpDefinition', 'tab drop')<CR>
+nmap <silent> <leader>ds :call CocAction('jumpDefinition', 'vsplit')<CR>
 
 
 let NERDTreeIgnore=['\.o$', '\~$', '__pycache__[[dir]]', '.pytest_cache[[dir]]', '.idea', '.mypy_cache[[dir]]',  '.git[[dir]]']
