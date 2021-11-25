@@ -133,14 +133,6 @@
         },
         {
             "before": [
-                "<C-r>"
-            ],
-            "commands": [
-                "redo"
-            ]
-        },
-        {
-            "before": [
                 "k"
             ],
             "after": [
@@ -186,14 +178,6 @@
         },
         {
             "before": [
-                "<C-r>"
-            ],
-            "commands": [
-                "redo"
-            ]
-        },
-        {
-            "before": [
                 "k"
             ],
             "after": [
@@ -235,13 +219,21 @@
         "**/*.venv": true
     },
     "cSpell.userWords": [
-        "assymentical",
+        "alloproteins",
+        "amirite",
         "Bijective",
+        "bioinformatics",
         "bitshifting",
         "Centricity",
+        "dataclass",
         "douchey",
+        "elif",
         "engineio",
         "exhaustivity",
+        "exomes",
+        "FASTA",
+        "flamegraph",
+        "functools",
         "groupby",
         "hget",
         "hincrby",
@@ -254,13 +246,23 @@
         "jupyter",
         "jupyterlab",
         "matplotlib",
+        "multithreaded",
+        "mypy",
         "numpy",
-        "ples",
+        "perfplot",
         "plotly",
+        "pyclass",
+        "pyfunction",
         "pytest",
+        "Pythonic",
+        "Pythonistas",
+        "Schermata",
         "Schiefelbein",
         "strategize",
+        "struct",
         "uncentered",
+        "usize",
+        "Woot",
         "xaxis",
         "yaxis"
     ],
@@ -327,7 +329,6 @@
     },
     "rust-analyzer.checkOnSave.command": "clippy",
     "rust-analyzer.procMacro.enable": false,
-    // "rust-analyzer.experimental.procAttrMacros": true,
     "rust-analyzer.diagnostics.disabled": [
         "macro-error",
         "unresolved-macro-call"

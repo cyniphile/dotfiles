@@ -37,6 +37,8 @@ nnoremap Y y$
 vnoremap < <gv
 vnoremap > >gv
 
+nmap <Space> bysw
+
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
 
@@ -139,7 +141,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'zaiste/tmux.vim'
     Plug 'scrooloose/nerdcommenter'
     Plug 'edkolev/tmuxline.vim'
-    "Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-surround'
     Plug 'tmux-plugins/vim-tmux-focus-events'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
@@ -241,7 +243,6 @@ autocmd ColorScheme * hi Comment ctermfg=DarkGrey
 
 
 colorscheme seoul256
-"colorscheme monokain
 
 "use register 1, a little easier to type than just typing "1
 map <leader>f "1

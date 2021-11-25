@@ -735,6 +735,11 @@
         "when": "inQuickOpen"
     },
     {
+        "key": "cmd-s",
+        "command": "explorer.openToSide",
+        "when": "inQuickOpen"
+    },
+    {
         "key": "shift+tab",
         "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
         "when": "inQuickOpen"

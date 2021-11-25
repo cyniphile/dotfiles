@@ -43,7 +43,7 @@ ln -s $HOME/dotfiles/.shellrc
 ln -s $HOME/dotfiles/.gitconfig
 ln -s $HOME/dotfiles/.gitignore
 /* ln -s $HOME/dotfiles/luke-robbyrussell.zsh-theme ./.oh-my-zsh/themes */
-ln -s $HOME/dotfiles/key_config.ron $HOME/Library/Application Support/gitui/key_config.ron
+ln -s $HOME/dotfiles/key_config.ron $HOME/.config/gitui/key_bindings.ron 
 ln -s $HOME/dotfiles/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 ln -s ~/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 

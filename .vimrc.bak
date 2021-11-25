@@ -651,3 +651,5 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> <leader>d :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <leader>r :call LanguageClient#textDocument_rename()<CR>
 
+nmap <Space> ysw
+
