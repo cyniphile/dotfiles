@@ -56,6 +56,7 @@ nmap zo zO
 			\'theme.icon_colour_set': "github"
 		  \ }
 "
+let g:neoterm_autoinsert=1
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
    " Fugitive {
         nnoremap <silent> <leader>gs :Gstatus<CR>
