@@ -27,8 +27,8 @@ let mapleader = ','
     map ~ gT
     map <C-y> <C-r> 
 " Wrapped lines goes down/up to next row, rather than next line in file.
-noremap j gj
-noremap k gk
+noremap <silent> j gj
+noremap <silent> k gk
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
@@ -48,6 +48,11 @@ nmap zo zO
         "map <C-e> <plug>NERDTreeTabsToggle<CR>
         map <silent> <C-e> :CHADopen<CR>
         "map <leader>e :NERDTreeFind<CR>
+	"
+	let g:chadtree_settings = {
+			\'theme.text_colour_set': "nord",
+			\'theme.icon_colour_set': "github"
+		  \ }
 "
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
    " Fugitive {
@@ -133,7 +138,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'airblade/vim-rooter'
     Plug 'vim-airline/vim-airline'
-    Plug 'airblade/vim-gitgutter'
+    if has('nvim') || has('patch-8.0.902')
+	 Plug 'mhinz/vim-signify'
+    else
+	 Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+    endif
     Plug 'mileszs/ack.vim'
     Plug 'mbbill/undotree'
     Plug 'tpope/vim-fugitive'
@@ -231,15 +240,19 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+set termguicolors
+au ColorScheme * hi Normal ctermbg=none guibg=none
 autocmd ColorScheme * hi Visual ctermfg=NONE ctermbg=DarkGrey
+autocmd ColorScheme * hi Visual guifg=NONE guibg=DarkGrey
 autocmd ColorScheme * hi Normal ctermbg=234 cterm=NONE
-autocmd ColorScheme * hi LineNr ctermfg=102 ctermbg=235
-autocmd ColorScheme * hi Normal ctermbg=none
+autocmd ColorScheme * hi Normal guibg=234 cterm=NONE
+autocmd ColorScheme * hi LineNr ctermfg=102 ctermbg=235 guifg=Grey40 guibg=102
 autocmd ColorScheme * set cursorline                  " Highlight current line
 autocmd ColorScheme * hi CursorLine   cterm=NONE ctermbg=234
-autocmd ColorScheme * highlight clear SignColumn      " SignColumn should match background
-autocmd ColorScheme * hi Search ctermfg=102 ctermbg=LightGrey 
-autocmd ColorScheme * hi Comment ctermfg=DarkGrey
+autocmd ColorScheme * hi clear SignColumn      " SignColumn should match background
+autocmd ColorScheme * highlight SignifySignAdd    ctermfg=green  guifg=#00ff00 cterm=NONE guibg=NONE
+autocmd ColorScheme * highlight SignifySignDelete ctermfg=red    guifg=#ff0000 cterm=NONE guibg=NONE
+autocmd ColorScheme * highlight SignifySignChange ctermfg=yellow guifg=#ffff00 cterm=NONE guibg=NONE
 
 
 colorscheme seoul256
@@ -254,3 +267,4 @@ hi Folded ctermfg=DarkGrey
 "max charwidth indicator
 highlight ColorColumn ctermbg=235
 call matchadd('ColorColumn', '\%81v', 100)
+
