@@ -13,7 +13,6 @@ if has('clipboard')
    endif
 endif
 
-
 noremap <C-_> :call NERDComment(0,"toggle")<C-m>
 
 let mapleader = ','
@@ -26,6 +25,7 @@ let mapleader = ','
     map ` gt
     map ~ gT
     map <C-y> <C-r> 
+
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap <silent> j gj
 noremap <silent> k gk
@@ -36,6 +36,8 @@ nnoremap Y y$
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
+
+nmap <C-;> 
 
 nmap <Space> bysw
 
@@ -58,7 +60,7 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr
    " Fugitive {
         nnoremap <silent> <leader>gs :Gstatus<CR>
         "nnoremap <silent> <leader>gd :Gdiff<CR>
-        nnoremap <silent> <leader>gc :Gcommit<CR>
+        nnoremap <silent> <leader>gc :split term://zsh gs<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
@@ -112,8 +114,6 @@ let g:airline_section_c = ''
 nnoremap <leader>h yiw:%s/\<<C-r>"\>//gc<left><left><left>
 nnoremap <C-A> %y
 
-"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
 " ripgrep 
 if executable('rg')
    "Use ag over grep
@@ -132,6 +132,7 @@ noremap <C-p> :FZF<CR>
 
 call plug#begin('~/.vim/plugged')
   " Use release branch (recommend)
+    Plug 'kassio/neoterm'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'junegunn/seoul256.vim'
     "Plug 'xolox/vim-misc'
@@ -246,7 +247,7 @@ autocmd ColorScheme * hi Visual ctermfg=NONE ctermbg=DarkGrey
 autocmd ColorScheme * hi Visual guifg=NONE guibg=DarkGrey
 autocmd ColorScheme * hi Normal ctermbg=234 cterm=NONE
 autocmd ColorScheme * hi Normal guibg=234 cterm=NONE
-autocmd ColorScheme * hi LineNr ctermfg=102 ctermbg=235 guifg=Grey40 guibg=102
+autocmd ColorScheme * hi LineNr ctermfg=102 ctermbg=235 guifg=Grey40 guibg=none
 autocmd ColorScheme * set cursorline                  " Highlight current line
 autocmd ColorScheme * hi CursorLine   cterm=NONE ctermbg=234
 autocmd ColorScheme * hi clear SignColumn      " SignColumn should match background
@@ -263,6 +264,8 @@ map <leader>f "1
 " set fold color so as not to confuse with window border
 hi Folded ctermbg=16
 hi Folded ctermfg=DarkGrey
+
+au FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyrightconfig.json']
 
 "max charwidth indicator
 highlight ColorColumn ctermbg=235

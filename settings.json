@@ -267,7 +267,7 @@
         "yaxis"
     ],
     // "python.linting.flake8Enabled": true,
-    "python.linting.mypyEnabled": true,
+    // "python.linting.mypyEnabled": true,
     "python.linting.flake8Args": [
         "--ignore=E501"
     ],
@@ -296,6 +296,7 @@
     ],
     "workbench.startupEditor": "newUntitledFile",
     "pythonTestExplorer.testFramework": "pytest",
+    "python.analysis.typeCheckingMode": "basic",
     "testing.enableCodeLens": false,
     "git.autofetch": true,
     "editor.rulers": [
@@ -333,7 +334,7 @@
         "macro-error",
         "unresolved-macro-call"
     ],
-    "mypy.runUsingActiveInterpreter": true,
+    // "mypy.runUsingActiveInterpreter": true,
     "notebook.lineNumbers": "on",
     "editor.minimap.enabled": false,
     "search.useGlobalIgnoreFiles": true,
