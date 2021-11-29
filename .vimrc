@@ -130,8 +130,9 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.g
 noremap <C-p> :FZF<CR>
 
 call plug#begin('~/.vim/plugged')
-  " Use release branch (recommend)
     Plug 'kassio/neoterm'
+    "Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
+    " Use release branch (recommend)
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'junegunn/seoul256.vim'
     "Plug 'xolox/vim-misc'
