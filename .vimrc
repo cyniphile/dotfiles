@@ -37,8 +37,6 @@ nnoremap Y y$
 vnoremap < <gv
 vnoremap > >gv
 
-nmap <C-;> 
-
 nmap <Space> bysw
 
 " For when you forget to sudo.. Really Write the file.
