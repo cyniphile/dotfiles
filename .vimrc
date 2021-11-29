@@ -60,7 +60,7 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr
    " Fugitive {
         nnoremap <silent> <leader>gs :Gstatus<CR>
         "nnoremap <silent> <leader>gd :Gdiff<CR>
-        nnoremap <silent> <leader>gc :split term://zsh gs<CR>
+        nnoremap <silent> <leader>gc :T gs<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
