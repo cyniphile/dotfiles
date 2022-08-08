@@ -1,5 +1,8 @@
 install iterm, spectacle, sys monitor, Be Focused
 
+This (so certain shortcuts work): 
+https://apple.stackexchange.com/questions/281033/sending-ctrlfunction-key-on-iterm2
+
 install Homebrew
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
 
