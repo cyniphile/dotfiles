@@ -55,10 +55,10 @@ nmap zo zO
 			\'theme.icon_colour_set': "github",
 			\'keymap.rename': ["<F2>"]
 		  \ }
-"
+
+"make git commands work with gitgui
 let g:neoterm_autoinsert=1
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
-   " Fugitive {
         nnoremap <silent> <leader>gs :Gstatus<CR>
         "nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :T gs<CR>
@@ -82,13 +82,10 @@ nmap <F5> :setlocal spell! spelllang=en_us<CR>
 set nospell
 
 
-
-
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.markdown setlocal textwidth=80
 
-
-" agvim
+" agvim/ripgrep
 let g:ackprg = 'rg --vimgrep --no-heading'
 let g:ag_working_path_mode = 'r'
 nmap <leader>a :Ack!
@@ -103,13 +100,12 @@ set norelativenumber
 "remap ,w to :w
 nmap <leader>w <Esc>:w<Enter>
 
+"close windows like in vscode
 nmap <C-w> <Esc>:q<Enter>
 
 " autowrite on buffer focus lost"
 let g:airline_section_z = '%t'
 let g:airline_section_c = ''
-
-
 
 " sane find and replace and select all shortcut
 nnoremap <leader>h yiw:%s/\<<C-r>"\>//gc<left><left><left>
