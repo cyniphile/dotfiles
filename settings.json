@@ -161,6 +161,36 @@
         },
         {
             "before": [
+                "y"
+            ],
+            "after": [
+                "y",
+                "g",
+                "v",
+            ]
+        },
+        {
+            "before": [
+                ">"
+            ],
+            "after": [
+                ">",
+                "g",
+                "v",
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "after": [
+                "<",
+                "g",
+                "v",
+            ]
+        },
+        {
+            "before": [
                 "<Space>"
             ],
             "after": [
@@ -198,7 +228,6 @@
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "editor.formatOnSave": true,
-    "workbench.activityBar.visible": true,
     "terminal.external.linuxExec": "",
     "terminal.external.osxExec": "iterm",
     "code-runner.saveFileBeforeRun": true,
@@ -208,7 +237,6 @@
     "python.languageServer": "Pylance",
     "workbench.statusBar.visible": true,
     "customizeUI.titleBar": "inline",
-    "workbench.useExperimentalGridLayout": true,
     "customizeUI.activityBar": "bottom",
     // hide top right icons
     "customizeUI.stylesheet": {
@@ -219,47 +247,75 @@
         "**/*.venv": true
     },
     "cSpell.userWords": [
+        "agritourism",
         "alloproteins",
         "amirite",
+        "antivax",
+        "ballcap",
+        "Belizeans",
         "Bijective",
         "bioinformatics",
         "bitshifting",
         "Centricity",
+        "ceviches",
+        "creeped",
+        "crescendoing",
+        "Cronenberg",
         "dataclass",
         "douchey",
         "elif",
         "engineio",
         "exhaustivity",
         "exomes",
+        "farmboy",
         "FASTA",
+        "fatass",
+        "Feinstein",
         "flamegraph",
         "functools",
+        "Garifuna",
+        "grandkids",
         "groupby",
+        "guilting",
+        "haha",
         "hget",
         "hincrby",
         "hmset",
         "hset",
+        "huitlacoche",
         "iloc",
         "ipykernel",
         "ipython",
         "isin",
         "jupyter",
         "jupyterlab",
+        "Karp",
+        "Kody",
+        "Logline",
         "matplotlib",
+        "mentees",
         "multithreaded",
         "mypy",
         "numpy",
+        "onesie",
         "perfplot",
         "plotly",
+        "PTSD",
         "pyclass",
         "pyfunction",
         "pytest",
         "Pythonic",
         "Pythonistas",
+        "rearview",
+        "ribeyes",
+        "Sarteneja",
         "Schermata",
         "Schiefelbein",
+        "seagrass",
+        "sensei",
         "strategize",
         "struct",
+        "unbandaged",
         "uncentered",
         "usize",
         "Woot",
@@ -313,14 +369,12 @@
         "editor.tabSize": 4
     },
     "editor.cursorStyle": "line",
-    "editor.lineNumbers": "on",
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
     },
     "markdown.preview.breaks": true,
-    "window.zoomLevel": 1,
     "workbench.enableExperiments": false,
     "emmet.includeLanguages": {
         "rescript": "javascriptreact"
@@ -336,12 +390,35 @@
     ],
     // "mypy.runUsingActiveInterpreter": true,
     "notebook.lineNumbers": "on",
-    "editor.minimap.enabled": false,
     "search.useGlobalIgnoreFiles": true,
     "editor.fontFamily": "MesloLGS NF, Menlo, Monaco, 'Courier New', monospace",
     "terminal.integrated.fontFamily": "MesloLGS NF",
     "workbench.editor.untitled.hint": "hidden",
     "terminal.integrated.tabs.enabled": false,
     "terminal.integrated.showExitAlert": false,
-    "window.titleBarStyle": "native"
+    "window.titleBarStyle": "native",
+    "git.confirmSync": false,
+    "editor.minimap.enabled": false,
+    "notebook.output.textLineLimit": 50,
+    "editor.bracketPairColorization.enabled": true,
+    "jupyter.debugJustMyCode": false,
+    "fountain.general.parentheticalNewLineHelper": false,
+    "window.zoomLevel": 1,
+    "fountain.pdf.sceneContinuationBottom": true,
+    "fountain.pdf.sceneContinuationTop": true,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.statusBar.enabled": false,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "editor.lineNumbers": "relative",
+    "workbench.colorTheme": "Seoul Dark",
+    "workbench.colorCustomizations": {
+        "tab.inactiveBackground": "#393939",
+        "tab.activeBackground": "#282828",
+        "editorGroupHeader.tabsBackground": "#242424",
+        "editorGutter.background": "#2a2a2a",
+        "sideBar.background": "#282828",
+        "editor.background": "#282828",
+        "terminal.background": "#282828",
+    }
 }

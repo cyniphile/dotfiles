@@ -13,7 +13,7 @@ if has('clipboard')
    endif
 endif
 
-noremap <C-_> :call NERDComment(0,"toggle")<C-m>
+noremap <C-_> :call nerdcommenter#Comment(0,"toggle")<C-m>
 
 let mapleader = ','
 
@@ -46,12 +46,14 @@ nmap zo zO
 
 "NerdTree/CHADTree {
         "map <C-e> <plug>NERDTreeTabsToggle<CR>
+	map <F2> chadtree_settings.
         map <silent> <C-e> :CHADopen<CR>
         "map <leader>e :NERDTreeFind<CR>
 	"
 	let g:chadtree_settings = {
 			\'theme.text_colour_set': "nord",
-			\'theme.icon_colour_set': "github"
+			\'theme.icon_colour_set': "github",
+			\'keymap.rename': ["<F2>"]
 		  \ }
 "
 let g:neoterm_autoinsert=1
@@ -194,12 +196,28 @@ endif
 
 
 
-"Use <Tab> and <S-Tab> to navigate the completion list:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 
-"To make <cr> select the first completion item and confirm the completion when no item has been selected:
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Restore cursor to file position in previous editing session
 function! ResCur()

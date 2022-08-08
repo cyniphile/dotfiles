@@ -505,7 +505,7 @@
     {
         "key": "m",
         "command": "notebook.cell.joinBelow",
-        "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook' && notebookCellType == 'code'"
+        "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'"
     },
     {
         "key": "alt+win+j",
@@ -602,11 +602,6 @@
         "when": "isWindows"
     },
     {
-        "key": "cmd+r",
-        "command": "test-explorer.run-test-at-cursor",
-        "when": "isMac"
-    },
-    {
         "key": "ctrl+b s",
         "command": "projectManager.listProjects",
         "when": "isWindows"
@@ -654,13 +649,10 @@
         "when": "editorTextFocus && vim.active && vim.use<C-f> && !inDebugRepl && vim.mode != 'Insert'"
     },
     {
-        "key": "cmd+d",
-        "command": "python.selectAndDebugTestMethod"
-    },
-    {
         "key": "escape",
         "command": "-notebook.cell.quitEdit",
-        "when": "inputFocus && notebookEditorFocused && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible"
+        // "when": "inputFocus && notebookEditorFocused && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible"
+        "when": "editorHoverVisible"
     },
     {
         "key": "ctrl+b m",
@@ -765,10 +757,6 @@
         "when": "debuggersAvailable && editorTextFocus"
     },
     {
-        "key": "cmd+d",
-        "command": "test-explorer.debug-test-at-cursor"
-    },
-    {
         "key": "shift+cmd+l",
         "command": "workbench.action.moveEditorToNextGroup"
     },
@@ -801,7 +789,7 @@
         "command": "-workbench.action.previousEditor"
     },
     {
-        "key": "cmd+r",
+        "key": "shift+cmd+r",
         "command": "rust-analyzer.run",
         "when": "editorTextFocus"
     },
@@ -809,5 +797,41 @@
         "key": "0 0",
         "command": "jupyter.restartkernel",
         "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'"
-    }
+    },
+    {
+        "key": "cmd+r",
+        "command": "testing.runAtCursor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+; c",
+        "command": "-testing.runAtCursor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+d",
+        "command": "testing.debugAtCursor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+; cmd+c",
+        "command": "-testing.debugAtCursor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+r",
+        "command": "testing.reRunLastRun"
+    },
+    {
+        "key": "cmd+; l",
+        "command": "-testing.reRunLastRun"
+    },
+    {
+        "key": "shift+cmd+d",
+        "command": "testing.debugLastRun"
+    },
+    {
+        "key": "cmd+; cmd+l",
+        "command": "-testing.debugLastRun"
+    },
 ]
