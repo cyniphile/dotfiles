@@ -258,6 +258,7 @@
         "bitshifting",
         "Centricity",
         "ceviches",
+        "coastals",
         "creeped",
         "crescendoing",
         "Cronenberg",
@@ -274,6 +275,7 @@
         "flamegraph",
         "functools",
         "Garifuna",
+        "gaslighted",
         "grandkids",
         "groupby",
         "guilting",
@@ -318,6 +320,7 @@
         "unbandaged",
         "uncentered",
         "usize",
+        "weirded",
         "Woot",
         "xaxis",
         "yaxis"
@@ -420,5 +423,8 @@
         "sideBar.background": "#282828",
         "editor.background": "#282828",
         "terminal.background": "#282828",
-    }
+    },
+    "cSpell.suggestionMenuType": "quickFix",
+    "editor.accessibilitySupport": "off",
+    // "editor.showFoldingControls": "never"
 }
