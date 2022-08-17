@@ -321,6 +321,7 @@
         "uncentered",
         "usize",
         "weirded",
+        "wirelessly",
         "Woot",
         "xaxis",
         "yaxis"
@@ -351,7 +352,8 @@
         ]
     },
     "projectManager.git.baseFolders": [
-        "/home/cyniphile/projects/"
+        "/home/cyniphile/projects/",
+        "/Users/luke/projects/"
     ],
     "workbench.startupEditor": "newUntitledFile",
     "pythonTestExplorer.testFramework": "pytest",
@@ -426,5 +428,7 @@
     },
     "cSpell.suggestionMenuType": "quickFix",
     "editor.accessibilitySupport": "off",
+    "editor.showFoldingControls": "always",
+    "projectManager.git.maxDepthRecursion": 1,
     // "editor.showFoldingControls": "never"
 }
