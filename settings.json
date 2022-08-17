@@ -247,11 +247,13 @@
         "**/*.venv": true
     },
     "cSpell.userWords": [
+        "adenylated",
         "agritourism",
         "alloproteins",
         "amirite",
         "antivax",
         "ballcap",
+        "barcoded",
         "Belizeans",
         "Bijective",
         "bioinformatics",
@@ -266,6 +268,8 @@
         "douchey",
         "elif",
         "engineio",
+        "epigenetics",
+        "Epigenome",
         "exhaustivity",
         "exomes",
         "farmboy",
@@ -317,6 +321,7 @@
         "sensei",
         "strategize",
         "struct",
+        "transcriptome",
         "unbandaged",
         "uncentered",
         "usize",
@@ -338,7 +343,7 @@
     "jupyter.askForKernelRestart": false,
     "jupyter.themeMatplotlibPlots": true,
     "jupyter.addGotoCodeLenses": false,
-    "cSpell.enabled": false,
+    "cSpell.enabled": true,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook",
         "*.xls": "default"
