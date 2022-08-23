@@ -834,4 +834,14 @@
         "key": "cmd+; cmd+l",
         "command": "-testing.debugLastRun"
     },
+    {
+        "key": "shift+tab",
+        "when": "CodeActionMenuVisible",
+        "command": "focusPreviousCodeAction"
+    },
+    {
+        "key": "tab",
+        "when": "CodeActionMenuVisible",
+        "command": "focusNextCodeAction"
+    }
 ]
