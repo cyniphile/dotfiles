@@ -1,0 +1,12 @@
+*.bak
+.vimbackup/
+.poetry/
+anaconda/
+anaconda3/
+.pyenv/
+.opam/
+.esy/
+Library/
+Downloads/
+.juliapro/
+.vimundo/
