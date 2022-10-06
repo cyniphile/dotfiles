@@ -32,13 +32,27 @@
     },
     {
         "key": "cmd+e",
-        "when": "!sideBarFocus && isMac",
-        "command": "workbench.view.explorer"
+        "when": "sideBarVisible && isMac",
+        "command": "workbench.action.closeSidebar"
     },
     {
         "key": "cmd+e",
-        "when": "sideBarVisible && isMac",
-        "command": "workbench.action.toggleSidebarVisibility"
+        "when": "!sideBarFocus && isMac",
+        "command": "workbench.view.explorer"
+    },
+    { // Unbind unconditional default
+        "key": "cmd+0",
+        "command": "-workbench.action.focusSideBar"
+    },
+    { // to ←
+        "key": "cmd+0",
+        "when": "!sideBarFocus",
+        "command": "workbench.action.focusSideBar"
+    },
+    { // from →
+        "key": "cmd+0",
+        "when": "sideBarFocus",
+        "command": "workbench.action.focusActiveEditorGroup"
     },
     {
         "key": "s",
@@ -308,7 +322,8 @@
     {
         "key": "ctrl+e",
         "when": "!sideBarFocus && isWindows",
-        "command": "workbench.view.explorer"
+        // "command": "workbench.view.explorer"
+        "command": "workbench.action.toggleSidebarVisibility"
     },
     {
         "key": "ctrl+e",
