@@ -123,7 +123,7 @@ let g:fzf_action = {
   \ 'ctrl-n': 'tab split',
   \ 'ctrl-i': 'split',
   \ 'ctrl-s': 'vsplit' }
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden --follow --exclude .git'
 
 noremap <C-p> :FZF<CR>
 
