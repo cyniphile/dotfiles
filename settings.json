@@ -225,6 +225,24 @@
             ]
         }
     ],
+    // Double tap `a` in insert mode to skip to end of word
+    // useful for getting out of matched chars () or {}
+    // might cause problems with words like "aardvark" 😢
+    // Used `a+a` because kinda close of my already muscle-memorized 
+    // pattern of `esc+w+a`
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "a",
+                "a",
+            ],
+            "after": [
+                "escape",
+                "e",
+                "a"
+            ]
+        }
+    ],
     "editor.suggestSelection": "first",
     "editor.formatOnSave": true,
     "terminal.external.linuxExec": "",
@@ -258,6 +276,7 @@
         "bioinformatics",
         "biomaterials",
         "bitshifting",
+        "bokeh",
         "brainer",
         "Centricity",
         "ceviches",
@@ -275,7 +294,9 @@
         "displot",
         "douchey",
         "Dowmsampling",
+        "Downsample",
         "downsampled",
+        "dtype",
         "Eladio",
         "elif",
         "empath",
@@ -318,6 +339,7 @@
         "isin",
         "isna",
         "Jenn",
+        "joblib",
         "jupyter",
         "jupyterlab",
         "Kaggle",
@@ -325,6 +347,7 @@
         "kickstarted",
         "Kody",
         "linreg",
+        "linspace",
         "Logline",
         "matplotlib",
         "Megakaryocyte",
@@ -337,6 +360,7 @@
         "onesie",
         "overfish",
         "overfished",
+        "overfit",
         "perfplot",
         "placencia",
         "placencians",
