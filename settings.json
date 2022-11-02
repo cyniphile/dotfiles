@@ -15,6 +15,18 @@
                 "$"
             ]
         },
+        // vim surround, type surround after `s`
+        {
+            "before": [
+                "s",
+            ],
+            "after": [
+                "b",
+                "v",
+                "e",
+                "S",
+            ]
+        },
         {
             "before": [
                 "<Space>"
@@ -29,10 +41,8 @@
             "before": [
                 "enter"
             ],
-            "after": [
-                "v",
-                "a",
-                "f"
+            "commands": [
+                "editor.action.openLink"
             ],
         },
         {
@@ -230,7 +240,7 @@
     // might cause problems with words like "aardvark" 😢
     // Used `a+a` because kinda close of my already muscle-memorized 
     // pattern of `esc+w+a`
-    "vim.insertModeKeyBindingsNonRecursive": [
+    "vim.insertModeKeyBindings": [
         {
             "before": [
                 "a",
@@ -241,6 +251,14 @@
                 "e",
                 "a"
             ]
+        },
+        // if you mistyped a and hit delete immediately after, do nothing
+        {
+            "before": [
+                "a",
+                "delete",
+            ],
+            "after": []
         }
     ],
     "editor.suggestSelection": "first",
@@ -248,6 +266,7 @@
     "terminal.external.linuxExec": "",
     "terminal.external.osxExec": "iterm",
     "python.languageServer": "Pylance",
+    "jupyter.pylanceHandlesNotebooks": true,
     "workbench.statusBar.visible": true,
     "customizeUI.titleBar": "inline",
     "customizeUI.activityBar": "bottom",
@@ -265,8 +284,10 @@
         "alloproteins",
         "amirite",
         "antivax",
+        "arange",
         "archs",
         "astype",
+        "asymptoting",
         "ballcap",
         "barcoded",
         "barplot",
@@ -296,12 +317,15 @@
         "Dowmsampling",
         "Downsample",
         "downsampled",
+        "dropna",
         "dtype",
         "Eladio",
         "elif",
+        "embedders",
         "empath",
         "Engineerable",
         "engineio",
+        "Ensembled",
         "epigenetics",
         "Epigenome",
         "exhaustivity",
@@ -317,6 +341,7 @@
         "fundraise",
         "Garifuna",
         "gaslighted",
+        "GNNs",
         "govts",
         "grandkids",
         "groupby",
@@ -332,6 +357,8 @@
         "hmset",
         "hset",
         "huitlacoche",
+        "hyperparam",
+        "idempotently",
         "iloc",
         "ipykernel",
         "ipynb",
@@ -346,6 +373,7 @@
         "Karp",
         "kickstarted",
         "Kody",
+        "linearities",
         "linreg",
         "linspace",
         "Logline",
@@ -354,6 +382,8 @@
         "mentees",
         "multithreaded",
         "mypy",
+        "ndarray",
+        "nout",
         "numpy",
         "nunique",
         "omics",
@@ -361,12 +391,15 @@
         "overfish",
         "overfished",
         "overfit",
+        "Overfitting",
+        "papermill",
         "perfplot",
         "placencia",
         "placencians",
         "plotly",
         "PTSD",
         "pyclass",
+        "pyenv",
         "pyfunction",
         "pytest",
         "Pythonic",
@@ -374,6 +407,8 @@
         "rainforest",
         "rearview",
         "rebalance",
+        "Rebecca",
+        "Resnet",
         "respawn",
         "restartkernel",
         "ribeyes",
@@ -397,10 +432,14 @@
         "strategize",
         "struct",
         "timecodes",
+        "timeseries",
         "transcriptome",
         "unbandaged",
         "uncentered",
+        "upvotes",
         "usize",
+        "virtualenv",
+        "virtualenvs",
         "weirded",
         "wirelessly",
         "Woot",
@@ -409,7 +448,7 @@
         "zipline"
     ],
     // "python.linting.flake8Enabled": true,
-    // "python.linting.mypyEnabled": true,
+    "python.linting.mypyEnabled": true,
     "python.linting.flake8Args": [
         "--ignore=E501"
     ],
@@ -447,9 +486,11 @@
     "python.venvPath": "/home/cyniphile/.cache/pypoetry/virtualenvs/",
     "editor.tabSize": 4,
     "editor.insertSpaces": false,
+    "python.formatting.provider": "black",
     "[python]": {
         "editor.insertSpaces": true,
-        "editor.tabSize": 4
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true,
     },
     "editor.cursorStyle": "line",
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
@@ -476,7 +517,6 @@
     "editor.fontFamily": "MesloLGS NF, Menlo, Monaco, 'Courier New', monospace",
     "terminal.integrated.fontFamily": "MesloLGS NF",
     "workbench.editor.untitled.hint": "hidden",
-    "terminal.integrated.tabs.enabled": false,
     "terminal.integrated.showExitAlert": false,
     "window.titleBarStyle": "native",
     "git.confirmSync": false,
@@ -507,5 +547,7 @@
     "editor.showFoldingControls": "always",
     "editor.minimap.enabled": false,
     "mypy.runUsingActiveInterpreter": true,
+    "editor.guides.bracketPairs": true,
+    "markdown.extension.print.theme": "dark",
     "window.zoomLevel": 1,
 }

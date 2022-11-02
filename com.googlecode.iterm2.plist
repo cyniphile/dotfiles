@@ -326,6 +326,8 @@
 	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>8388864</integer>
+	<key>IRMemory</key>
+	<integer>4</integer>
 	<key>LeftCommand</key>
 	<integer>1</integer>
 	<key>LeftOption</key>

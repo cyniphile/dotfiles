@@ -861,5 +861,15 @@
         "key": "tab",
         "when": "codeActionMenuVisible",
         "command": "selectNextCodeAction"
+    },
+    {
+        "key": "cmd+r",
+        "when": "editorFocus",
+        "command": "python.execInTerminal"
+    },
+    {
+        "key": "cmd+d",
+        "when": "editorFocus",
+        "command": "python.debugInTerminal"
     }
 ]
