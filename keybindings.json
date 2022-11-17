@@ -871,5 +871,5 @@
         "key": "cmd+d",
         "when": "editorFocus",
         "command": "python.debugInTerminal"
-    }
+    },
 ]

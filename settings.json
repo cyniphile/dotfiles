@@ -7,6 +7,46 @@
     "vim.leader": ",",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
+            // "when": "editorTextFocus && editorLangId == 'python'", not working
+            "before": [
+                "<leader>",
+                "t"
+            ],
+            "after": [
+                "A",
+                " ",
+                "escape"
+            ],
+            "commands": [
+                {
+                    "command": "editor.action.insertSnippet",
+                    "args": {
+                        "snippet": "\nimport ipdb; ipdb.set_trace()  # fmt: skip"
+                    },
+                }
+            ],
+        },
+        {
+            // "when": "editorTextFocus && editorLangId == 'python'", not working
+            "before": [
+                "<leader>",
+                "i"
+            ],
+            "after": [
+                "A",
+                " ",
+                "escape"
+            ],
+            "commands": [
+                {
+                    "command": "editor.action.insertSnippet",
+                    "args": {
+                        "snippet": "  # type: ignore"
+                    },
+                }
+            ],
+        },
+        {
             "before": [
                 "Y"
             ],
@@ -15,15 +55,17 @@
                 "$"
             ]
         },
-        // vim surround, type surround after `s`
+        // vim surround, type surround char after `s`
         {
             "before": [
                 "s",
             ],
             "after": [
-                "b",
+                "T",
+                " ",
                 "v",
-                "e",
+                "t",
+                " ",
                 "S",
             ]
         },
@@ -163,6 +205,14 @@
     "vim.visualModeKeyBindingsNonRecursive": [
         {
             "before": [
+                "s",
+            ],
+            "after": [
+                "S",
+            ]
+        },
+        {
+            "before": [
                 "u"
             ],
             "commands": [
@@ -243,19 +293,19 @@
     "vim.insertModeKeyBindings": [
         {
             "before": [
-                "a",
-                "a",
+                "q",
+                "q",
             ],
             "after": [
                 "escape",
-                "e",
+                "l",
                 "a"
             ]
         },
         // if you mistyped a and hit delete immediately after, do nothing
         {
             "before": [
-                "a",
+                "q",
                 "delete",
             ],
             "after": []
@@ -299,10 +349,12 @@
         "bitshifting",
         "bokeh",
         "brainer",
+        "catboost",
         "Centricity",
         "ceviches",
         "coastals",
         "Commandline",
+        "corrcoef",
         "creeped",
         "crescendoing",
         "croc",
@@ -319,6 +371,7 @@
         "downsampled",
         "dropna",
         "dtype",
+        "eigenbasis",
         "Eladio",
         "elif",
         "embedders",
@@ -326,6 +379,7 @@
         "Engineerable",
         "engineio",
         "Ensembled",
+        "ensembling",
         "epigenetics",
         "Epigenome",
         "exhaustivity",
@@ -360,6 +414,7 @@
         "hyperparam",
         "idempotently",
         "iloc",
+        "ipdb",
         "ipykernel",
         "ipynb",
         "ipython",
@@ -373,6 +428,7 @@
         "Karp",
         "kickstarted",
         "Kody",
+        "Laticrete",
         "linearities",
         "linreg",
         "linspace",
@@ -382,8 +438,10 @@
         "mentees",
         "multithreaded",
         "mypy",
+        "nans",
         "ndarray",
         "nout",
+        "npyio",
         "numpy",
         "nunique",
         "omics",
@@ -433,6 +491,7 @@
         "struct",
         "timecodes",
         "timeseries",
+        "timespan",
         "transcriptome",
         "unbandaged",
         "uncentered",
@@ -440,10 +499,12 @@
         "usize",
         "virtualenv",
         "virtualenvs",
+        "vmap",
         "weirded",
         "wirelessly",
         "Woot",
         "xaxis",
+        "xgboost",
         "yaxis",
         "zipline"
     ],
@@ -549,5 +610,32 @@
     "mypy.runUsingActiveInterpreter": true,
     "editor.guides.bracketPairs": true,
     "markdown.extension.print.theme": "dark",
+    "debug.allowBreakpointsEverywhere": true,
+    "debug.console.acceptSuggestionOnEnter": "on",
+    "debug.terminal.clearBeforeReusing": true,
+    "terminal.integrated.commandsToSkipShell": [
+        "-workbench.action.quickOpen"
+    ],
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "debug.internalConsoleOptions": "openOnSessionStart",
+    "cSpell.enableFiletypes": [
+        "Log",
+        "csv",
+        "diff",
+        "excel",
+        "log",
+        "markdown-math",
+        "pip-requirements",
+        "r",
+        "search-result",
+        "sql",
+        "ssh_config",
+        "toml",
+        "vimrc"
+    ],
+    "debug.console.lineHeight": 15,
+    "debug.console.closeOnEnd": true,
     "window.zoomLevel": 1,
 }
