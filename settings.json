@@ -55,6 +55,15 @@
                 "$"
             ]
         },
+        {
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "commands": [
+                "fountain-cheatsheet.focus"
+            ]
+        },
         // vim surround, type surround char after `s`
         {
             "before": [
@@ -316,10 +325,9 @@
     "terminal.external.linuxExec": "",
     "terminal.external.osxExec": "iterm",
     "python.languageServer": "Pylance",
-    "jupyter.pylanceHandlesNotebooks": true,
     "workbench.statusBar.visible": true,
-    "customizeUI.titleBar": "inline",
-    "customizeUI.activityBar": "bottom",
+    // "customizeUI.titleBar": "inline",
+    // "customizeUI.activityBar": "bottom",
     // hide top right icons
     "customizeUI.stylesheet": {
         ".actions-container[aria-label='Editor actions']": "display: none !important;"
@@ -356,10 +364,12 @@
         "Commandline",
         "corrcoef",
         "creeped",
+        "crescendoed",
         "crescendoing",
         "croc",
         "Crocs",
         "Cronenberg",
+        "cytomic",
         "Dask",
         "dataclass",
         "dataframe",
@@ -427,6 +437,7 @@
         "Kaggle",
         "Karp",
         "kickstarted",
+        "knubs",
         "Kody",
         "Laticrete",
         "linearities",
@@ -436,10 +447,12 @@
         "matplotlib",
         "Megakaryocyte",
         "mentees",
+        "Messers",
         "multithreaded",
         "mypy",
         "nans",
         "ndarray",
+        "Nooo",
         "nout",
         "npyio",
         "numpy",
@@ -484,15 +497,19 @@
         "seagrasses",
         "sensei",
         "sheesh",
+        "Shhh",
         "sklearn",
         "socio",
         "ssdna",
+        "STFU",
         "strategize",
         "struct",
         "timecodes",
         "timeseries",
         "timespan",
+        "TINKS",
         "transcriptome",
+        "transcriptomic",
         "unbandaged",
         "uncentered",
         "upvotes",
@@ -524,14 +541,14 @@
         "*.ipynb": "jupyter-notebook",
         "*.xls": "default"
     },
-    "remote.extensionKind": {
-        "iocave.customize-ui": [
-            "ui"
-        ],
-        "iocave.monkey-patch": [
-            "ui"
-        ]
-    },
+    // "remote.extensionKind": {
+    //     "iocave.customize-ui": [
+    //         "ui"
+    //     ],
+    //     "iocave.monkey-patch": [
+    //         "ui"
+    //     ]
+    // },
     "projectManager.git.baseFolders": [
         "/home/cyniphile/projects/",
         "/Users/luke/projects/"
@@ -587,10 +604,6 @@
     "fountain.general.parentheticalNewLineHelper": false,
     "fountain.pdf.sceneContinuationBottom": true,
     "fountain.pdf.sceneContinuationTop": true,
-    "gitlens.codeLens.enabled": false,
-    "gitlens.statusBar.enabled": false,
-    "gitlens.currentLine.enabled": false,
-    "gitlens.hovers.currentLine.over": "line",
     "workbench.colorTheme": "Seoul Dark",
     "workbench.colorCustomizations": {
         "tab.inactiveBackground": "#393939",
@@ -638,4 +651,5 @@
     "debug.console.lineHeight": 15,
     "debug.console.closeOnEnd": true,
     "window.zoomLevel": 1,
+    "github.gitProtocol": "ssh",
 }

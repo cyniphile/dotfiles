@@ -10,6 +10,3 @@ Session.vim
 .virtual_documents/
 *__pycache__/
 .mypy_cache/
-
-settings.json
-settings.json

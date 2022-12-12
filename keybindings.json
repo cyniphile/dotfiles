@@ -253,20 +253,16 @@
         "command": "-code-runner.stop",
         "when": "isMac"
     },
+    // seems to be disabled?
     {
-        "key": "tab",
-        "command": "selectNextQuickFix",
-        "when": "editorFocus && quickFixWidgetVisible && isMac"
+        // "key": "tab",
+        // "command": "selectNextQuickFix",
+        // "when": "editorFocus && quickFixWidgetVisible"
     },
     {
-        "key": "shift+tab",
-        "command": "selectPrevQuickFix",
-        "when": "editorFocus && quickFixWidgetVisible && isMac"
-    },
-    {
-        "key": "tab",
-        "command": "selectNextSuggestion",
-        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && isMac"
+        // "key": "shift+tab",
+        // "command": "selectPrevQuickFix",
+        // "when": "editorFocus && quickFixWidgetVisible"
     },
     {
         "key": "shift+tab",
@@ -487,18 +483,8 @@
     },
     {
         "key": "tab",
-        "command": "selectNextQuickFix",
-        "when": "editorFocus && quickFixWidgetVisible && isWindows"
-    },
-    {
-        "key": "shift+tab",
-        "command": "selectPrevQuickFix",
-        "when": "editorFocus && quickFixWidgetVisible && isWindows"
-    },
-    {
-        "key": "tab",
         "command": "selectNextSuggestion",
-        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && isWindows"
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible"
     },
     {
         "key": "shift+tab",
