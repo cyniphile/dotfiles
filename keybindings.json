@@ -793,20 +793,20 @@
         "command": "-workbench.action.previousEditor"
     },
     {
-        "key": "shift+cmd+r",
+        "key": "cmd+r",
         "command": "rust-analyzer.run",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && editorLangId == rust"
     },
     {
         "key": "0 0",
         "command": "jupyter.restartkernel",
         "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'"
     },
-    {
-        "key": "cmd+r",
-        "command": "testing.runAtCursor",
-        "when": "editorTextFocus"
-    },
+    // {
+    //     "key": "cmd+r",
+    //     "command": "testing.runAtCursor",
+    //     "when": "editorTextFocus"
+    // },
     {
         "key": "cmd+; c",
         "command": "-testing.runAtCursor",
@@ -822,10 +822,10 @@
         "command": "-testing.debugAtCursor",
         "when": "editorTextFocus"
     },
-    {
-        "key": "shift+cmd+r",
-        "command": "testing.reRunLastRun"
-    },
+    // {
+    //     "key": "shift+cmd+r",
+    //     "command": "testing.reRunLastRun"
+    // },
     {
         "key": "cmd+; l",
         "command": "-testing.reRunLastRun"
@@ -850,12 +850,12 @@
     },
     {
         "key": "cmd+r",
-        "when": "editorFocus",
+        "when": "editorFocus && editorLangId == python",
         "command": "python.execInTerminal"
     },
     {
         "key": "cmd+d",
-        "when": "editorFocus",
+        "when": "editorFocus && editorLangId == python",
         "command": "python.debugInTerminal"
     },
 ]
