@@ -769,7 +769,7 @@
         "command": "-workbench.action.moveEditorToNextGroup"
     },
     {
-        "key": "shift+cmd+h",
+        "key": "cmd+shift+h",
         "command": "workbench.action.moveEditorToPreviousGroup"
     },
     {

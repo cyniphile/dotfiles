@@ -329,9 +329,9 @@
     // "customizeUI.titleBar": "inline",
     // "customizeUI.activityBar": "bottom",
     // hide top right icons
-    "customizeUI.stylesheet": {
-        ".actions-container[aria-label='Editor actions']": "display: none !important;"
-    },
+    // "customizeUI.stylesheet": {
+    // ".actions-container[aria-label='Editor actions']": "display: none !important;"
+    // },
     "search.exclude": {
         "**/*.ipynb_checkpoints": true,
         "**/*.venv": true
@@ -369,6 +369,7 @@
         "Centricity",
         "ceviche",
         "ceviches",
+        "CHEESESTEAK",
         "chisquare",
         "Cloverfield",
         "coastals",
@@ -427,6 +428,7 @@
         "fundraise",
         "Garifuna",
         "gaslighted",
+        "gloopy",
         "GNNs",
         "govts",
         "grandkids",
@@ -441,6 +443,7 @@
         "Heyyy",
         "hget",
         "hincrby",
+        "hiney",
         "hmset",
         "Hortons",
         "hset",
@@ -472,9 +475,11 @@
         "linspace",
         "Logline",
         "matplotlib",
+        "meds",
         "Megakaryocyte",
         "mentees",
         "Messers",
+        "Morty",
         "multithreaded",
         "mypy",
         "nans",
@@ -686,6 +691,7 @@
         "csv",
         "diff",
         "excel",
+        "fountain",
         "log",
         "markdown-math",
         "pip-requirements",
