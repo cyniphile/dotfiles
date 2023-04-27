@@ -489,7 +489,7 @@
     {
         "key": "shift+tab",
         "command": "selectPrevSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible && isWindows"
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible"
     },
     {
         "key": "f12",
@@ -669,11 +669,6 @@
         "when": "isMac"
     },
     {
-        "key": "ctrl+shift+-",
-        "command": "-notebook.cell.split",
-        "when": "config.jupyter.enableKeyboardShortcuts && editorTextFocus && inputFocus && notebookEditorFocused && notebookViewType == 'jupyter-notebook' && isMac"
-    },
-    {
         "key": "ctrl+cmd+down",
         "command": "-notebook.focusNextEditor",
         "when": "notebookEditorFocused && notebookOutputFocused"
@@ -715,16 +710,6 @@
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus && isMac"
     },
     // see for codes https://www.techonthenet.com/unicode/chart.php
-    {
-        "key": "shift+cmd+-",
-        "command": "notebook.cell.split",
-        "when": "config.jupyter.enableKeyboardShortcuts && editorTextFocus && inputFocus && notebookEditorFocused && notebookType == 'jupyter-notebook'"
-    },
-    {
-        "key": "ctrl+shift+-",
-        "command": "-notebook.cell.split",
-        "when": "config.jupyter.enableKeyboardShortcuts && editorTextFocus && inputFocus && notebookEditorFocused && notebookType == 'jupyter-notebook'"
-    },
     {
         "key": "tab",
         "command": "workbench.action.quickOpenNavigateNextInFilePicker",
@@ -857,5 +842,30 @@
         "key": "cmd+d",
         "when": "editorFocus && editorLangId == python",
         "command": "python.debugInTerminal"
+    },
+    {
+        "key": "shift+cmd+-",
+        "command": "-workbench.action.zoomOut",
+        // "when": "config.jupyter.enableKeyboardShortcuts && editorTextFocus && inputFocus && notebookEditorFocused && notebookType == 'jupyter-notebook'"
+    },
+    {
+        "key": "ctrl+shift+-",
+        "command": "-notebook.cell.split",
+        // "when": "config.jupyter.enableKeyboardShortcuts && editorTextFocus && inputFocus && notebookEditorFocused && notebookType == 'jupyter-notebook'"
+    },
+    {
+        "key": "shift+cmd+-",
+        "command": "notebook.cell.split",
+        // "when": "config.jupyter.enableKeyboardShortcuts && editorTextFocus && inputFocus && notebookEditorFocused && notebookType == 'jupyter-notebook'"
+    },
+    {
+        "key": "shift+cmd+v",
+        "command": "fountain.pdfpreview",
+        "when": "editorLangId == 'fountain'"
+    },
+    {
+        "key": "shift+cmd+v",
+        "command": "-fountain.livepreview",
+        "when": "editorLangId == 'fountain'"
     },
 ]

@@ -109,3 +109,8 @@ echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zs
 ```
 
 `ln -s $HOME/dotfiles/.p10k.zsh`
+
+
+In chrome, go to to Preferences, Keyboard, Keyboard Shortcuts, App shortcuts,
+and add cmd f10 to be Next tab and cmd f11 to be previous tab (language
+dependent)

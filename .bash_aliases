@@ -26,7 +26,6 @@ alias vi='nvim'
 alias ,a='quick_grep'
 alias tmux='TERM=screen-256color-bce tmux new-session -A -s 0'
 alias h='htop'
-alias ps='poetry shell'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
