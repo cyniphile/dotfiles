@@ -8,7 +8,7 @@ install Homebrew
 
 ```
 brew install git
-ssh-keygen -t rsa
+ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
 add pub key to github
