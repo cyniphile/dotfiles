@@ -14,9 +14,9 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 add pub key to github
 
 ```
-git clone git@github.com:cyniphile/dotfiles.git`
+git clone git@github.com:cyniphile/dotfiles.git
 cd dotfiles
-git checkout 'macos' branch
+git checkout 'macos'
 ```
 ensure username is correct in zshrc (e.g. 'cyniphile')
 
