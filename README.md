@@ -1,4 +1,4 @@
-install iterm, spectacle, sys monitor, Be Focused
+install iterm, spectacle, istat menus, stretchly
 
 This (so certain shortcuts work): 
 https://apple.stackexchange.com/questions/281033/sending-ctrlfunction-key-on-iterm2
@@ -8,15 +8,15 @@ install Homebrew
 
 ```
 brew install git
-ssh-keygen -t rsa
+ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
 add pub key to github
 
 ```
-git clone git@github.com:cyniphile/dotfiles.git`
+git clone git@github.com:cyniphile/dotfiles.git
 cd dotfiles
-git checkout 'macos' branch
+git checkout 'macos'
 ```
 ensure username is correct in zshrc (e.g. 'cyniphile')
 
