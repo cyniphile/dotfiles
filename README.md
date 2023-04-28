@@ -1,5 +1,7 @@
 install iterm, spectacle, istat menus, stretchly
 
+Manually change iterm to swap cmd and ctrl keys
+
 This (so certain shortcuts work): 
 https://apple.stackexchange.com/questions/281033/sending-ctrlfunction-key-on-iterm2
 
