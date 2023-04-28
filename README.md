@@ -1,4 +1,4 @@
-install iterm, spectacle, sys monitor, Be Focused
+install iterm, spectacle, istat menus, stretchly
 
 This (so certain shortcuts work): 
 https://apple.stackexchange.com/questions/281033/sending-ctrlfunction-key-on-iterm2
