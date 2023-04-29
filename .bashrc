@@ -118,10 +118,5 @@ export COMPOSE_API_VERSION=1.23
 export PATH="$HOME/neovim/bin:$PATH"
 export EDITOR='nvim'
 
-. ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export PATH="/Users/cyniphile/Library/Python/3.7/bin:$PATH"
-
 
 . "$HOME/.cargo/env"
