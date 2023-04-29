@@ -38,22 +38,23 @@ install vim plug
 #Install vim plugins, in vim
 :PlugInstall
 
+rm ~/.zshrc
 ln -s $HOME/dotfiles/.zshrc
 ln -s $HOME/dotfiles/.bash_aliases
 ln -s $HOME/dotfiles/.bash_profile
-<!--ln -s $HOME/dotfiles/vimrc-->
 ln -s $HOME/dotfiles/.bashrc
 ln -s $HOME/dotfiles/.tmux.conf
 ln -s $HOME/dotfiles/.shellrc
 ln -s $HOME/dotfiles/.gitconfig
 ln -s $HOME/dotfiles/.gitignore
-/* ln -s $HOME/dotfiles/luke-robbyrussell.zsh-theme ./.oh-my-zsh/themes */
-ln -s $HOME/dotfiles/key_config.ron $HOME/.config/gitui/key_bindings.ron 
+ln -s $HOME/dotfiles/key_config.ron $HOME/.config/git/key_bindings.ron 
 ln -s $HOME/dotfiles/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 ln -s ~/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 
 brew install tmux
+brew install pyenv
 brew install rg
+brew install fd
 brew install fzf
 brew install gitui
 # To install useful key bindings and fuzzy completion:
@@ -103,7 +104,7 @@ brew install --cask font-hack-nerd-font
 brew install lsd
 ```
 
-https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+https://github.com/romkatv/evel10k#meslo-nerd-font-patched-for-powerlevel10k
 
 ```
 brew install romkatv/powerlevel10k/powerlevel10k
