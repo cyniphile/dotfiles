@@ -117,3 +117,5 @@ echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zs
 In chrome, go to to Preferences, Keyboard, Keyboard Shortcuts, App shortcuts,
 and add cmd f10 to be Next tab and cmd f11 to be previous tab (language
 dependent)
+
+Change paste shortcut in iterm: https://apple.stackexchange.com/questions/155640/changing-the-default-keyboard-shortcuts-in-iterm2
