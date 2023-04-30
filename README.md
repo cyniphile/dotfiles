@@ -124,3 +124,6 @@ Add SSH key to agent (for gitui to work)
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
 
 Change paste shortcut in iterm: https://apple.stackexchange.com/questions/155640/changing-the-default-keyboard-shortcuts-in-iterm2
+
+Exclude iterm from cmd-tab
+https://apple.stackexchange.com/questions/209250/remove-iterm-from-cmdtab-apps
