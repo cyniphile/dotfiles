@@ -113,4 +113,9 @@ echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zs
 
 In chrome, go to to Preferences, Keyboard, Keyboard Shortcuts, App shortcuts,
 and add cmd f10 to be Next tab and cmd f11 to be previous tab (language
-dependent)
+dependent if system is in italian)
+
+Fix press and hold: https://stackoverflow.com/questions/39972335/how-do-i-press-and-hold-a-key-and-have-it-repeat-in-vscode/44010683#44010683
+
+Add SSH key to agent (for gitui to work)
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
