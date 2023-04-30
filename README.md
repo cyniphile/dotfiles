@@ -1,5 +1,7 @@
 install iterm, spectacle, istat menus, stretchly
 
+Manually change iterm to swap cmd and ctrl keys
+
 This (so certain shortcuts work): 
 https://apple.stackexchange.com/questions/281033/sending-ctrlfunction-key-on-iterm2
 
@@ -36,22 +38,23 @@ install vim plug
 #Install vim plugins, in vim
 :PlugInstall
 
+rm ~/.zshrc
 ln -s $HOME/dotfiles/.zshrc
 ln -s $HOME/dotfiles/.bash_aliases
 ln -s $HOME/dotfiles/.bash_profile
-<!--ln -s $HOME/dotfiles/vimrc-->
 ln -s $HOME/dotfiles/.bashrc
 ln -s $HOME/dotfiles/.tmux.conf
 ln -s $HOME/dotfiles/.shellrc
 ln -s $HOME/dotfiles/.gitconfig
 ln -s $HOME/dotfiles/.gitignore
-/* ln -s $HOME/dotfiles/luke-robbyrussell.zsh-theme ./.oh-my-zsh/themes */
-ln -s $HOME/dotfiles/key_config.ron $HOME/.config/gitui/key_bindings.ron 
+ln -s $HOME/dotfiles/key_config.ron $HOME/.config/git/key_bindings.ron 
 ln -s $HOME/dotfiles/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 ln -s ~/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 
 brew install tmux
+brew install pyenv
 brew install rg
+brew install fd
 brew install fzf
 brew install gitui
 # To install useful key bindings and fuzzy completion:
@@ -101,7 +104,7 @@ brew install --cask font-hack-nerd-font
 brew install lsd
 ```
 
-https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+https://github.com/romkatv/evel10k#meslo-nerd-font-patched-for-powerlevel10k
 
 ```
 brew install romkatv/powerlevel10k/powerlevel10k
@@ -113,9 +116,15 @@ echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zs
 
 In chrome, go to to Preferences, Keyboard, Keyboard Shortcuts, App shortcuts,
 and add cmd f10 to be Next tab and cmd f11 to be previous tab (language
+<<<<<<< HEAD
 dependent if system is in italian)
 
 Fix press and hold: https://stackoverflow.com/questions/39972335/how-do-i-press-and-hold-a-key-and-have-it-repeat-in-vscode/44010683#44010683
 
 Add SSH key to agent (for gitui to work)
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+=======
+dependent)
+
+Change paste shortcut in iterm: https://apple.stackexchange.com/questions/155640/changing-the-default-keyboard-shortcuts-in-iterm2
+>>>>>>> macos
