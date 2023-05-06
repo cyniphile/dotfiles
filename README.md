@@ -115,15 +115,15 @@ echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zs
 
 
 In chrome, go to to Preferences, Keyboard, Keyboard Shortcuts, App shortcuts,
-and add cmd f10 to be Next tab and cmd f11 to be previous tab (language
+and add cmd f11 to be Next tab and cmd f12 to be previous tab (language
 dependent if system is in italian)
 
 Fix press and hold: https://stackoverflow.com/questions/39972335/how-do-i-press-and-hold-a-key-and-have-it-repeat-in-vscode/44010683#44010683
 
-Add SSH key to agent (for gitui to work)
-https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+Add SSH key to agent (for gitui to work): https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
 
 Change paste shortcut in iterm: https://apple.stackexchange.com/questions/155640/changing-the-default-keyboard-shortcuts-in-iterm2
 
-Exclude iterm from cmd-tab
-https://apple.stackexchange.com/questions/209250/remove-iterm-from-cmdtab-apps
+Exclude iterm from cmd-tab: https://apple.stackexchange.com/questions/209250/remove-iterm-from-cmdtab-apps
+
+Turn on keyboard navigation: https://support.apple.com/guide/mac-help/use-your-keyboard-like-a-mouse-mchlp1399/mac#:~:text=On%20your%20Mac%2C%20choose%20Apple,may%20need%20to%20scroll%20down).&text=Turn%20on%20%E2%80%9CKeyboard%20navigation.%E2%80%9D,all%20controls%20on%20the%20screen.
