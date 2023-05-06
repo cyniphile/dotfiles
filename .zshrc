@@ -96,12 +96,6 @@ setopt HIST_SAVE_NO_DUPS
 # Created by `userpath` on 2020-06-16 20:55:54
 export PATH="$PATH:/Users/luke/.local/bin"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/luke/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/luke/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/completion.zsh.inc'; fi
-
 
 # source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
@@ -109,3 +103,16 @@ if [ -f '/Users/luke/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/luke
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/luke/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/luke/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/completion.zsh.inc'; fi
+eval "$(pyenv init --path)"
