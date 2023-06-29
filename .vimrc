@@ -142,6 +142,7 @@ call plug#begin('~/.vim/plugged')
     else
 	 Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
     endif
+    Plug 'github/copilot.vim'
     Plug 'mileszs/ack.vim'
     Plug 'mbbill/undotree'
     Plug 'tpope/vim-fugitive'
