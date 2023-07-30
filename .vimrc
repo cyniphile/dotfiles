@@ -82,8 +82,8 @@ nmap <F5> :setlocal spell! spelllang=en_us<CR>
 set nospell
 
 
-au BufRead,BufNewFile *.md setlocal textwidth=80
-au BufRead,BufNewFile *.markdown setlocal textwidth=80
+"au BufRead,BufNewFile *.md setlocal textwidth=80
+"au BufRead,BufNewFile *.markdown setlocal textwidth=80
 
 " agvim/ripgrep
 let g:ackprg = 'rg --vimgrep --no-heading'
@@ -143,6 +143,8 @@ call plug#begin('~/.vim/plugged')
 	 Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
     endif
     Plug 'github/copilot.vim'
+    Plug 'godlygeek/tabular'
+    Plug 'preservim/vim-markdown'
     Plug 'mileszs/ack.vim'
     Plug 'mbbill/undotree'
     Plug 'tpope/vim-fugitive'
