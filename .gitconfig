@@ -8,3 +8,5 @@
 [user]
 	name = Luke Schiefelbein
 	email = luke.schiefelbein@gmail.com
+[pull]
+	rebase = true
