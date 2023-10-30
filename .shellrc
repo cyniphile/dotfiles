@@ -3,7 +3,7 @@ HISTCONTROL=ignoreboth:erasedups
 
 [[ $- == *i* ]] && stty intr ^n
 
-if (( $COLUMNS >= 100)); then
+if [ -n "$COLUMNS" ] && [ "$COLUMNS" -ge 100 ]; then
     fortune -s | hsterminal
 fi
 
