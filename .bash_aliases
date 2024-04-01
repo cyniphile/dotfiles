@@ -3,16 +3,37 @@ alias h='htop'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-# defined my meee
-alias setscreen='xset s off'
-alias clmk='setxkbmap us -variant colemak'
-alias qwrt='setxkbmap us'
-alias gc='git commit -a -m'
-alias gs='git status'
-alias gpff='git pull --ff-only'
-alias gprs='git stash; git pull --rebase; git stash pop'
-alias gpr='git pull --rebase;'
-alias sshls='ssh -i aws_blog1.pem ubuntu@ec2-54-191-16-100.us-west-2.compute.amazonaws.com'
+alias tree='ls --tree'
+
+# git
+alias gc='git commit -m'
+alias gk='git checkout'
+# auto create new branches with a username, based of either "main" or "master
+gkb() {
+    git fetch
+    if git show-ref --verify --quiet refs/remotes/origin/main; then
+        base_branch="main"
+    elif git show-ref --verify --quiet refs/remotes/origin/master; then
+        base_branch="master"
+    else
+        echo "Neither main nor master branch found."
+        return 1
+    fi
+    git checkout -b "$USER/$1" -t origin/$base_branch
+}
+alias gca='git commit -a -m'
+alias gs='gitui'
+alias e='exit'
+alias gl='git log'
+alias ga='git add'
+alias gd='git diff'
+alias gpr='git pull --rebase origin main;'
+alias gprs='git stash; gpr; git stash pop'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gu='gitui'
+
+# random
 alias netstat='netstat -tulpn'
 alias vi='nvim'
 
