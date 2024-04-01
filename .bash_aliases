@@ -4,10 +4,22 @@ alias ls='lsd'
 alias la='lsd -A'
 alias l='ls -CF'
 alias tree='ls --tree'
-
 # git
 alias gc='git commit -m'
 alias gk='git checkout'
+# auto create new branches with a username, based of either "main" or "master
+gkb() {
+    git fetch
+    if git show-ref --verify --quiet refs/remotes/origin/main; then
+        base_branch="main"
+    elif git show-ref --verify --quiet refs/remotes/origin/master; then
+        base_branch="master"
+    else
+        echo "Neither main nor master branch found."
+        return 1
+    fi
+    git checkout -b "$USER/$1" -t origin/$base_branch
+}
 alias gca='git commit -a -m'
 alias gs='gitui'
 alias e='exit'

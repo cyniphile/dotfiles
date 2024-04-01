@@ -45,6 +45,8 @@ export ZSH="/Users/luke/.oh-my-zsh"
 
 source $ZSH/oh-my-zsh.sh
 
+export PATH="/Users/luke/.cargo/bin:$PATH"
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
