@@ -1,4 +1,3 @@
-[[ -e ~/.shellrc ]] && emulate sh -c 'source ~/.shellrc'
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -104,7 +103,6 @@ export PATH="$PATH:/Users/luke/.local/bin"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -118,3 +116,7 @@ if [ -f '/Users/luke/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/luke/googl
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/luke/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/completion.zsh.inc'; fi
 eval "$(pyenv init --path)"
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+
+[[ -e ~/.shellrc ]] && emulate sh -c 'source ~/.shellrc'

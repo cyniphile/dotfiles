@@ -5,11 +5,6 @@
 #if [ -f ~/.profile ]; then
     #. ~/.profile
 #fi
-
-if [ -f ~/.shellrc ]; then
-    . ~/.shellrc
-fi
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
