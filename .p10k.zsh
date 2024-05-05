@@ -56,8 +56,7 @@
      #command_execution_time  # previous command duration
      virtualenv              # python virtual environment
     # =========================[ Line #2 ]=========================
-    newline                   # \n
-    prompt_char               # prompt symbol
+    prompt_char # prompt symbol
   )
 
   # Right prompt segments.
@@ -78,6 +77,7 @@
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_SEGMENT_SEPARATOR=        # no end-of-line symbol
   typeset -g POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION=           # no segment icons
 
+  typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=
 
   # Add an empty line before each prompt except the first. This doesn't emulate the bug
   # in Pure that makes prompt drift down whenever you use the Alt-C binding from fzf or similar.
@@ -88,7 +88,7 @@
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS}_FOREGROUND=$red
   # Default prompt symbol.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=''
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=$'\UF179'
 #     ﰲ  ⚡ 
   # Prompt symbol in command vi mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
@@ -100,7 +100,7 @@
    #Grey Python Virtual Environment.
   typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=$cyan
   # Don't show Python version.
-  typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=
+  typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true
   typeset -g POWERLEVEL9K_VIRTUALENV_LEFT_DELIMITER=" "
   typeset -g POWERLEVEL9K_VIRTUALENV_RIGHT_DELIMITER=
 

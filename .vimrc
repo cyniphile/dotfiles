@@ -13,7 +13,6 @@ if has('clipboard')
    endif
 endif
 
-noremap <C-_> :call nerdcommenter#Comment(0,"toggle")<C-m>
 
 let mapleader = ','
 
@@ -129,6 +128,8 @@ noremap <C-p> :FZF<CR>
 
 call plug#begin('~/.vim/plugged')
     Plug 'kassio/neoterm'
+    Plug 'numToStr/Comment.nvim'
+
     "Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
     " Use release branch (recommend)
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -150,7 +151,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'gcmt/wildfire.vim'
     Plug 'zaiste/tmux.vim'
-    Plug 'scrooloose/nerdcommenter'
     Plug 'edkolev/tmuxline.vim'
     Plug 'tpope/vim-surround'
     Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -160,6 +160,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+
+" Somewhere after plug#end()
+lua require('Comment').setup()
 
 " remap search key
 nmap <silent> <leader>dd :call CocAction('jumpDefinition', 'tab drop')<CR>
