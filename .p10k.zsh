@@ -56,6 +56,7 @@
      #command_execution_time  # previous command duration
      virtualenv              # python virtual environment
     # =========================[ Line #2 ]=========================
+    newline #\n
     prompt_char # prompt symbol
   )
 
