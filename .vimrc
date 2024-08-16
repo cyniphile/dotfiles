@@ -275,6 +275,8 @@ autocmd ColorScheme * highlight SignifySignAdd    ctermfg=green  guifg=#00ff00 c
 autocmd ColorScheme * highlight SignifySignDelete ctermfg=red    guifg=#ff0000 cterm=NONE guibg=NONE
 autocmd ColorScheme * highlight SignifySignChange ctermfg=yellow guifg=#ffff00 cterm=NONE guibg=NONE
 
+noremap <C-_>  <Plug>(comment_toggle_linewise_current)
+
 
 colorscheme seoul256
 
