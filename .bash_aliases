@@ -1,4 +1,5 @@
 # some more ls aliases
+alias rg='rg -l'
 alias ll='lsd -alF'
 alias ls='lsd'
 alias la='lsd -A'
