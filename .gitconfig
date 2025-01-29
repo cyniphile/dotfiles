@@ -1,10 +1,12 @@
 [core]
 	excludesfile = ~/.gitignore
+	pythonPath = /usr/local/bin/python3.11
 [init]
 	templatedir = ~/.git_template
 	defaultBranch = main
 [push]
 	default = current
+	force = with-lease
 [user]
 	name = Luke Schiefelbein
 	email = luke.schiefelbein@gmail.com
