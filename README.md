@@ -100,6 +100,10 @@ brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 ```
 
+install google Sans code font
+
+Set code sans as default font, and hack nerd font as fallback for non-ascii characters in iterm
+
 ```
 brew install lsd
 ```
