@@ -118,6 +118,9 @@ echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zs
 `ln -s $HOME/dotfiles/.p10k.zsh`
 
 
+install yazi
+
+
 In chrome, go to to Preferences, Keyboard, Keyboard Shortcuts, App shortcuts,
 and add cmd f11 to be Next tab and cmd f12 to be previous tab (language
 dependent if system is in italian)
