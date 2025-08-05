@@ -4,6 +4,7 @@ alias ls='lsd'
 alias ll='ls -l   --truncate-owner-after 0 --total-size -A'
 alias la='lsd -A'
 alias tree='ls --tree'
+alias yd='cd ~/Downloads && y'
 # git
 alias gk='git checkout'
 # auto create new branches with a username, based of either "main" or "master

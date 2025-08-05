@@ -39,7 +39,14 @@ function smart_open() {
     then
         return 1
     fi
-    file_kind=$(xdg-mime query filetype $args | xargs xdg-mime query default)
+    
+    # Get the directory of the file
+    file_dir=$(dirname "$args")
+    
+    # Change to the file's directory
+    cd "$file_dir"
+    
+    file_kind=$(xdg-mime query filetype "$args" | xargs xdg-mime query default)
     if [ "$file_kind" = "sublime_text.desktop" ] || [ "$file_kind" = "" ] || [ "$file_kind" = "atom.desktop" ] || [ "$file_kind" = "gvim.desktop" ]
     then
         vi "$args"
@@ -47,6 +54,8 @@ function smart_open() {
         open "$args"
     fi
 }
+
+
 
 function smart_cd() {
    args=$(echo "$*")
