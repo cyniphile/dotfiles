@@ -39,6 +39,7 @@ install vim plug
 :PlugInstall
 
 rm ~/.zshrc
+ln -s $HOME/dotfiles/yazi/* ~/.config/yazi
 ln -s $HOME/dotfiles/.zshrc
 ln -s $HOME/dotfiles/.bash_aliases
 ln -s $HOME/dotfiles/.bash_profile
