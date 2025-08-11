@@ -18,7 +18,7 @@ require("bookmarks"):setup({
 	persist = "all",
 	desc_format = "full",
 	file_pick_mode = "hover",
-	custom_desc_input = false,
+	custom_desc_input = true,
 	show_keys = true,
 	notify = {
 		enable = false,

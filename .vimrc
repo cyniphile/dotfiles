@@ -1,3 +1,4 @@
+set nowrap
 set encoding=utf-8
 set hidden
 
