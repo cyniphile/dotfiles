@@ -44,7 +44,6 @@ ln -s $HOME/dotfiles/.zshrc
 ln -s $HOME/dotfiles/.bash_aliases
 ln -s $HOME/dotfiles/.bash_profile
 ln -s $HOME/dotfiles/.bashrc
-ln -s $HOME/dotfiles/.tmux.conf
 ln -s $HOME/dotfiles/.shellrc
 ln -s $HOME/dotfiles/.gitconfig
 ln -s $HOME/dotfiles/.gitignore
@@ -52,7 +51,6 @@ ln -s $HOME/dotfiles/key_config.ron $HOME/.config/git/key_bindings.ron
 ln -s $HOME/dotfiles/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 ln -s ~/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 
-brew install tmux
 brew install pyenv
 brew install rg
 brew install fd
@@ -136,6 +134,9 @@ Exclude iterm from cmd-tab: https://apple.stackexchange.com/questions/209250/rem
 
 Turn on keyboard navigation: https://support.apple.com/guide/mac-help/use-your-keyboard-like-a-mouse-mchlp1399/mac#:~:text=On%20your%20Mac%2C%20choose%20Apple,may%20need%20to%20scroll%20down).&text=Turn%20on%20%E2%80%9CKeyboard%20navigation.%E2%80%9D,all%20controls%20on%20the%20screen.
 
-Add this to crontab to restart stretchly:
 
-*/30 * * * * pgrep -x "Stretchly" > /dev/null 2>&1 || open -a "Stretchly" > /dev/null 2>&1
+
+
+# Deprecated: tmux
+brew install tmux
+ln -s $HOME/dotfiles/.tmux.conf
