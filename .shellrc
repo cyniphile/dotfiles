@@ -34,24 +34,32 @@ function quick_grep() {
 # open fuzzy finder, search for files, use default program to open 
 # and cd to dir of file
 function smart_open() {
-    args=$(echo "$*")
-    if [ "$args" = "" ]
-    then
+    args="$*"
+    if [ -z "$args" ]; then
         return 1
     fi
-    
-    # Get the directory of the file
-    file_dir=$(dirname "$args")
-    
-    # Change to the file's directory
-    cd "$file_dir"
-    
-    file_kind=$(xdg-mime query filetype "$args" | xargs xdg-mime query default)
-    if [ "$file_kind" = "sublime_text.desktop" ] || [ "$file_kind" = "" ] || [ "$file_kind" = "atom.desktop" ] || [ "$file_kind" = "gvim.desktop" ]
-    then
-        vi "$args"
+
+    # Resolve to absolute path
+    file_path=$(realpath "$args" 2>/dev/null)
+    if [ ! -e "$file_path" ]; then
+        echo "File not found: $args"
+        return 1
+    fi
+
+    # Get directory of the file and cd there
+    file_dir=$(dirname "$file_path")
+    cd "$file_dir" || return 1
+
+    # Determine file type
+    file_kind=$(xdg-mime query filetype "$file_path" | xargs xdg-mime query default)
+
+    if [ "$file_kind" = "sublime_text.desktop" ] || \
+       [ "$file_kind" = "" ] || \
+       [ "$file_kind" = "atom.desktop" ] || \
+       [ "$file_kind" = "gvim.desktop" ]; then
+        vi "$file_path"
     else
-        open "$args"
+        xdg-open "$file_path" >/dev/null 2>&1 &
     fi
 }
 

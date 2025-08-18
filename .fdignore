@@ -8,6 +8,10 @@ anaconda3/
 .gradle/
 .cache/
 .oh-my-zsh
+.mypy*
+.zcompdum*
+.claude
+.prefect
 .pyenv/
 .opam/
 .esy/
