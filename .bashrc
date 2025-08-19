@@ -1,10 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-#if [ -f ~/.profile ]; then
-    #. ~/.profile
-#fi
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -72,12 +65,6 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    # alias dir='dir --color=auto'
-    # alias vdir='vdir --color=auto'
-
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
 fi
 
 
@@ -87,8 +74,6 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-
-#export PATH="~/.local/bin:$PATH"
 
 stty -ixon
 
@@ -105,10 +90,6 @@ bind -x '"\C-q": smart_cd $(fzf-tmux)'
 #case insensitive tab completion
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
-
-# may need to be changed in future
-export COMPOSE_API_VERSION=1.23
-
 
 export PATH="$HOME/neovim/bin:$PATH"
 export EDITOR='nvim'
