@@ -96,19 +96,9 @@
         "when": "isMac"
     },
     {
-        "key": "cmd+left",
-        "command": "workbench.action.terminal.resizePaneLeft",
-        "when": "panelFocus && isMac"
-    },
-    {
         "key": "ctrl+cmd+left",
         "command": "-workbench.action.terminal.resizePaneLeft",
         "when": "terminalFocus && terminalProcessSupported && isMac"
-    },
-    {
-        "key": "cmd+right",
-        "command": "workbench.action.terminal.resizePaneRight",
-        "when": "panelFocus && isMac"
     },
     {
         "key": "ctrl+cmd+right",
@@ -507,7 +497,7 @@
         "when": "sideBarFocus && isWindows"
     },
     {
-        "key": "m",
+        "key": "shift+m",
         "command": "notebook.cell.joinBelow",
         "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'"
     },
@@ -557,21 +547,6 @@
         "when": "notebookEditorFocused && !inputFocus"
     },
     {
-        "key": "ctrl+j",
-        "command": "jupyter.gotoNextCellInFile",
-        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused && isWindows"
-    },
-    {
-        "key": "cmd+j",
-        "command": "notebook.focusNextEditor",
-        "when": "notebookEditorFocused"
-    },
-    {
-        "key": "cmd+k",
-        "command": "notebook.focusPreviousEditor",
-        "when": "notebookEditorFocused"
-    },
-    {
         "key": "ctrl+alt+]",
         "command": "-jupyter.gotoNextCellInFile",
         "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
@@ -605,6 +580,11 @@
         "command": "test-explorer.run-test-at-cursor",
         "when": "isWindows"
     },
+    // {
+    //     "key": "cmd+r",
+    //     "command": "test-explorer.run-test-at-cursor",
+    //     "when": "isMac && editorTextFocus 
+    // },
     {
         "key": "ctrl+b s",
         "command": "projectManager.listProjects",
@@ -680,7 +660,7 @@
     },
     {
         "key": "shift+cmd+space",
-        "command": "-editor.action.triggerParameterHints",
+        "command": "-editor.action.triggerParameterHints", 
         "when": "editorHasSignatureHelpProvider && editorTextFocus"
     },
     {
@@ -707,7 +687,6 @@
     {
         "key": "enter",
         "command": "-renameFile",
-        "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus && isMac"
     },
     // see for codes https://www.techonthenet.com/unicode/chart.php
     {
@@ -787,19 +766,14 @@
         "command": "jupyter.restartkernel",
         "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'"
     },
-    // {
-    //     "key": "cmd+r",
-    //     "command": "testing.runAtCursor",
-    //     "when": "editorTextFocus"
-    // },
+    {
+        "key": "cmd+shift+r",
+        "command": "testing.runAtCursor",
+        "when": "editorTextFocus && editorLangId == python"
+    },
     {
         "key": "cmd+; c",
         "command": "-testing.runAtCursor",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "cmd+d",
-        "command": "testing.debugAtCursor",
         "when": "editorTextFocus"
     },
     {
@@ -867,5 +841,111 @@
         "key": "shift+cmd+v",
         "command": "-fountain.livepreview",
         "when": "editorLangId == 'fountain'"
+    },
+    {
+        "key": "shift+cmd+enter",
+        "command": "workbench.action.toggleMaximizeEditorGroup",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+b z",
+        "command": "workbench.action.toggleMaximizeEditorGroup",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+g",
+        "command": "github.copilot"
+    },
+    {
+        "key": "cmd+right",
+        "command": "workbench.action.increaseViewSize",
+        "when": "sideBarFocus",
+    },
+    {
+        "key": "cmd+left",
+        "command": "workbench.action.decreaseViewSize",
+        "when": "sideBarFocus",
+    },
+    {
+        "key": "cmd+i",
+        "command": "editor.action.inlineSuggest.commit",
+        "when": "editorTextFocus && (inlineSuggestionVisible || inlineEditIsVisible)"
+    },
+    {
+        "key": "tab",
+        "command": "-editor.action.inlineSuggest.commit"
+    },
+    {
+        "key": "shift+alt+h",
+        "command": "workbench.action.replaceInFiles"
+    },
+    {
+        "key": "shift+cmd+h",
+        "command": "-workbench.action.replaceInFiles"
+    },
+    {
+        "key": "shift+cmd+a",
+        "command": "extension.vim_cmd+a",
+        "when": "editorTextFocus && vim.active && vim.use<D-a> && !inDebugRepl && vim.mode != 'Insert'"
+    },
+    {
+        "key": "cmd+a",
+        "command": "-extension.vim_cmd+a",
+        "when": "editorTextFocus && vim.active && vim.use<D-a> && !inDebugRepl && vim.mode != 'Insert'"
+    },
+    {
+        "key": "f9",
+        "command": "workbench.action.debug.stepInto",
+        "when": "debugState != 'inactive'"
+    },
+    {
+        "key": "f11",
+        "command": "-workbench.action.debug.stepInto",
+        "when": "debugState != 'inactive'"
+    },
+    // {
+    //     "key": "shift+tab",
+    //     "command": "editor.action.triggerParameterHints",
+    //     "when": "editorTextFocus && !suggestWidgetVisible"
+    // },
+    {
+        "key": "cmd+o",
+        "command": "revealFileInOS",
+        "when": "!editorFocus"
+    },
+    {
+        "key": "alt+cmd+r",
+        "command": "-revealFileInOS",
+        "when": "!editorFocus"
+    },
+    { 
+        "key": "cmd+n", "command": "explorer.newFile", "when": "!terminalFocus"
+    },
+    // {
+    //     "key": "cmd+c",
+    //     "command": "-extension.vim_cmd+c",
+    //     "when": "editorTextFocus && vim.active && vim.overrideCopy && vim.use<D-c> && !inDebugRepl"
+    // },
+    // {
+    //     "key": "cmd+m",
+    //     "command": "editor.action.inlineSuggest.acceptNextWord"
+    // }
+    {
+    "key": "cmd+r",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Run TypeScript",
+    "when": "editorTextFocus && editorLangId == typescript"
+    },
+    {
+        "key": "cmd+9",
+        "command": "github.copilot.interactiveEditor.review.continueInInlineChat"
+    },
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\\\r\n"
+        },
+        "when": "terminalFocus"
     },
 ]

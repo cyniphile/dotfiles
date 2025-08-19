@@ -9,6 +9,7 @@ anaconda3/
 .cache/
 .oh-my-zsh
 .mypy*
+.yarn/*
 .zcompdum*
 .claude
 .prefect
