@@ -1,4 +1,5 @@
 # some more ls aliases
+alias ic='imgcat -W 100%'
 alias rgh='rg --hidden'
 alias rg='rg -l'
 alias ls='lsd'
