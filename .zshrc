@@ -125,15 +125,15 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/luke/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/luke/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/luke/google-cloud-sdk/completion.zsh.inc'; fi
 eval "$(pyenv init --path)"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/luke/Library/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/luke/Library/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/luke/Library/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/luke/Library/google-cloud-sdk/completion.zsh.inc'; fi
