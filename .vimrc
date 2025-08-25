@@ -294,3 +294,5 @@ au FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', '
 highlight ColorColumn ctermbg=235
 call matchadd('ColorColumn', '\%81v', 100)
 
+set rtp^="/Users/luke/.opam/default/share/ocp-indent/vim"
+

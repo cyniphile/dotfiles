@@ -56,9 +56,9 @@ export ZSH="/Users/luke/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
 # Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+# if [ -f ~/.bash_aliases ]; then
+    # . ~/.bash_aliases
+# fi
 
 export PATH="/Users/luke/.cargo/bin:$PATH"
 
@@ -114,7 +114,6 @@ setopt HIST_SAVE_NO_DUPS
 export PATH="$PATH:/Users/luke/.local/bin"
 
 
-# source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -125,7 +124,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 
-eval "$(pyenv init --path)"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 
@@ -137,3 +135,12 @@ if [ -f '/Users/luke/Library/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/lu
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/luke/Library/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/luke/Library/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/Users/luke/.opam/opam-init/init.zsh' ]] || source '/Users/luke/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
