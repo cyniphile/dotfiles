@@ -300,3 +300,6 @@ set rtp^="/Users/luke/.opam/default/share/ocp-indent/vim"
 " Visual mode: Tab to indent, Shift-Tab to unindent, and stay in Visual mode
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
+
+"  overwrite `s` to mean “surround the word under cursor”
+nnoremap s <Plug>Ysurroundiw
