@@ -303,3 +303,6 @@ vnoremap <S-Tab> <gv
 
 "  overwrite `s` to mean “surround the word under cursor”
 nnoremap s <Plug>Ysurroundiw
+
+" In visual mode, Space moves to the end of the current line
+vnoremap <Space> $h
