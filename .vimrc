@@ -159,11 +159,18 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
     Plug 'ryanoasis/vim-devicons'
+    Plug '3rd/image.nvim' 
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'HakonHarnes/img-clip.nvim'
+
+
 call plug#end()
+
+" map a key to paste from the clipboard
+nnoremap <leader>p :PasteImage<CR>
 
 
 " Somewhere after plug#end()
-lua require('Comment').setup()
 
 " remap search key
 nmap <silent> <leader>dd :call CocAction('jumpDefinition', 'tab drop')<CR>
@@ -278,6 +285,82 @@ autocmd ColorScheme * highlight SignifySignChange ctermfg=yellow guifg=#ffff00 c
 
 noremap <C-_>  <Plug>(comment_toggle_linewise_current)
 
+" image.nvim config (Lua) — use ueberzug++ for iTerm2
+lua << EOF
+require('Comment').setup()
+
+require("image").setup({
+  backend = "kitty",                 -- use Kitty Graphics Protocol (iTerm2 understands it)
+  processor = "magick_cli",          -- use ImageMagick CLI; no LuaRocks needed
+  integrations = {
+    markdown = {
+      enabled = true,                -- render ![alt](path) inline
+      clear_in_insert_mode = false,
+      download_remote_images = true, -- fetch http(s) images on the fly
+      only_render_image_at_cursor = true, -- set true if you want a lighter mode
+      only_render_image_at_cursor_mode = "inline",
+      filetypes = { "markdown", "vimwiki" },
+    },
+  },
+  max_height_window_percentage = 50, -- scale to half the window height
+  hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" },
+})
+
+
+require('img-clip').setup({
+  default = {
+    dir_path = function()
+      local dir = vim.fn.expand('~/Downloads/md-images')
+      vim.fn.mkdir(dir, 'p')
+      return dir
+    end,
+    use_absolute_path = true,     -- make image.nvim path resolution simple
+    prompt_for_file_name = false, -- auto-name by timestamp
+    verbose = false,              -- keep messages quiet
+  },
+  filetypes = {
+    markdown = {
+      url_encode_path = true,     -- so spaces/() are safe in Markdown
+      template = "![$CURSOR]($FILE_PATH)",
+    },
+  },
+})
+
+-- Detect if system clipboard currently contains an image (macOS).
+-- We check Pasteboard types via AppleScript: 'clipboard info' lists flavors such as
+-- 'TIFF picture', 'JPEG picture', and «class PNGf».
+local function clipboard_has_image()
+  -- macOS only; return false on other OSes
+  if vim.loop.os_uname().sysname ~= 'Darwin' then return false end
+  local ok, out = pcall(vim.fn.systemlist, {'osascript', '-e', 'clipboard info'})
+  if not ok then return false end
+  local s = table.concat(out or {}, ' ')
+  -- Common image flavors on macOS Pasteboard
+  return s:find('TIFF picture') or s:find('JPEG picture') or s:find('GIF picture') or s:find('PNGf')
+end
+
+-- Smart paste:
+-- If clipboard has an image AND we are in Markdown-like buffers, use img-clip.
+-- Otherwise, fall back to the normal paste handler.
+-- This overrides bracketed-paste (e.g., ⌘V in iTerm2).
+local markdown_like = { markdown = true, mdx = true, vimwiki = true }
+vim.paste = (function(overridden)
+  return function(lines, phase)
+    if (phase == -1 or phase == 1) and markdown_like[vim.bo.filetype] and clipboard_has_image() then
+      local ok, imgclip = pcall(require, 'img-clip')
+      if ok then
+        imgclip.paste_image()         -- uses our setup() defaults
+        -- Cancel the default text paste; this is the documented behavior of vim.paste.
+        -- See :h vim.paste (“return false if client should cancel the paste”).
+        return false
+      end
+    end
+    return overridden(lines, phase)
+  end
+end)(vim.paste)
+
+
+EOF
 
 colorscheme seoul256
 
