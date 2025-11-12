@@ -15,7 +15,6 @@ anaconda3/
 virtenv/
 .npm/
 .zcompdum*
-.claude
 .prefect
 .pyenv/
 .opam/

@@ -55,37 +55,12 @@ export ZSH="/Users/luke/.oh-my-zsh"
 
 source $ZSH/oh-my-zsh.sh
 
-# Alias definitions.
-# if [ -f ~/.bash_aliases ]; then
-    # . ~/.bash_aliases
-# fi
-
 export PATH="/Users/luke/.cargo/bin:$PATH"
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='nvim'
- else
-   export EDITOR='nvim'
- fi
 
 
 fpath+=~/.zfunc
-compinit
 
-autoload -U bashcompinit
-bashcompinit
-
-
-eval "$(pyenv init -)"
-
+autoload -Uz bashcompinit; bashcompinit
 
 # fzf shortcut (cool!)
 bindkey -s '^p' 'smart_open $(fzf-tmux)^M'
@@ -97,8 +72,6 @@ bindkey -s '^q' 'smart_cd $(fzf-tmux)^M'
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 
-#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-#export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -112,8 +85,6 @@ setopt HIST_SAVE_NO_DUPS
 
 # Created by `userpath` on 2020-06-16 20:55:54
 export PATH="$PATH:/Users/luke/.local/bin"
-
-
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -144,3 +115,4 @@ if [ -f '/Users/luke/Library/google-cloud-sdk/completion.zsh.inc' ]; then . '/Us
 # This section can be safely removed at any time if needed.
 [[ ! -r '/Users/luke/.opam/opam-init/init.zsh' ]] || source '/Users/luke/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
+# export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
