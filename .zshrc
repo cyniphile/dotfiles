@@ -97,6 +97,7 @@ fi
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
+export EDITOR='nvim'
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
