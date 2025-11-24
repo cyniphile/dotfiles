@@ -255,6 +255,17 @@
         // "when": "editorFocus && quickFixWidgetVisible"
     },
     {
+    "key": "shift+tab",
+    "command": "editor.action.outdentLines",
+    "when": "editorTextFocus && vim.mode == 'Visual'"
+    },
+    {
+    "key": "tab",
+    "command": "editor.action.indentLines",
+    "when": "editorTextFocus && vim.mode == 'Visual'"
+    },
+
+    {
         "key": "shift+tab",
         "command": "selectPrevSuggestion",
         "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible && isMac"
@@ -656,8 +667,9 @@
     {
         "key": "shift+tab",
         "command": "editor.action.showHover",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && (!vim.active || vim.mode == 'Insert' || vim.mode == 'Normal')"
     },
+
     {
         "key": "shift+cmd+space",
         "command": "-editor.action.triggerParameterHints", 
@@ -859,13 +871,13 @@
     {
         "key": "cmd+right",
         "command": "workbench.action.increaseViewSize",
-        "when": "sideBarFocus",
+        "when": "sideBarFocus && !searchViewletFocus",
     },
     {
         "key": "cmd+left",
         "command": "workbench.action.decreaseViewSize",
-        "when": "sideBarFocus",
-    },
+        "when": "sideBarFocus && !searchViewletFocus",
+        },
     {
         "key": "cmd+i",
         "command": "editor.action.inlineSuggest.commit",
@@ -948,4 +960,28 @@
         },
         "when": "terminalFocus"
     },
+    {
+        "key": "f1",
+        "command": "-workbench.action.showCommands"
+    },
+    {
+        "key": "f1",
+        "command": "extension.previewInDefaultBrowser",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+f1",
+        "command": "-extension.previewInDefaultBrowser",
+        "when": "editorTextFocus"
+    },
+  {
+    "key": "cmd+l",
+    "command": "workbench.action.terminal.focusTabs",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+h", 
+    "command": "workbench.action.terminal.focus",
+    "when": "terminalTabsFocus"
+  }
 ]
