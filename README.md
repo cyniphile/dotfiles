@@ -134,7 +134,26 @@ Exclude iterm from cmd-tab: https://apple.stackexchange.com/questions/209250/rem
 
 Turn on keyboard navigation: https://support.apple.com/guide/mac-help/use-your-keyboard-like-a-mouse-mchlp1399/mac#:~:text=On%20your%20Mac%2C%20choose%20Apple,may%20need%20to%20scroll%20down).&text=Turn%20on%20%E2%80%9CKeyboard%20navigation.%E2%80%9D,all%20controls%20on%20the%20screen.
 
+# Claude Code notification setup
+in  `~/.claude/settings.json`
+```
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -message 'Claude Code needs your input' -title 'Claude Code' -sound Basso"
+          }
+        ]
+      }
+    ]
+  }
+}
 
+```
 
 
 # Deprecated: tmux

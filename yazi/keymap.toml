@@ -25,3 +25,8 @@ desc = "Delete all bookmarks"
 [[mgr.prepend_keymap]]
 on = "<C-w>"
 run = "close"
+
+[[mgr.prepend_keymap]]
+on = "<tab>"
+run = "tab_switch 1 --relative"
+
