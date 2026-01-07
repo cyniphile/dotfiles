@@ -1,161 +1,72 @@
-install iterm, spectacle, istat menus, stretchly
+# dotfiles
 
-Load iterm state from `iTerm2 State.itermexport`
+macOS development environment configuration.
 
-This (so certain shortcuts work): 
-https://apple.stackexchange.com/questions/281033/sending-ctrlfunction-key-on-iterm2
+## Quick Start
 
-install Homebrew
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
-
-```
-brew install git
-ssh-keygen -t ed25519 -C "your_email@example.com"
+```bash
+git clone git@github.com:cyniphile/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+git checkout macos
+./setup.sh
 ```
 
-add pub key to github
+## What's Included
+
+| Config | Description |
+|--------|-------------|
+| `.zshrc` | Zsh config with oh-my-zsh, pyenv, powerlevel10k |
+| `.vimrc` | Neovim config with vim-plug |
+| `.gitconfig` | Git settings |
+| `settings.json` | VS Code settings (vim mode) |
+| `keybindings.json` | VS Code keybindings |
+| `yazi/` | Yazi file manager config |
+| `.p10k.zsh` | Powerlevel10k prompt theme |
+| `key_config.ron` | Gitui keybindings |
+
+## Manual Steps
+
+After running `setup.sh`:
+
+1. **Neovim plugins**: Open nvim and run `:PlugInstall`
+
+2. **iTerm2**: Load state from `iTerm2 State.itermexport`
+   - Preferences > General > Preferences > Load preferences from custom folder
+
+3. **Fonts**: Install [Google Sans Code](https://fonts.google.com/specimen/Source+Code+Pro) manually
+   - Set as default font in iTerm2, Hack Nerd Font as non-ASCII fallback
+
+4. **SSH key**: Generate and add to GitHub
+   ```bash
+   ssh-keygen -t ed25519 -C "your_email@example.com"
+   ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+   ```
+
+5. **Chrome shortcuts** (optional): System Preferences > Keyboard > App Shortcuts
+   - Add Cmd+F11 for "Next Tab", Cmd+F12 for "Previous Tab"
+
+6. **VS Code**: Disable press-and-hold for vim mode
+   ```bash
+   defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+   ```
+
+## Tools Installed
+
+The setup script installs via Homebrew:
+- `neovim`, `zsh`, `pyenv`
+- `ripgrep`, `fd`, `fzf`, `yazi`, `gitui`, `lsd`
+- `powerlevel10k`, `fortune`, `terminal-notifier`
+- Hack Nerd Font
+
+## Structure
 
 ```
-git clone git@github.com:cyniphile/dotfiles.git
-cd dotfiles
-git checkout 'macos'
+dotfiles/
+├── setup.sh          # Automated setup script
+├── Shell configs     # .zshrc, .bashrc, .shellrc, etc.
+├── .vimrc            # Neovim configuration
+├── VS Code/          # settings.json, keybindings.json
+├── yazi/             # File manager config
+├── old/              # Archived/deprecated configs
+└── iTerm2 State.itermexport
 ```
-ensure username is correct in zshrc (e.g. 'cyniphile')
-
-point iterm to dotfiles dir
-https://gitlab.com/gnachman/iterm2/-/issues/8029
-
-```
-brew install neovim
-brew install zsh
-```
-install oh my zsh
-`sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-install vim plug
-`sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
-```
-#Install vim plugins, in vim
-:PlugInstall
-
-rm ~/.zshrc
-ln -s $HOME/dotfiles/yazi/* ~/.config/yazi
-ln -s $HOME/dotfiles/.zshrc
-ln -s $HOME/dotfiles/.bash_aliases
-ln -s $HOME/dotfiles/.bash_profile
-ln -s $HOME/dotfiles/.bashrc
-ln -s $HOME/dotfiles/.shellrc
-ln -s $HOME/dotfiles/.gitconfig
-ln -s $HOME/dotfiles/.gitignore
-ln -s $HOME/dotfiles/key_config.ron $HOME/.config/git/key_bindings.ron 
-ln -s $HOME/dotfiles/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
-ln -s ~/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
-
-brew install pyenv
-brew install rg
-brew install fd
-brew install fzf
-brew install gitui
-# To install useful key bindings and fuzzy completion:
-$(brew --prefix)/opt/fzf/install
-
-```
-install tpm + prefix-I
-
-```
-git clone git@github.com:cyniphile/hunter_s_terminal.git
-./hunter_s_terminal/install.sh
-brew install fortune
-```
-
-link nvim to vim
-```
-$ mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
-$ ln -s ~/.vim $XDG_CONFIG_HOME/nvim
-$ ln -s ~/dotfiles/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
-```
-
-install pip and packages
-```
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-
-pip3 install neovim
-pip install 'python-language-server[all]'
-pip install jupyterlab
-pip install jupyter-lsp
-pip install --user ipykernel
-pip install poetry
-
-jupyter labextension install @krassowski/jupyterlab-lsp   
-jupyter labextension install jupyterlab_vim
-jupyter labextension install @jupyterlab/debugger
-sudo jupyter serverextension enable --sys-prefix --py jupyter_lsp
-```
-
-install hack nerd font
-
-```
-brew tap homebrew/cask-fonts
-brew install --cask font-hack-nerd-font
-```
-
-install google Sans code font
-
-Set code sans as default font, and hack nerd font as fallback for non-ascii characters in iterm
-
-```
-brew install lsd
-```
-
-https://github.com/romkatv/evel10k#meslo-nerd-font-patched-for-powerlevel10k
-
-```
-brew install romkatv/powerlevel10k/powerlevel10k
-echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
-```
-
-`ln -s $HOME/dotfiles/.p10k.zsh`
-
-
-install yazi
-
-
-In chrome, go to to Preferences, Keyboard, Keyboard Shortcuts, App shortcuts,
-and add cmd f11 to be Next tab and cmd f12 to be previous tab (language
-dependent if system is in italian)
-
-Fix press and hold: https://stackoverflow.com/questions/39972335/how-do-i-press-and-hold-a-key-and-have-it-repeat-in-vscode/44010683#44010683
-
-Add SSH key to agent (for gitui to work): https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
-
-Change paste shortcut in iterm: https://apple.stackexchange.com/questions/155640/changing-the-default-keyboard-shortcuts-in-iterm2
-
-Exclude iterm from cmd-tab: https://apple.stackexchange.com/questions/209250/remove-iterm-from-cmdtab-apps
-
-Turn on keyboard navigation: https://support.apple.com/guide/mac-help/use-your-keyboard-like-a-mouse-mchlp1399/mac#:~:text=On%20your%20Mac%2C%20choose%20Apple,may%20need%20to%20scroll%20down).&text=Turn%20on%20%E2%80%9CKeyboard%20navigation.%E2%80%9D,all%20controls%20on%20the%20screen.
-
-# Claude Code notification setup
-in  `~/.claude/settings.json`
-```
-{
-  "hooks": {
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "terminal-notifier -message 'Claude Code needs your input' -title 'Claude Code' -sound Basso"
-          }
-        ]
-      }
-    ]
-  }
-}
-
-```
-
-
-# Deprecated: tmux
-brew install tmux
-ln -s $HOME/dotfiles/.tmux.conf
