@@ -1,4 +1,5 @@
 myVim.log
+.env
 .idea
 Session.vim
 .byebug_history
@@ -10,3 +11,6 @@ Session.vim
 .virtual_documents/
 *__pycache__/
 .mypy_cache/
+.local_dev/
+.claude/
+luke_scratch/

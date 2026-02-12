@@ -6,6 +6,18 @@
         "when": "isMac"
     },
     {
+        // Leave right sidebar (Auxiliary Bar) to editor
+        "key": "cmd+h",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "auxiliaryBarFocus && isMac"
+    },
+    {
+        // Leave left sidebar to editor
+        "key": "cmd+h",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "sideBarFocus && isMac"
+    },
+    {
         "key": "cmd+l",
         "command": "workbench.action.navigateRight",
         "when": "isMac"
@@ -40,6 +52,16 @@
         "when": "!sideBarFocus && isMac",
         "command": "workbench.view.explorer"
     },
+{
+    "key": "cmd+shift+e",
+    "when": "activeAuxiliary",
+    "command": "workbench.action.toggleAuxiliaryBar"
+},
+{
+    "key": "cmd+shift+e",
+    "when": "!activeAuxiliary",
+    "command": "workbench.action.focusAuxiliaryBar"
+},
     { // Unbind unconditional default
         "key": "cmd+0",
         "command": "-workbench.action.focusSideBar"
@@ -156,6 +178,11 @@
     {
         "key": "cmd+b shift+l",
         "command": "workbench.action.terminal.split",
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        "key": "cmd+b shift+j",
+        "command": "workbench.action.terminal.new",
         "when": "terminalFocus && terminalProcessSupported && isMac"
     },
     {
@@ -974,14 +1001,59 @@
         "command": "-extension.previewInDefaultBrowser",
         "when": "editorTextFocus"
     },
-  {
-    "key": "cmd+l",
-    "command": "workbench.action.terminal.focusTabs",
-    "when": "terminalFocus"
-  },
-  {
-    "key": "cmd+h", 
-    "command": "workbench.action.terminal.focus",
-    "when": "terminalTabsFocus"
-  }
+    {
+        "key": "cmd+l",
+        "command": "workbench.action.terminal.focusTabs",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+h", 
+        "command": "workbench.action.terminal.focus",
+        "when": "terminalTabsFocus" 
+    },
+    {
+        "key": "cmd+j", 
+        "command": "list.focusDown",
+        "when": "terminalTabsFocus"
+    },
+    {
+        "key": "cmd+k", 
+        "command": "list.focusUp",
+        "when": "terminalTabsFocus"
+    },
+    {
+        "key": "shift+cmd+i",
+        "command": "mdx.toggleEmphasis",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'mdx'"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-mdx.toggleEmphasis",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-mdx.toggleEmphasis",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'mdx'"
+    },
+    {
+        "key": "cmd+alt+c",
+        "command": "copyFilePath",
+        "when": "editorFocus"
+    },
+    {
+    "key": "cmd+v",
+    "command": "editor.action.clipboardPasteAction",
+    "when": "chatInputFocus && isMac"
+    },
+    // {
+    //     "key": "cmd+left",
+    //     "command": "workbench.action.decreaseViewSize",
+    //     "when": "auxiliaryBarFocus && !chatInputFocus"
+    // },
+    // {
+    //     "key": "cmd+right",
+    //     "command": "workbench.action.increaseViewSize",
+    //     "when": "auxiliaryBarFocus && !chatInputFocus"
+    // }
 ]

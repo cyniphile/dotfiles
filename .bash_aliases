@@ -1,3 +1,4 @@
+alias c='claude'
 # some more ls aliases
 alias ic='imgcat -W 100%'
 alias rgh='rg --hidden'
