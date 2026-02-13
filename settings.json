@@ -963,6 +963,7 @@
         "sqlparse",
         "squirrely",
         "ssdna",
+        "startswith",
         "statsmodels",
         "stddev",
         "stds",
@@ -1032,6 +1033,7 @@
         "vlog",
         "vloggers",
         "vmap",
+        "vstack",
         "watchfiles",
         "WEBSOCKIFY",
         "weirded",
@@ -1189,8 +1191,13 @@
 
         // Optional: helps in quick fix / command palette too
         "quickInputList.focusBackground": "#005fb8",
-        "quickInputList.focusForeground": "#ffffff"
-
+        "quickInputList.focusForeground": "#ffffff",
+        
+        //debug red
+        "debugToolBar.background": "#8B0000",
+        "statusBar.debuggingBackground": "#B00020",
+        "statusBar.debuggingForeground": "#FFFFFF",
+        "activityBar.activeBorder": "#FF0000"
     },
     "editor.accessibilitySupport": "off",
     "projectManager.git.maxDepthRecursion": 1,
@@ -1373,6 +1380,5 @@
     },
     "mcpDebug.port": 4711,
     "window.customTitleBarVisibility": "never",
-    "mcpDebug.autostart": false
-
+    "mcpDebug.autostart": false,
 }
