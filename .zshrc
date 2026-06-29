@@ -90,8 +90,15 @@ export PATH="$PATH:/Users/luke/.local/bin"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+# pyenv — migrated to mise on 2026-06-29. Kept commented for rollback;
+# to revert: uncomment this block and remove the mise block below.
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
+
+# mise — runtime & version manager (replaces pyenv)
+if command -v mise 1>/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
 fi
 
 
