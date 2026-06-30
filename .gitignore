@@ -14,3 +14,5 @@ Session.vim
 .local_dev/
 .claude/
 luke_scratch/
+
+**/.claude/settings.local.json

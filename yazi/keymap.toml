@@ -30,3 +30,9 @@ run = "close"
 on = "<tab>"
 run = "tab_switch 1 --relative"
 
+# Esc cancels any input directly instead of dropping into vi normal mode
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "Cancel input"
+

@@ -3,7 +3,7 @@
     {
         "key": "cmd+h",
         "command": "workbench.action.navigateLeft",
-        "when": "isMac"
+        "when": "isMac && !auxiliaryBarFocus"
     },
     {
         // Leave right sidebar (Auxiliary Bar) to editor
@@ -11,12 +11,15 @@
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "auxiliaryBarFocus && isMac"
     },
-    {
-        // Leave left sidebar to editor
+
+
+        {
+    //    focused not working 
         "key": "cmd+h",
         "command": "workbench.action.focusActiveEditorGroup",
-        "when": "sideBarFocus && isMac"
-    },
+        "when": "auxiliaryBarVisible && chatgpt.sidebarView.active"
+        },
+
     {
         "key": "cmd+l",
         "command": "workbench.action.navigateRight",
@@ -45,11 +48,11 @@
     {
         "key": "cmd+e",
         "when": "sideBarVisible && isMac",
-        "command": "workbench.action.closeSidebar"
+        "command": "workbench.action.toggleSidebarVisibility"
     },
     {
         "key": "cmd+e",
-        "when": "!sideBarFocus && isMac",
+        "when": "!sideBarFocus && !sideBarVisible",
         "command": "workbench.view.explorer"
     },
 {
@@ -976,18 +979,6 @@
     "when": "editorTextFocus && editorLangId == typescript"
     },
     {
-        "key": "cmd+9",
-        "command": "github.copilot.interactiveEditor.review.continueInInlineChat"
-    },
-    {
-        "key": "shift+enter",
-        "command": "workbench.action.terminal.sendSequence",
-        "args": {
-            "text": "\\\r\n"
-        },
-        "when": "terminalFocus"
-    },
-    {
         "key": "f1",
         "command": "-workbench.action.showCommands"
     },
@@ -1041,11 +1032,11 @@
         "command": "copyFilePath",
         "when": "editorFocus"
     },
-    {
-    "key": "cmd+v",
-    "command": "editor.action.clipboardPasteAction",
-    "when": "chatInputFocus && isMac"
-    },
+    // {
+    // "key": "cmd+v",
+    // "command": "editor.action.clipboardPasteAction",
+    // "when": "chatInputFocus && isMac"
+    // },
     // {
     //     "key": "cmd+left",
     //     "command": "workbench.action.decreaseViewSize",
@@ -1070,6 +1061,34 @@
         "key": "cmd+j",
         "command": "workbench.action.terminal.focusNext",
         "when": "terminalFocus && terminalProcessSupported && !terminalTabsFocus && isMac"
+        },
+        {
+            "key": "shift+enter",
+            "command": "workbench.action.terminal.sendSequence",
+            "args": {
+                "text": "\u001b[13;2u"
+            },
+            "when": "terminalFocus"
+        },
+       
+        // {
+        // "key": "cmd+h",
+        // "command": "workbench.action.focusActiveEditorGroup",
+        // "when": "isMac && auxiliaryBarFocus"
+        // }
+        {
+        "key": "cmd+h",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "isMac && activeAuxiliary && !editorFocus && !sideBarFocus && !panelFocus && !terminalFocus"
+        },
+        {
+            "key": "cmd+f9",
+            "command": "-workbench.action.chat.nextFileTree",
+            "when": "chatIsEnabled && inChat"
+        },
+        {
+            "key": "cmd+9",
+            "command": "-workbench.action.lastEditorInGroup"
         }
-
+        
 ]

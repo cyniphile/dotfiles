@@ -124,3 +124,15 @@ if [ -f '/Users/luke/Library/google-cloud-sdk/completion.zsh.inc' ]; then . '/Us
 [[ ! -r '/Users/luke/.opam/opam-init/init.zsh' ]] || source '/Users/luke/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
 # export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+
+# Ctrl+V (0x16) pastes clipboard text at the prompt.
+# Paired with iTerm's "Cmd+V -> Send Hex 0x16" binding so Cmd+V pastes text in
+# the shell and text+images in Claude Code. Harmless in VS Code (Cmd+V there is
+# handled by VS Code and never sends 0x16 to zsh). Replaces zsh's quoted-insert.
+paste-clipboard() { LBUFFER+="$(pbpaste)" }
+zle -N paste-clipboard
+bindkey '^V' paste-clipboard
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
