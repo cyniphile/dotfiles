@@ -17,6 +17,7 @@ fi
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES 
 
 export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS='--bind=tab:down,btab:up'
 
 function join () {
     echo "$*"
@@ -65,9 +66,24 @@ function smart_open() {
 
 
 
+# cd to the dir of the selected file and browse it in yazi;
+# shell follows yazi's cwd when it exits (quit with Q to keep the original dir)
 function smart_cd() {
    args=$(echo "$*")
-   dir=$(dirname "$args") && cd "$dir"
+   if [ -z "$args" ]; then
+      return 1
+   fi
+   local target dir tmp cwd
+   target=$(realpath "$args" 2>/dev/null) || target="$args"
+   dir=$(dirname "$target") && cd "$dir" || return 1
+   command -v yazi >/dev/null 2>&1 || return 0
+   tmp=$(mktemp -t yazi-cwd.XXXXXX)
+   yazi "$target" --cwd-file="$tmp"
+   cwd=$(cat -- "$tmp" 2>/dev/null)
+   if [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+      cd -- "$cwd"
+   fi
+   rm -f -- "$tmp"
 }
 
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1

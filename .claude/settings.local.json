@@ -5,7 +5,9 @@
       "Bash(git -C /Users/luke/dotfiles log --oneline)",
       "Bash(git -C /Users/luke/dotfiles branch -a)",
       "Bash(tree:*)",
-      "Bash(xargs ls:*)"
+      "Bash(xargs ls:*)",
+      "Bash(command -v yazi)",
+      "Bash(yazi --version)"
     ]
   }
 }
