@@ -7,7 +7,11 @@
       "Bash(tree:*)",
       "Bash(xargs ls:*)",
       "Bash(command -v yazi)",
-      "Bash(yazi --version)"
+      "Bash(yazi --version)",
+      "Bash(defaults read *)",
+      "Bash(osascript *)",
+      "Bash(/usr/bin/time zsh -i -c exit)",
+      "Bash(/usr/bin/time zsh -c '. ~/.nvm/nvm.sh')"
     ]
   }
 }
