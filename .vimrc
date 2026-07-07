@@ -102,6 +102,11 @@ nmap <leader>w <Esc>:w<Enter>
 
 "close windows like in vscode
 nmap <C-w> <Esc>:q<Enter>
+" nvim 0.10+ ships default <C-w>d / <C-w><C-d> diagnostic-float mappings; they
+" share the <C-w> prefix, making the map above wait out 'timeoutlen' (1s).
+" Diagnostics come from coc here, so drop the defaults to close instantly.
+silent! nunmap <C-w>d
+silent! nunmap <C-w><C-d>
 
 " autowrite on buffer focus lost"
 let g:airline_section_z = '%t'

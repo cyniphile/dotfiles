@@ -133,6 +133,20 @@ paste-clipboard() { LBUFFER+="$(pbpaste)" }
 zle -N paste-clipboard
 bindkey '^V' paste-clipboard
 
+# nvm — lazy-loaded; eagerly sourcing nvm.sh cost ~0.5s warm / ~1s cold per tab.
+# The default node version goes straight onto PATH here; the real nvm is only
+# sourced on the first `nvm` invocation (--no-use skips its auto-activation,
+# which is redundant since PATH is already set).
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+() {
+  local default
+  default="$(cat "$NVM_DIR/alias/default" 2>/dev/null)"
+  local -a dirs=("$NVM_DIR"/versions/node/v${default#v}*(Nn))
+  (( ${#dirs} )) && path=("${dirs[-1]}/bin" $path)
+}
+nvm() {
+  unfunction nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
