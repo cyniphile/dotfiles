@@ -20,40 +20,104 @@ function y() {
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/luke/.oh-my-zsh"
+# oh-my-zsh — dropped 2026-07-09 for faster tabs (~80ms/tab): no plugins were
+# enabled and the prompt comes from powerlevel10k, so OMZ only supplied the
+# lib defaults now inlined below. It also used to stomp the `ls` alias from
+# .bash_aliases (lsd) with `ls -G`; dropping it restores lsd. To revert:
+# uncomment these two lines and delete down to "end oh-my-zsh replacement".
+# export ZSH="/Users/luke/.oh-my-zsh"
+# source $ZSH/oh-my-zsh.sh
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="luke-robbyrussell"
+# --- oh-my-zsh replacement --------------------------------------------------
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+bindkey -e  # explicit emacs keymap (EDITOR=nvim would otherwise pick vi mode)
+unsetopt flow_control  # don't let the tty eat ^Q/^S — the ^q smart_cd binding needs it
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+# arrows search history by typed prefix; sane Home/End/Delete/word-jumps
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+bindkey '^[OA' up-line-or-beginning-search    # application cursor mode —
+bindkey '^[OB' down-line-or-beginning-search  # some TUIs leave it enabled
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[OH' beginning-of-line
+bindkey '^[OF' end-of-line
+bindkey '^[[3~' delete-char
+bindkey '^[[3;5~' kill-word
+bindkey '^[[5~' up-line-or-history
+bindkey '^[[6~' down-line-or-history
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[Z' reverse-menu-complete
+bindkey ' ' magic-space  # expand !!-style history refs when space is typed
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# edit the current command line in $EDITOR with ctrl-x ctrl-e
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# auto-quote ?/&/; while typing a URL, or pasting one (quoted only if the
+# whole paste is a URL). bracketed-paste-url-magic inserts pastes in one shot;
+# the old bracketed-paste-magic fed every pasted char through zle widgets,
+# which took ~350ms for a 5KB paste and ~2.5s for 20KB.
+autoload -Uz bracketed-paste-url-magic url-quote-magic
+zle -N bracketed-paste bracketed-paste-url-magic
+zle -N self-insert url-quote-magic
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# plugins=(
-#   git
-# )
+# history sizes and cross-tab sharing OMZ used to set
+HISTSIZE=50000
+SAVEHIST=10000
+setopt SHARE_HISTORY HIST_VERIFY
 
-source $ZSH/oh-my-zsh.sh
+setopt auto_cd auto_pushd pushd_ignore_dups interactive_comments long_list_jobs
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias -- -='cd -'
+alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox,.venv,venv}'
+alias diff='diff --color'
+export LESS="${LESS:--R}"
+export PAGER="${PAGER:-less}"
+
+# completion behavior: menu selection, case-insensitive + partial matching
+zmodload -i zsh/complist
+setopt complete_in_word always_to_end
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors 'di=1;36' 'ln=35' 'so=32' 'pi=33' 'ex=31' 'bd=34;46' 'cd=34;43' 'su=30;41' 'sg=30;46' 'tw=30;42' 'ow=30;43'
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+[[ -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ]] || mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+
+# compinit: trust today's dump (-C skips the audit + freshness scan, ~40ms);
+# full audited rebuild at most once a day, byte-compiled in the background
+autoload -Uz compinit
+() {
+  setopt local_options extended_glob
+  local dump=$HOME/.zcompdump
+  if [[ -n $dump(#qN.mh-24) ]]; then
+    compinit -C -d $dump
+  else
+    compinit -d $dump
+    touch $dump
+    { zcompile $dump } &!
+  fi
+}
+
+# terminal tab title: cwd at the prompt, the running command during one
+autoload -Uz add-zsh-hook
+_title_precmd()  { print -Pn '\e]0;%15<..<%~%<<\a' }
+_title_preexec() { local c=${1//$'\n'/ }; print -rn $'\e]0;'"${c[1,100]}"$'\a' }
+add-zsh-hook precmd _title_precmd
+add-zsh-hook preexec _title_preexec
+
+# --- end oh-my-zsh replacement ----------------------------------------------
 
 export PATH="/Users/luke/.cargo/bin:$PATH"
 
@@ -96,10 +160,13 @@ export PATH="$PATH:/Users/luke/.local/bin"
 #   eval "$(pyenv init -)"
 # fi
 
-# mise — runtime & version manager (replaces pyenv)
-if command -v mise 1>/dev/null 2>&1; then
-  eval "$(mise activate zsh)"
-fi
+# mise — runtime & version manager (replaces pyenv). Shims instead of
+# `eval "$(mise activate zsh)"`: activation spawned mise twice per tab
+# (~140ms) and its output can't be cached (it bakes the current PATH into
+# an `export PATH=...` line). Shims cost nothing at startup and still pick
+# the right python per directory — resolved at exec time, like pyenv shims.
+# Trade-off: [env] vars in mise.toml files no longer auto-load (none used).
+[ -d "$HOME/.local/share/mise/shims" ] && export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
@@ -126,9 +193,13 @@ if [ -f '/Users/luke/Library/google-cloud-sdk/completion.zsh.inc' ]; then . '/Us
 # export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 
 # Ctrl+V (0x16) pastes clipboard text at the prompt.
-# Paired with iTerm's "Cmd+V -> Send Hex 0x16" binding so Cmd+V pastes text in
-# the shell and text+images in Claude Code. Harmless in VS Code (Cmd+V there is
-# handled by VS Code and never sends 0x16 to zsh). Replaces zsh's quoted-insert.
+# Paired with iTerm's Cmd+V -> Invoke Script Function smart_paste(...) binding
+# (~/Library/Application Support/iTerm2/Scripts/AutoLaunch/smart_paste.py):
+# text is sent as a bracketed paste; when the clipboard holds an image the
+# script sends 0x16 instead, which Claude Code turns into an image paste and
+# this widget turns into the clipboard's text form (if any) at a plain prompt.
+# Harmless in VS Code (Cmd+V there is handled by VS Code and never sends 0x16
+# to zsh). Replaces zsh's quoted-insert.
 paste-clipboard() { LBUFFER+="$(pbpaste)" }
 zle -N paste-clipboard
 bindkey '^V' paste-clipboard
@@ -149,4 +220,23 @@ nvm() {
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
   nvm "$@"
+}
+
+# Jira API token lives in the macOS Keychain (item: jira-api-token) — safe to
+# commit; the secret never appears in dotfiles. Fetched asynchronously (the
+# keychain call cost ~20-50ms of tab startup): the background process starts
+# now and zle delivers the result as soon as the line editor is up, so the
+# token is exported milliseconds after the first prompt appears.
+() {
+  local fd
+  exec {fd}< <(security find-generic-password -s jira-api-token -w 2>/dev/null)
+  _jira_token_ready() {
+    local fd=$1 tok
+    IFS= read -r tok <&$fd
+    [[ -n $tok ]] && export JIRA_API_TOKEN=$tok
+    zle -F $fd
+    exec {fd}<&-
+    unfunction _jira_token_ready
+  }
+  zle -F $fd _jira_token_ready
 }

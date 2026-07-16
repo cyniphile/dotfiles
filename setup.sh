@@ -19,7 +19,7 @@ fi
 
 # Core brew packages
 echo "Installing brew packages..."
-brew install git neovim zsh pyenv
+brew install git neovim zsh mise
 brew install ripgrep fd fzf yazi gitui lsd
 brew install fortune
 
@@ -30,12 +30,6 @@ brew install powerlevel10k
 echo "Installing fonts..."
 brew tap homebrew/cask-fonts 2>/dev/null || true
 brew install --cask font-hack-nerd-font
-
-# Oh My Zsh
-if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-    echo "Installing Oh My Zsh..."
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-fi
 
 # vim-plug for neovim
 if [[ ! -f "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim" ]]; then
@@ -89,6 +83,12 @@ link "$DOTFILES/keybindings.json" "$HOME/Library/Application Support/Code/User/k
 
 # Tools
 link "$DOTFILES/.fdignore" "$HOME/.fdignore"
+
+# iTerm2 smart_paste script (Cmd+V: bracketed-paste text, Ctrl+V for images).
+# The Cmd+V -> Invoke Script Function binding itself lives in the iTerm2 state
+# export loaded in step 3 below.
+mkdir -p "$HOME/Library/Application Support/iTerm2/Scripts/AutoLaunch"
+link "$DOTFILES/iterm2/smart_paste.py" "$HOME/Library/Application Support/iTerm2/Scripts/AutoLaunch/smart_paste.py"
 
 # Yazi - link all files
 for f in "$DOTFILES/yazi/"*; do

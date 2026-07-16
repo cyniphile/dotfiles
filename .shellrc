@@ -16,8 +16,14 @@ fi
 # https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES 
 
-export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --exclude .git'
-export FZF_DEFAULT_OPTS='--bind=tab:down,btab:up'
+# Two fd passes: shallow files (depth <= 4) stream into fzf first, the deep
+# remainder appends after. Paired with --scheme=history below (match quality
+# only, ties broken by input order), searching a project name ranks its
+# root-level files above 9-level-deep copies in docs/vendored trees, which
+# fzf's default scheme scored higher whenever the query hit the start of a
+# path component.
+export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --exclude .git --max-depth 4; fd --type file --hidden --follow --exclude .git --min-depth 5'
+export FZF_DEFAULT_OPTS='--bind=tab:down,btab:up --scheme=history'
 
 function join () {
     echo "$*"

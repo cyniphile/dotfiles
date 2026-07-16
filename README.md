@@ -15,7 +15,7 @@ git checkout macos
 
 | Config | Description |
 |--------|-------------|
-| `.zshrc` | Zsh config with oh-my-zsh, pyenv, powerlevel10k |
+| `.zshrc` | Zsh config with powerlevel10k and mise (no framework) |
 | `.vimrc` | Neovim config with vim-plug |
 | `.gitconfig` | Git settings |
 | `settings.json` | VS Code settings (vim mode) |

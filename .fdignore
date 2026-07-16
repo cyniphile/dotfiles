@@ -1,4 +1,7 @@
 *.bak
+.ServiceHub/
+.nvm/
+.codex/
 .vimbackup/
 .poetry/
 anaconda/
@@ -28,4 +31,5 @@ Downloads/
 .vscode-insiders/
 .cargo/
 .zsh_sessions/
+.claude/projects/
 */old/*

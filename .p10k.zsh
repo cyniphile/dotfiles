@@ -146,7 +146,7 @@
   # Don't show staged, unstaged, untracked indicators.
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED}_ICON=""
   # Show '碌' when there are staged, unstaged or untracked files.
-  typeset -g POWERLEVEL9K_VCS_DIRTY_ICON="%{$fg[red]%}:"
+  typeset -g POWERLEVEL9K_VCS_DIRTY_ICON="%F{red}:"
   #' ✗'
   # Show '⇣' if local branch is behind remote.
   typeset -g POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=":⇣"
