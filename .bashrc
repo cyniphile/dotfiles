@@ -1,6 +1,10 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# shared with zsh (.zshrc sources this too): fzf config, smart_open/smart_cd,
+# fzf_capped. Without it the ^p/^q bindings below call undefined functions.
+[ -e ~/.shellrc ] && . ~/.shellrc
+
 HISTCONTROL=ignoreboth:erasedups
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -41,7 +45,15 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-source ~/dotfiles/git-prompt.sh
+# git-prompt.sh was deleted from this repo in d00a856 but still sourced here,
+# so every bash session errored and PS1's __git_ps1 call below was undefined.
+# Use the copy git itself ships; the stub keeps PS1 quiet if neither is found.
+for _gp in /opt/homebrew/etc/bash_completion.d/git-prompt.sh \
+           /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh; do
+    [ -r "$_gp" ] && . "$_gp" && break
+done
+unset _gp
+command -v __git_ps1 >/dev/null 2>&1 || __git_ps1() { :; }
 export GIT_PS1_SHOWDIRTYSTATE=1
 
 
@@ -84,8 +96,8 @@ bind -m vi-command "v":""
 bind -m vi-insert "\C-l":clear-screen
 
 # fzf shortcut (cool!)
-bind -x '"\C-p": smart_open $(fzf-tmux)'
-bind -x '"\C-q": smart_cd $(fzf-tmux)'
+bind -x '"\C-p": smart_cd $(fzf_capped)'
+bind -x '"\C-q": smart_open $(fzf_capped)'
 
 #case insensitive tab completion
 bind "set completion-ignore-case on"

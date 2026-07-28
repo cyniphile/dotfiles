@@ -31,7 +31,7 @@ function y() {
 # --- oh-my-zsh replacement --------------------------------------------------
 
 bindkey -e  # explicit emacs keymap (EDITOR=nvim would otherwise pick vi mode)
-unsetopt flow_control  # don't let the tty eat ^Q/^S — the ^q smart_cd binding needs it
+unsetopt flow_control  # don't let the tty eat ^Q/^S — the ^q smart_open binding needs it
 
 # arrows search history by typed prefix; sane Home/End/Delete/word-jumps
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
@@ -127,8 +127,8 @@ fpath+=~/.zfunc
 autoload -Uz bashcompinit; bashcompinit
 
 # fzf shortcut (cool!)
-bindkey -s '^p' 'smart_open $(fzf-tmux)^M'
-bindkey -s '^q' 'smart_cd $(fzf-tmux)^M'
+bindkey -s '^p' 'smart_cd $(fzf_capped)^M'
+bindkey -s '^q' 'smart_open $(fzf_capped)^M'
 #
 
 

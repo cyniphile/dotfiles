@@ -23,7 +23,36 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # fzf's default scheme scored higher whenever the query hit the start of a
 # path component.
 export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --exclude .git --max-depth 4; fd --type file --hidden --follow --exclude .git --min-depth 5'
-export FZF_DEFAULT_OPTS='--bind=tab:down,btab:up --scheme=history'
+export FZF_DEFAULT_OPTS='--bind=tab:down,btab:up --cycle --scheme=history'
+
+# fzf has no per-query cap on matches, so a loose query ("s") matches thousands
+# of paths and --cycle wraps Tab into that low-scoring tail. This wrapper holds
+# the list to one screenful: FZF_DEFAULT_COMMAND runs once and is tee'd to a
+# snapshot, an external `fzf --filter` does the matching on each keystroke, and
+# fzf itself runs with its own matcher off (--disabled). The inner fzf inherits
+# FZF_DEFAULT_OPTS, so --scheme=history ranking is unchanged — only the tail
+# below the fold is cut. Trade-off: --disabled means no matched-char highlight.
+fzf_capped() {
+    local cache rows
+    cache="${TMPDIR:-/tmp}/fzf-capped.$$"  # one per shell, overwritten per call
+    : > "$cache"
+
+    rows="${LINES:-0}"
+    [ "$rows" -lt 1 ] && rows=$(tput lines 2>/dev/null || echo 40)
+    rows=$(( rows - 3 ))               # leave room for prompt + counter
+    [ "$rows" -lt 10 ] && rows=10
+
+    # start: stream the two fd passes straight into the list exactly as before
+    # (tee snapshots them for the filter below, so the first paint is not
+    # blocked on the deep pass finishing). </dev/null stops fzf from also
+    # running FZF_DEFAULT_COMMAND itself, which would scan twice.
+    fzf-tmux --disabled \
+        --bind "start:reload:{ $FZF_DEFAULT_COMMAND ; } | tee '$cache'" \
+        --bind "change:reload:fzf --filter={q} < '$cache' | head -n $rows" \
+        < /dev/null
+
+    rm -f "$cache"
+}
 
 function join () {
     echo "$*"
@@ -57,17 +86,15 @@ function smart_open() {
     file_dir=$(dirname "$file_path")
     cd "$file_dir" || return 1
 
-    # Determine file type
-    file_kind=$(xdg-mime query filetype "$file_path" | xargs xdg-mime query default)
-
-    if [ "$file_kind" = "sublime_text.desktop" ] || \
-       [ "$file_kind" = "" ] || \
-       [ "$file_kind" = "atom.desktop" ] || \
-       [ "$file_kind" = "gvim.desktop" ]; then
-        vi "$file_path"
-    else
-        xdg-open "$file_path" >/dev/null 2>&1 &
-    fi
+    # Text goes to the editor, everything else to the default app. (This was
+    # an xdg-mime/xdg-open test, which no macOS box has — it errored out and
+    # fell through to vi for every file type.)
+    case "$(file --mime-type -b "$file_path" 2>/dev/null)" in
+        text/*|inode/x-empty|application/json|application/xml|application/javascript)
+            vi "$file_path" ;;
+        *)
+            open "$file_path" >/dev/null 2>&1 & ;;
+    esac
 }
 
 
