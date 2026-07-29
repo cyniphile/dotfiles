@@ -11,7 +11,8 @@
       "Bash(defaults read *)",
       "Bash(osascript *)",
       "Bash(/usr/bin/time zsh -i -c exit)",
-      "Bash(/usr/bin/time zsh -c '. ~/.nvm/nvm.sh')"
+      "Bash(/usr/bin/time zsh -c '. ~/.nvm/nvm.sh')",
+      "Bash(fzf --help)"
     ]
   }
 }
