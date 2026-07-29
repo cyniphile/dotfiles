@@ -6,6 +6,21 @@ linemode = "size_and_mtime"
 show_symlink = true
 ratio = [1, 3, 4]
 
+[open]
+# Rules are first-match, and prepend_rules run ahead of yazi's built-ins.
+prepend_rules = [
+	# Zip-based application documents. Yazi's default application/zip rule
+	# sends these to `extract`, which would unzip a GraphPad .prism data file
+	# instead of handing it to Prism.
+	{ name = "*.{prism,pzfx,docx,xlsx,pptx,odt,ods,odp,pages,numbers,key,sketch}", use = [ "open", "reveal" ] },
+
+	# Text, code and markdown always go to the editor. Yazi routes on
+	# `file -bL --mime-type`, which sniffs bytes rather than names, so a
+	# minified or oddly-encoded file can come back as octet-stream and
+	# otherwise falls through to `open`.
+	{ name = "*.{txt,md,markdown,rst,org,log,csv,tsv,json,jsonl,ndjson,yaml,yml,toml,ini,cfg,conf,env,sql,sh,bash,zsh,fish,py,rb,pl,lua,vim,js,jsx,ts,tsx,mjs,cjs,c,h,cpp,hpp,cc,go,rs,java,kt,swift,r,jl,tf,prisma,html,htm,css,scss,sass,less,xml,svg,patch,diff}", use = [ "edit", "reveal" ] },
+]
+
 [preview]
 max_width = 5000
 max_height =5000

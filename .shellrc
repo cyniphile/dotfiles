@@ -86,14 +86,26 @@ function smart_open() {
     file_dir=$(dirname "$file_path")
     cd "$file_dir" || return 1
 
-    # Text goes to the editor, everything else to the default app. (This was
-    # an xdg-mime/xdg-open test, which no macOS box has — it errored out and
-    # fell through to vi for every file type.)
-    case "$(file --mime-type -b "$file_path" 2>/dev/null)" in
-        text/*|inode/x-empty|application/json|application/xml|application/javascript)
+    # Text and markup stay in the editor whatever `file` reports, since it
+    # sniffs bytes rather than names. Everything else goes to the default app:
+    # Launch Services routes on extension/UTI, not content, so it places files
+    # the sniffer gave up on (.prism -> Prism, .fcs -> its analyzer). Two
+    # exceptions: `open` would *launch* an executable, and it exits 1 when no
+    # app is registered — fall back to the editor instead of doing nothing.
+    # (This was an xdg-mime/xdg-open test, which no macOS box has, so it errored
+    # and fell through to vi for every file type.)
+    # head -1: universal binaries report one line per architecture, and a
+    # multi-line value would match nothing and fall through to `open`, which
+    # runs executables.
+    file_mime=$(file --mime-type -b "$file_path" 2>/dev/null | head -1)
+    case "$file_mime" in
+        text/*|inode/x-empty|image/svg+xml|\
+        application/json|application/xml|application/javascript)
+            vi "$file_path" ;;
+        application/x-mach-binary|application/x-executable|application/x-sharedlib)
             vi "$file_path" ;;
         *)
-            open "$file_path" >/dev/null 2>&1 & ;;
+            open "$file_path" >/dev/null 2>&1 || vi "$file_path" ;;
     esac
 }
 
