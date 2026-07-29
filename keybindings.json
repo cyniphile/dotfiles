@@ -205,7 +205,7 @@
     },
     {
         "key": "cmd+h",
-        "command": "workbench.action.terminal.focusNextPane",
+        "command": "workbench.action.terminal.focusPreviousPane",
         "when": "terminalFocus && terminalProcessSupported && isMac"
     },
     {
@@ -1089,6 +1089,112 @@
         {
             "key": "cmd+9",
             "command": "-workbench.action.lastEditorInGroup"
-        }
-        
+        },
+
+    // === iTerm2 parity (base: iTerm "Hotkey" profile key mappings) ===
+    // Window manipulation in the integrated terminal.
+    {
+        // iTerm Cmd+Shift+L: split pane right
+        "key": "cmd+shift+l",
+        "command": "workbench.action.terminal.split",
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        // iTerm Cmd+Shift+J: split pane below. VS Code panel terminals only
+        // split side-by-side, so this opens a new terminal instead
+        // (same correspondence as the existing cmd+b shift+j chord).
+        "key": "cmd+shift+j",
+        "command": "workbench.action.terminal.new",
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        // iTerm Cmd+D (default menu): split pane
+        "key": "cmd+d",
+        "command": "workbench.action.terminal.split",
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        // iTerm Cmd+Shift+W ("Close" menu override): close current pane
+        "key": "cmd+shift+w",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalFocus && isMac"
+    },
+    {
+        // iTerm Cmd+Shift+Enter: maximize active pane
+        "key": "cmd+shift+enter",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "terminalFocus && isMac"
+    },
+
+    // Cmd -> Ctrl passthrough, matching the iTerm profile's hex-code
+    // mappings (Cmd+letter sends Ctrl+letter to the shell / nvim).
+    // Cmd+R and Cmd+N already existed above; these complete the set.
+    {
+        // iTerm Cmd+A -> 0x01 (Ctrl+A)
+        "key": "cmd+a",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "\u0001" },
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        // iTerm Cmd+E -> 0x05 (Ctrl+E), plus the sidebar toggle that Cmd+E
+        // does everywhere else. toggleSidebarVisibility reveals the sidebar
+        // without stealing terminal focus, so a second Cmd+E closes it.
+        "key": "cmd+e",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                {
+                    "command": "workbench.action.terminal.sendSequence",
+                    "args": { "text": "\u0005" }
+                },
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        },
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        // iTerm Cmd+I -> 0x09 (Ctrl+I / Tab)
+        "key": "cmd+i",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "\u0009" },
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        // iTerm Cmd+P -> 0x10 (Ctrl+P)
+        "key": "cmd+p",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "\u0010" },
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        // iTerm Cmd+Q -> 0x11 (Ctrl+Q); also stops Cmd+Q quitting VS Code
+        // while the terminal is focused, like iTerm
+        "key": "cmd+q",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "\u0011" },
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        // iTerm Cmd+W -> 0x17 (Ctrl+W, nvim window prefix); also stops
+        // Cmd+W closing the active editor while the terminal is focused
+        "key": "cmd+w",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "\u0017" },
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        // iTerm Cmd+Z -> 0x1A (Ctrl+Z)
+        "key": "cmd+z",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "\u001A" },
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    },
+    {
+        // iTerm Cmd+/ -> 0x1F (Ctrl+/, nvim comment toggle)
+        "key": "cmd+/",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "\u001F" },
+        "when": "terminalFocus && terminalProcessSupported && isMac"
+    }
 ]
