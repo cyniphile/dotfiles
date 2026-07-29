@@ -43,7 +43,7 @@ After running `setup.sh`:
    ```
 
 5. **Chrome shortcuts** (optional): System Preferences > Keyboard > App Shortcuts
-   - Add Cmd+F11 for "Next Tab", Cmd+F12 for "Previous Tab"
+   - Add Cmd+F11 for "Select Previous Tab", Cmd+F12 for "Select Next Tab"
 
 6. **VS Code**: Disable press-and-hold for vim mode
    ```bash
