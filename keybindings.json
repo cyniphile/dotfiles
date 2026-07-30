@@ -1129,6 +1129,9 @@
     // Cmd -> Ctrl passthrough, matching the iTerm profile's hex-code
     // mappings (Cmd+letter sends Ctrl+letter to the shell / nvim).
     // Cmd+R and Cmd+N already existed above; these complete the set.
+    // Cmd+P is deliberately NOT passed through: it stays VS Code's Quick
+    // Open. (Ctrl+P in zsh is a bindkey -s macro that types out
+    // 'smart_cd $(fzf_capped)', so passing it through pasted text.)
     {
         // iTerm Cmd+A -> 0x01 (Ctrl+A)
         "key": "cmd+a",
@@ -1158,13 +1161,6 @@
         "key": "cmd+i",
         "command": "workbench.action.terminal.sendSequence",
         "args": { "text": "\u0009" },
-        "when": "terminalFocus && terminalProcessSupported && isMac"
-    },
-    {
-        // iTerm Cmd+P -> 0x10 (Ctrl+P)
-        "key": "cmd+p",
-        "command": "workbench.action.terminal.sendSequence",
-        "args": { "text": "\u0010" },
         "when": "terminalFocus && terminalProcessSupported && isMac"
     },
     {

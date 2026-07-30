@@ -1226,9 +1226,6 @@
     "debug.console.closeOnEnd": true,
     "debug.console.acceptSuggestionOnEnter": "on",
     "debug.terminal.clearBeforeReusing": true,
-    "terminal.integrated.commandsToSkipShell": [
-        "-workbench.action.quickOpen"
-    ],
     "python.analysis.autoImportCompletions": true,
     "python.analysis.completeFunctionParens": true,
     "python.analysis.diagnosticMode": "workspace",
