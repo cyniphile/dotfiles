@@ -26,6 +26,10 @@ brew install fortune
 # Powerlevel10k
 brew install powerlevel10k
 
+# GUI apps
+echo "Installing apps..."
+brew install --cask rectangle
+
 # Fonts
 echo "Installing fonts..."
 brew tap homebrew/cask-fonts 2>/dev/null || true
@@ -84,11 +88,14 @@ link "$DOTFILES/keybindings.json" "$HOME/Library/Application Support/Code/User/k
 # Tools
 link "$DOTFILES/.fdignore" "$HOME/.fdignore"
 
-# iTerm2 smart_paste script (Cmd+V: bracketed-paste text, Ctrl+V for images).
-# The Cmd+V -> Invoke Script Function binding itself lives in the iTerm2 state
+# iTerm2 AutoLaunch scripts:
+#   smart_paste  - Cmd+V: bracketed-paste text, Ctrl+V for images
+#   snap_window  - Cmd+Opt+Left/Right/Up: hotkey window to half screen or full
+# The Invoke Script Function bindings themselves live in the iTerm2 state
 # export loaded in step 3 below.
 mkdir -p "$HOME/Library/Application Support/iTerm2/Scripts/AutoLaunch"
 link "$DOTFILES/iterm2/smart_paste.py" "$HOME/Library/Application Support/iTerm2/Scripts/AutoLaunch/smart_paste.py"
+link "$DOTFILES/iterm2/snap_window.py" "$HOME/Library/Application Support/iTerm2/Scripts/AutoLaunch/snap_window.py"
 
 # Yazi - link all files
 for f in "$DOTFILES/yazi/"*; do
@@ -136,5 +143,6 @@ echo "Next steps:"
 echo "1. Restart your terminal or run: source ~/.zshrc"
 echo "2. Open nvim and run :PlugInstall"
 echo "3. Load iTerm2 state from: $DOTFILES/iTerm2 State.itermexport"
-echo "4. Install Google Sans Code font manually"
+echo "4. Import Rectangle config from: $DOTFILES/RectangleConfig.json"
+echo "5. Install Google Sans Code font manually"
 echo ""
