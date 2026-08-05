@@ -9,10 +9,15 @@ Bind keys (Profiles > Keys) to:
     Invoke Script Function -> snap_window_full(session_id: session.id)
 
 The Hotkey profile's own style stays "Full Screen", so F12 opens the window
-exactly as before; these bindings only reshape it afterwards. A full-screen
-window ignores frame changes, so a half-snap leaves full screen first. That
-rebuilds the window around the same sessions, which invalidates the window
-handle — hence the settle and the second lookup by session id.
+exactly as before; these bindings only reshape it afterwards. That style is
+iTerm's own full screen, not macOS native full screen: async_get_fullscreen
+reports False for it and it accepts frames directly, so snapping back to full
+means filling the visible frame, not calling async_set_fullscreen (which would
+push the window into a native full-screen Space of its own).
+
+A natively full-screen window does ignore frame changes, so leave that first.
+Doing so rebuilds the window around the same sessions and invalidates the
+window handle — hence the settle and the second lookup by session id.
 
 Screen geometry comes from NSScreen (PyObjC ships in the iTerm2 Python
 runtime); the API exposes no screen accessor. NSScreen and iterm2.Frame share
@@ -56,13 +61,7 @@ async def snap(app, session_id, side):
     if window is None:
         return
 
-    fullscreen = await window.async_get_fullscreen()
-    if side is None:
-        if not fullscreen:
-            await window.async_set_fullscreen(True)
-        return
-
-    if fullscreen:
+    if await window.async_get_fullscreen():
         await window.async_set_fullscreen(False)
         await asyncio.sleep(EXIT_FULLSCREEN_SETTLE)
         window = window_for_session(app, session_id)
@@ -70,7 +69,7 @@ async def snap(app, session_id, side):
             return
 
     visible = screen_containing(await window.async_get_frame()).visibleFrame()
-    width = visible.size.width / 2
+    width = visible.size.width if side is None else visible.size.width / 2
     x = visible.origin.x + (width if side == "right" else 0)
     await window.async_set_frame(iterm2.Frame(
         origin=iterm2.Point(x, visible.origin.y),
