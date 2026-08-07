@@ -23,6 +23,11 @@ run = "plugin bookmarks delete_all"
 desc = "Delete all bookmarks"
 
 [[mgr.prepend_keymap]]
+on = "<F2>"
+run = "rename --cursor=before_ext"
+desc = "Rename selected file"
+
+[[mgr.prepend_keymap]]
 on = "<C-w>"
 run = "close"
 
