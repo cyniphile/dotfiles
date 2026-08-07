@@ -169,7 +169,8 @@ export PATH="$PATH:/Users/luke/.local/bin"
 [ -d "$HOME/.local/share/mise/shims" ] && export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+# Theme comes from `brew install powerlevel10k` (see setup.sh), not a manual clone.
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 export EDITOR='nvim'
 

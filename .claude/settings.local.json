@@ -12,7 +12,14 @@
       "Bash(osascript *)",
       "Bash(/usr/bin/time zsh -i -c exit)",
       "Bash(/usr/bin/time zsh -c '. ~/.nvm/nvm.sh')",
-      "Bash(fzf --help)"
+      "Bash(fzf --help)",
+      "Bash(brew list *)",
+      "Read(//opt/homebrew/Cellar/powerlevel10k/1.20.0/share/powerlevel10k/**)",
+      "Bash(git -C /Users/luke/powerlevel10k log -1 --format='%h %ad %s' --date=short)",
+      "Bash(git -C /Users/luke/powerlevel10k status --porcelain)",
+      "Bash(git -C /Users/luke/powerlevel10k status --porcelain --untracked-files=all)",
+      "Bash(brew outdated *)",
+      "Read(//opt/homebrew/Cellar/powerlevel10k/**)"
     ]
   }
 }

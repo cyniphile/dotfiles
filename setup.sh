@@ -23,8 +23,10 @@ brew install git neovim zsh mise
 brew install ripgrep fd fzf yazi gitui lsd
 brew install fortune
 
-# Powerlevel10k
-brew install powerlevel10k
+# Powerlevel10k. --HEAD because upstream stopped tagging releases after v1.20.0
+# (Feb 2024) while master stayed maintained; the stable bottle is stuck on an
+# older build. Update with: brew upgrade --fetch-HEAD powerlevel10k
+brew install --HEAD powerlevel10k
 
 # GUI apps
 echo "Installing apps..."
