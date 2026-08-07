@@ -105,6 +105,38 @@ for f in "$DOTFILES/yazi/"*; do
     link "$f" "$HOME/.config/yazi/$fname"
 done
 
+# Rectangle. Deliberately a copy, not a link: Rectangle reads
+# ~/Library/Application Support/Rectangle/RectangleConfig.json once at launch
+# and then renames it with a timestamp so it isn't reapplied, and it refuses
+# outright to load a config that is a symlink or world-writable. So the file has
+# to be a private copy Rectangle is free to consume. Re-run setup.sh after
+# editing RectangleConfig.json.
+echo "Applying Rectangle config..."
+RECTANGLE_SUPPORT="$HOME/Library/Application Support/Rectangle"
+mkdir -p "$RECTANGLE_SUPPORT"
+install -m 600 "$DOTFILES/RectangleConfig.json" "$RECTANGLE_SUPPORT/RectangleConfig.json"
+if pgrep -x Rectangle >/dev/null; then
+    killall Rectangle
+    sleep 1
+fi
+open -a Rectangle
+# The launch that imports the config writes the new prefs but keeps the hotkeys
+# it registered at startup, so nothing is bound until Rectangle is launched
+# again. Wait for the import (the file disappearing under its own rename) and
+# then restart.
+for _ in $(seq 30); do
+    [[ -f "$RECTANGLE_SUPPORT/RectangleConfig.json" ]] || break
+    sleep 1
+done
+if [[ -f "$RECTANGLE_SUPPORT/RectangleConfig.json" ]]; then
+    echo "  Rectangle hasn't imported it yet — approve its prompt, then restart Rectangle"
+else
+    killall Rectangle 2>/dev/null || true
+    sleep 1
+    open -a Rectangle
+    echo "  Imported and reloaded"
+fi
+
 # fzf keybindings
 echo "Setting up fzf..."
 $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
@@ -145,6 +177,5 @@ echo "Next steps:"
 echo "1. Restart your terminal or run: source ~/.zshrc"
 echo "2. Open nvim and run :PlugInstall"
 echo "3. Load iTerm2 state from: $DOTFILES/iTerm2 State.itermexport"
-echo "4. Import Rectangle config from: $DOTFILES/RectangleConfig.json"
-echo "5. Install Google Sans Code font manually"
+echo "4. Install Google Sans Code font manually"
 echo ""
