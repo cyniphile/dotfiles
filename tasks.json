@@ -1,0 +1,37 @@
+// VS Code User-level tasks, symlinked to
+// ~/Library/Application Support/Code/User/tasks.json — available in every
+// workspace, no per-project .vscode/tasks.json required.
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            // Bound to cmd+o in the editor (see keybindings.json). Hands the
+            // active file to LaunchServices, so it opens in whatever app is
+            // registered for that extension — .html in Chrome, .pdf in Preview.
+            "label": "Open in default app",
+            "type": "shell",
+            "command": "open \"${file}\"",
+            // Bypass the interactive-shell startup cost; `open` is in /usr/bin,
+            // so no rc file is needed to find it.
+            "options": {
+                "shell": {
+                    "executable": "/bin/zsh",
+                    "args": ["-c"]
+                }
+            },
+            // An empty matcher stops VS Code prompting "scan the task output"
+            // on first run; the presentation block keeps the panel from ever
+            // stealing focus for a command that finishes instantly.
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "never",
+                "revealProblems": "never",
+                "echo": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true,
+                "close": true
+            }
+        }
+    ]
+}

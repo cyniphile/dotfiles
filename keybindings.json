@@ -950,7 +950,19 @@
     //     "command": "editor.action.triggerParameterHints",
     //     "when": "editorTextFocus && !suggestWidgetVisible"
     // },
+    // cmd+o is split by focus, and the two conditions are exact complements, so
+    // the stock "Open File..." dialog never gets a look in.
     {
+        // In the editor: hand the file to LaunchServices, which opens it in
+        // whatever app owns the extension (.html -> Chrome, .pdf -> Preview).
+        // The work is done by the User task of the same name in tasks.json.
+        "key": "cmd+o",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Open in default app",
+        "when": "editorFocus"
+    },
+    {
+        // Everywhere else (explorer, panels): reveal in Finder.
         "key": "cmd+o",
         "command": "revealFileInOS",
         "when": "!editorFocus"

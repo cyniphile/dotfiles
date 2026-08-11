@@ -86,6 +86,7 @@ link "$DOTFILES/.vimrc" "$HOME/.config/nvim/init.vim"
 # VS Code
 link "$DOTFILES/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 link "$DOTFILES/keybindings.json" "$HOME/Library/Application Support/Code/User/keybindings.json"
+link "$DOTFILES/tasks.json" "$HOME/Library/Application Support/Code/User/tasks.json"
 
 # Tools
 link "$DOTFILES/.fdignore" "$HOME/.fdignore"
