@@ -82,8 +82,14 @@ nmap <F5> :setlocal spell! spelllang=en_us<CR>
 set nospell
 
 
-"au BufRead,BufNewFile *.md setlocal textwidth=80
-"au BufRead,BufNewFile *.markdown setlocal textwidth=80
+" Prose: soft-wrap at word boundaries, continuing at the line's own indent
+" (list items align under their text) plus a marker so a wrap reads as a wrap.
+augroup prose_wrap
+    autocmd!
+    autocmd FileType markdown,vimwiki,text setlocal wrap linebreak breakindent breakindentopt=list:-1,shift:2,sbr
+    autocmd FileType markdown,vimwiki,text let &l:showbreak = '↳ '
+    autocmd FileType markdown,vimwiki,text let &l:formatlistpat = '^\s*[-*+]\s\+\|^\s*\d\+[.)]\s\+'
+augroup END
 
 " agvim/ripgrep
 let g:ackprg = 'rg --vimgrep --no-heading'
