@@ -16,3 +16,9 @@ Session.vim
 luke_scratch/
 
 **/.claude/settings.local.json
+
+# ~/.claude/settings.json is deliberately untracked: Claude Code writes an
+# autoMode block into it naming private repos, internal domains and buckets,
+# and this repo is public. setup.sh registers the hooks in it instead.
+claude/settings.json
+claude/settings.local.json

@@ -21,6 +21,7 @@ fi
 echo "Installing brew packages..."
 brew install git neovim zsh mise
 brew install ripgrep fd fzf yazi gitui lsd
+brew install jq                 # the Claude Code worktree hook parses its payload with jq
 brew install fortune
 
 # Powerlevel10k. --HEAD because upstream stopped tagging releases after v1.20.0
@@ -49,6 +50,7 @@ echo "Creating directories..."
 mkdir -p "$HOME/.config/nvim"
 mkdir -p "$HOME/.config/yazi"
 mkdir -p "$HOME/.config/git"
+mkdir -p "$HOME/.claude"
 mkdir -p "$HOME/Library/Application Support/Code/User"
 
 # Symlinks
@@ -83,6 +85,11 @@ link "$DOTFILES/key_config.ron" "$HOME/.config/git/key_bindings.ron"
 # Vim/Neovim
 link "$DOTFILES/.vimrc" "$HOME/.config/nvim/init.vim"
 link "$DOTFILES/nvim/after" "$HOME/.config/nvim/after"
+
+# Claude Code. settings.json is deliberately absent — see the hook step below.
+link "$DOTFILES/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+link "$DOTFILES/claude/keybindings.json" "$HOME/.claude/keybindings.json"
+link "$DOTFILES/claude/hooks" "$HOME/.claude/hooks"
 
 # VS Code
 link "$DOTFILES/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
@@ -143,34 +150,55 @@ fi
 echo "Setting up fzf..."
 $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
 
-# Claude Code notification hook
-echo "Setting up Claude Code hooks..."
-mkdir -p "$HOME/.claude"
-if [[ ! -f "$HOME/.claude/settings.json" ]]; then
-    cat > "$HOME/.claude/settings.json" << 'EOF'
-{
-  "hooks": {
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "terminal-notifier -message 'Claude Code needs your input' -title 'Claude Code' -sound Basso"
-          }
-        ]
-      }
-    ]
-  }
-}
-EOF
-    echo "  Created Claude Code notification hook"
-else
-    echo "  Claude Code settings already exist, skipping"
-fi
-
-# Install terminal-notifier for Claude notifications
+# Install terminal-notifier for the Claude Code Stop/Notification hooks
 brew install terminal-notifier 2>/dev/null || true
+
+# Claude Code: register the worktree hook.
+#
+# ~/.claude/settings.json is NOT tracked or symlinked. Claude Code writes an
+# autoMode block into it that names private repos, internal domains and
+# buckets, and this repo is public. So merge the one entry that depends on a
+# tracked file instead of shipping the whole file. Idempotent: re-running
+# replaces the entry rather than appending a duplicate.
+echo "Registering the Claude Code worktree hook..."
+CLAUDE_SETTINGS="$HOME/.claude/settings.json"
+if [[ ! -f "$CLAUDE_SETTINGS" ]]; then
+    echo '{}' > "$CLAUDE_SETTINGS"
+    chmod 600 "$CLAUDE_SETTINGS"      # Claude Code's own mode for this file
+fi
+python3 - "$CLAUDE_SETTINGS" << 'EOF'
+import json, sys
+
+path = sys.argv[1]
+with open(path) as f:
+    settings = json.load(f)
+
+entry = {
+    "matcher": "Bash",
+    "hooks": [{"type": "command",
+               "command": '"$HOME/.claude/hooks/block-flat-worktrees.sh"'}],
+}
+hooks = settings.setdefault("hooks", {})
+pre = [e for e in hooks.get("PreToolUse", [])
+       if "block-flat-worktrees" not in json.dumps(e)]
+hooks["PreToolUse"] = pre + [entry]
+
+with open(path, "w") as f:
+    json.dump(settings, f, indent=2)
+    f.write("\n")
+print("  PreToolUse/Bash -> ~/.claude/hooks/block-flat-worktrees.sh")
+EOF
+
+# Ganymede skill. Its own repo, so it is cloned rather than vendored here.
+GANYMEDE_SKILL="$HOME/.claude/skills/ganymede"
+if [[ -d "$GANYMEDE_SKILL/.git" ]]; then
+    echo "  Ganymede skill already cloned"
+else
+    echo "Cloning the Ganymede skill..."
+    mkdir -p "$HOME/.claude/skills"
+    git clone git@github.com:Ganymede-Bio/ganymede-skills.git "$GANYMEDE_SKILL" \
+        || echo "  Clone failed — needs an SSH key with access to Ganymede-Bio"
+fi
 
 echo ""
 echo "=== Setup Complete ==="
