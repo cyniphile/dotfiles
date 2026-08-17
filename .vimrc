@@ -105,6 +105,10 @@ augroup prose_wrap
     autocmd FileType markdown,vimwiki,text setlocal formatoptions-=t formatoptions-=a
     autocmd FileType markdown,vimwiki,text let &l:showbreak = '↳ '
     autocmd FileType markdown,vimwiki,text let &l:formatlistpat = '^\s*[-*+]\s\+\|^\s*\d\+[.)]\s\+'
+    " Hide link plumbing: [text](url) collapses to text, and a bare URL keeps its
+    " first g:markdown_url_keep characters then '…' (nvim/after/syntax/markdown.vim).
+    " 'concealcursor' stays empty, so the line under the cursor reveals the raw text.
+    autocmd FileType markdown,vimwiki setlocal conceallevel=2 concealcursor=
     autocmd FileType markdown,vimwiki,text call s:ProseTextwidth()
     autocmd VimResized,WinEnter,BufWinEnter * call s:ProseTextwidth()
 augroup END

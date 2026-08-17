@@ -82,6 +82,7 @@ link "$DOTFILES/key_config.ron" "$HOME/.config/git/key_bindings.ron"
 
 # Vim/Neovim
 link "$DOTFILES/.vimrc" "$HOME/.config/nvim/init.vim"
+link "$DOTFILES/nvim/after" "$HOME/.config/nvim/after"
 
 # VS Code
 link "$DOTFILES/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
