@@ -84,11 +84,29 @@ set nospell
 
 " Prose: soft-wrap at word boundaries, continuing at the line's own indent
 " (list items align under their text) plus a marker so a wrap reads as a wrap.
+" Reflowing with gq/gw falls back to a hard 79-column cap when 'textwidth' is 0,
+" so track the window's text area instead. 't' comes out of 'formatoptions' so
+" typing still only soft-wraps; nothing hard-wraps until an explicit gq.
+let s:prose_filetypes = ['markdown', 'vimwiki', 'text']
+
+function! s:ProseTextwidth() abort
+    if index(s:prose_filetypes, &filetype) < 0
+        return
+    endif
+    " winwidth() counts the number/sign/fold gutters; textoff is their width.
+    let l:info = getwininfo(win_getid())
+    let l:gutter = empty(l:info) ? 0 : get(l:info[0], 'textoff', 0)
+    let &l:textwidth = max([40, winwidth(0) - l:gutter])
+endfunction
+
 augroup prose_wrap
     autocmd!
     autocmd FileType markdown,vimwiki,text setlocal wrap linebreak breakindent breakindentopt=list:-1,shift:2,sbr
+    autocmd FileType markdown,vimwiki,text setlocal formatoptions-=t formatoptions-=a
     autocmd FileType markdown,vimwiki,text let &l:showbreak = '↳ '
     autocmd FileType markdown,vimwiki,text let &l:formatlistpat = '^\s*[-*+]\s\+\|^\s*\d\+[.)]\s\+'
+    autocmd FileType markdown,vimwiki,text call s:ProseTextwidth()
+    autocmd VimResized,WinEnter,BufWinEnter * call s:ProseTextwidth()
 augroup END
 
 " agvim/ripgrep
