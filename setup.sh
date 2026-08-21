@@ -102,11 +102,16 @@ link "$DOTFILES/.fdignore" "$HOME/.fdignore"
 # iTerm2 AutoLaunch scripts:
 #   smart_paste  - Cmd+V: bracketed-paste text, Ctrl+V for images
 #   snap_window  - Cmd+Opt+Left/Right/Up: hotkey window to half screen or full
+#   keymaps      - writes the Cmd chords in iterm2/keymaps.json into the Hotkey
+#                  profile, as CSI-u escape sequences that nvim reads as
+#                  <D-...> keys. Runs at every launch, so the profile follows
+#                  the file.
 # The Invoke Script Function bindings themselves live in the iTerm2 state
 # export loaded in step 3 below.
 mkdir -p "$HOME/Library/Application Support/iTerm2/Scripts/AutoLaunch"
 link "$DOTFILES/iterm2/smart_paste.py" "$HOME/Library/Application Support/iTerm2/Scripts/AutoLaunch/smart_paste.py"
 link "$DOTFILES/iterm2/snap_window.py" "$HOME/Library/Application Support/iTerm2/Scripts/AutoLaunch/snap_window.py"
+link "$DOTFILES/iterm2/keymaps.py" "$HOME/Library/Application Support/iTerm2/Scripts/AutoLaunch/keymaps.py"
 
 # Yazi - link all files
 for f in "$DOTFILES/yazi/"*; do
@@ -207,5 +212,7 @@ echo "Next steps:"
 echo "1. Restart your terminal or run: source ~/.zshrc"
 echo "2. Open nvim and run :PlugInstall"
 echo "3. Load iTerm2 state from: $DOTFILES/iTerm2 State.itermexport"
+echo "   Then run Scripts > AutoLaunch > keymaps, or relaunch iTerm2, to"
+echo "   install the Cmd chords that nvim reads as <D-...> keys"
 echo "4. Install Google Sans Code font manually"
 echo ""

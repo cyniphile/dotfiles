@@ -136,6 +136,44 @@ nmap <C-w> <Esc>:q<Enter>
 silent! nunmap <C-w>d
 silent! nunmap <C-w><C-d>
 
+" VS Code parity: Cmd+Opt+C yanks the file's full path (copyFilePath).
+" A terminal has no Cmd key of its own, so iTerm2's Hotkey profile maps the
+" chord to the escape sequence "[99;11u" - CSI-u for 'c' (99) held with
+" super+alt (1+8+2) - which nvim decodes as <D-M-c>. Send further Cmd chords
+" the same way rather than as hex codes: a hex code spends a Ctrl key that
+" nvim then cannot use for anything else.
+function! s:CopyPath(modifier) abort
+    if empty(bufname('%'))
+        echohl WarningMsg | echo 'No file name' | echohl NONE
+        return
+    endif
+    let l:path = expand('%' . a:modifier)
+    let @+ = l:path
+    let @* = l:path
+    echo l:path
+endfunction
+
+nnoremap <silent> <D-M-c> :call <SID>CopyPath(':p')<CR>
+inoremap <silent> <D-M-c> <C-o>:call <SID>CopyPath(':p')<CR>
+
+" Cmd+Opt+Shift+C yanks the path relative to the working directory
+" (copyRelativeFilePath). vim-rooter holds that at the project root, so it
+" reads like VS Code's workspace-relative path. nvim folds Shift into the
+" letter's case, so this chord is <D-M-C>, never <D-M-S-c>.
+nnoremap <silent> <D-M-C> :call <SID>CopyPath(':.')<CR>
+inoremap <silent> <D-M-C> <C-o>:call <SID>CopyPath(':.')<CR>
+
+" Cmd+S writes the buffer, and from insert mode leaves you still typing.
+nnoremap <silent> <D-s> :w<CR>
+inoremap <silent> <D-s> <C-o>:w<CR>
+
+" Cmd+F searches the buffer; Cmd+Shift+F searches the tree with Ack.
+nnoremap <D-f> /
+inoremap <D-f> <Esc>/
+nnoremap <D-F> :Ack!<Space>
+
+
+
 " autowrite on buffer focus lost"
 let g:airline_section_z = '%t'
 let g:airline_section_c = ''
