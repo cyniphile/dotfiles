@@ -455,8 +455,12 @@ set rtp^="/Users/luke/.opam/default/share/ocp-indent/vim"
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-"  overwrite `s` to mean “surround the word under cursor”
-nnoremap s <Plug>Ysurroundiw
+" vim-surround on `s`: the word under the cursor in Normal mode, the selection
+" in Visual mode. Both must be `map`, not `noremap` — a <Plug> right-hand side
+" only does anything when the mapping is allowed to remap it.
+" Visual `s` (substitute the selection) is lost; `c` already does that job.
+nmap s <Plug>Ysurroundiw
+xmap s <Plug>VSurround
 
 " In visual mode, Space moves to the end of the current line
 vnoremap <Space> $h
