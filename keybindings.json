@@ -1140,6 +1140,18 @@
         "when": "terminalFocus && terminalProcessSupported && isMac"
     },
     {
+        // Must come before the rule below, and must be unconditional.
+        // window.titleBarStyle is "native", so File > "Close Window" is a real
+        // macOS menu item, and it takes its Cmd+Shift+W accelerator from this
+        // default binding. macOS gives a menu accelerator the key before the
+        // workbench ever sees it, so the terminal rule below could never run:
+        // the whole window closed whatever had focus. Dropping the default
+        // strips the accelerator off the menu item, which then still works by
+        // click, and lets the key reach the terminal.
+        "key": "cmd+shift+w",
+        "command": "-workbench.action.closeWindow"
+    },
+    {
         // iTerm Cmd+Shift+W ("Close" menu override): close current pane
         "key": "cmd+shift+w",
         "command": "workbench.action.terminal.kill",
