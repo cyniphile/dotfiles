@@ -131,6 +131,32 @@ function smart_cd() {
    rm -f -- "$tmp"
 }
 
+# Fuzzy-pick a Project Manager project and open it in VS Code.
+# For the case the keybinding cannot cover: no VS Code window is open yet, so
+# there is no warm window to launch from. Handing the folder to the CLI skips
+# the empty window entirely, so the extension host never has to load before the
+# project is chosen.
+# The list comes from Project Manager's own store, so it stays identical to the
+# in-editor picker with no second list to keep in sync.
+# `code <folder>` rather than `code -n`: it still gets a new window (the default
+# for window.openFoldersInNewWindow), but it focuses the project's window when
+# one is already open instead of making a duplicate.
+function proj() {
+    local store choice
+    store="$HOME/Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json"
+    if [ ! -f "$store" ]; then
+        echo "no Project Manager store at $store"
+        return 1
+    fi
+    # Kept tab-delimited rather than run through `column`: the path is taken as
+    # everything after the tab, so a project path with a space in it survives.
+    choice=$(jq -r '.[] | select(.enabled != false) | "\(.name)\t\(.rootPath)"' "$store" \
+        | fzf --height 40% --reverse --delimiter=$'\t' --nth=1,2 \
+              --query "$*" --select-1 --exit-0) || return 1
+    [ -n "$choice" ] || return 1
+    code -- "${choice#*$'\t'}"
+}
+
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 PATH="/usr/local/bin/ctags:$PATH"

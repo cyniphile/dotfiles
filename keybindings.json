@@ -636,6 +636,20 @@
         "command": "projectManager.listProjects",
         "when": "isMac"
     },
+    // Switch to a project in a *new* window from the window you are already in.
+    // Project Manager activates on "onStartupFinished", so in a fresh empty
+    // window its picker stays dead until all ~113 extensions settle. Opening the
+    // new window from a warm one skips that wait entirely.
+    {
+        "key": "ctrl+b n",
+        "command": "projectManager.listProjectsNewWindow",
+        "when": "isWindows"
+    },
+    {
+        "key": "cmd+b n",
+        "command": "projectManager.listProjectsNewWindow",
+        "when": "isMac"
+    },
     {
         "key": "shift+alt+p",
         "command": "-projectManager.listProjects"
