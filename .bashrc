@@ -98,6 +98,8 @@ bind -m vi-insert "\C-l":clear-screen
 # fzf shortcut (cool!)
 bind -x '"\C-p": smart_cd $(fzf_capped)'
 bind -x '"\C-q": smart_open $(fzf_capped)'
+# Cmd+Shift+P, sent as CSI u by the iTerm2 profile — see iterm2/keymaps.json
+bind -x '"\e[112;10u": smart_cd $(fzf_capped_hidden)'
 
 #case insensitive tab completion
 bind "set completion-ignore-case on"

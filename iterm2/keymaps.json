@@ -5,6 +5,7 @@
         {"chord": "Cmd+Opt+Shift+C", "nvim": "<D-M-C>", "does": "yank the path relative to the project root"},
         {"chord": "Cmd+S",           "nvim": "<D-s>",   "does": "write the buffer"},
         {"chord": "Cmd+F",           "nvim": "<D-f>",   "does": "search the buffer"},
-        {"chord": "Cmd+Shift+F",     "nvim": "<D-F>",   "does": "search the tree with Ack"}
+        {"chord": "Cmd+Shift+F",     "nvim": "<D-F>",   "does": "search the tree with Ack"},
+        {"chord": "Cmd+Shift+P",     "shell": "^[[112;10u", "does": "fzf over the hidden files too, then smart_cd (.zshrc/.bashrc)"}
     ]
 }

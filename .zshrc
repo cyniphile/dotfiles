@@ -129,6 +129,11 @@ autoload -Uz bashcompinit; bashcompinit
 # fzf shortcut (cool!)
 bindkey -s '^p' 'smart_cd $(fzf_capped)^M'
 bindkey -s '^q' 'smart_open $(fzf_capped)^M'
+# Cmd+Shift+P: the same picker with the hidden files added. It arrives as the
+# CSI-u form of the chord (ESC [ 112 ; 10 u = 'p' + shift(1) + cmd(8) + 1),
+# written into the iTerm2 profile from iterm2/keymaps.json, so it costs no
+# control key the way ^p and ^q do.
+bindkey -s '^[[112;10u' 'smart_cd $(fzf_capped_hidden)^M'
 #
 
 

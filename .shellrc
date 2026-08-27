@@ -22,7 +22,17 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # root-level files above 9-level-deep copies in docs/vendored trees, which
 # fzf's default scheme scored higher whenever the query hit the start of a
 # path component.
-export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --exclude .git --max-depth 4; fd --type file --hidden --follow --exclude .git --min-depth 5'
+#
+# Hidden files are held back for a second list. A few are worth finding
+# (.zshrc, .gitconfig, .github/), but the caches and state dirs around them
+# outnumber those by far: even with .fdignore pruning the worst trees,
+# --hidden added ~2300 paths to the shallow pass in ~ and took twice as long.
+# So the default list leaves them out and fzf_capped_hidden puts them back,
+# on Cmd+Shift+P. .fdignore applies to both.
+_fzf_fd='--type file --follow --exclude .git'
+export FZF_DEFAULT_COMMAND="fd $_fzf_fd --max-depth 4; fd $_fzf_fd --min-depth 5"
+export FZF_HIDDEN_COMMAND="fd --hidden $_fzf_fd --max-depth 4; fd --hidden $_fzf_fd --min-depth 5"
+unset _fzf_fd
 export FZF_DEFAULT_OPTS='--bind=tab:down,btab:up --cycle --scheme=history'
 
 # fzf has no per-query cap on matches, so a loose query ("s") matches thousands
@@ -32,8 +42,12 @@ export FZF_DEFAULT_OPTS='--bind=tab:down,btab:up --cycle --scheme=history'
 # fzf itself runs with its own matcher off (--disabled). The inner fzf inherits
 # FZF_DEFAULT_OPTS, so --scheme=history ranking is unchanged — only the tail
 # below the fold is cut. Trade-off: --disabled means no matched-char highlight.
+#
+# $1 is the command that lists the files, so the same picker serves the
+# hidden-free default and FZF_HIDDEN_COMMAND.
 fzf_capped() {
-    local cache rows
+    local cache rows src
+    src="${1:-$FZF_DEFAULT_COMMAND}"
     cache="${TMPDIR:-/tmp}/fzf-capped.$$"  # one per shell, overwritten per call
     : > "$cache"
 
@@ -47,11 +61,17 @@ fzf_capped() {
     # blocked on the deep pass finishing). </dev/null stops fzf from also
     # running FZF_DEFAULT_COMMAND itself, which would scan twice.
     fzf-tmux --disabled \
-        --bind "start:reload:{ $FZF_DEFAULT_COMMAND ; } | tee '$cache'" \
+        --bind "start:reload:{ $src ; } | tee '$cache'" \
         --bind "change:reload:fzf --filter={q} < '$cache' | head -n $rows" \
         < /dev/null
 
     rm -f "$cache"
+}
+
+# The same picker over the hidden files as well. Bound to Cmd+Shift+P, beside
+# Cmd+P's hidden-free list; .fdignore still keeps the cache trees out.
+fzf_capped_hidden() {
+    fzf_capped "$FZF_HIDDEN_COMMAND"
 }
 
 function join () {

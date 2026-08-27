@@ -32,4 +32,15 @@ Downloads/
 .cargo/
 .zsh_sessions/
 .claude/projects/
+.claude/file-history/
+.claude/paste-cache/
 */old/*
+
+# runtimes and build caches under hidden dirs — these, with file-history/
+# and paste-cache/ above, drop ~272k of the 369k files that the hidden-file
+# picker (Cmd+Shift+P) would otherwise list in ~
+.config/iterm2/AppSupport/iterm2env*/
+.local/share/uv/
+.local/share/mise/
+.pytensor/
+.android/cache/

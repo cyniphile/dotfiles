@@ -104,8 +104,8 @@ link "$DOTFILES/.fdignore" "$HOME/.fdignore"
 #   snap_window  - Cmd+Opt+Left/Right/Up: hotkey window to half screen or full
 #   keymaps      - writes the Cmd chords in iterm2/keymaps.json into the Hotkey
 #                  profile, as CSI-u escape sequences that nvim reads as
-#                  <D-...> keys. Runs at every launch, so the profile follows
-#                  the file.
+#                  <D-...> keys and the shell binds raw (Cmd+Shift+P). Runs at
+#                  every launch, so the profile follows the file.
 # The Invoke Script Function bindings themselves live in the iTerm2 state
 # export loaded in step 3 below.
 mkdir -p "$HOME/Library/Application Support/iTerm2/Scripts/AutoLaunch"
@@ -213,6 +213,6 @@ echo "1. Restart your terminal or run: source ~/.zshrc"
 echo "2. Open nvim and run :PlugInstall"
 echo "3. Load iTerm2 state from: $DOTFILES/iTerm2 State.itermexport"
 echo "   Then run Scripts > AutoLaunch > keymaps, or relaunch iTerm2, to"
-echo "   install the Cmd chords that nvim reads as <D-...> keys"
+echo "   install the Cmd chords nvim and the shell read as <D-...> keys"
 echo "4. Install Google Sans Code font manually"
 echo ""

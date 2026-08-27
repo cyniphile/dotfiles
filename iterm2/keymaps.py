@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-keymaps - hand nvim the Cmd chords that VS Code uses.
+keymaps - hand the terminal the Cmd chords that VS Code uses.
 
-A terminal has no Cmd key, so a Cmd chord reaches nvim only as an escape
-sequence. Each chord in keymaps.json becomes one profile key mapping that sends
-the chord in CSI-u form:
+A terminal has no Cmd key, so a Cmd chord reaches nvim (or the shell) only as
+an escape sequence. Each chord in keymaps.json becomes one profile key mapping
+that sends the chord in CSI-u form:
 
     Cmd+Opt+C  ->  ESC [99;11u  ->  nvim reads <D-M-c>
 
 99 is 'c'; 11 is 1 + alt(2) + super(8). nvim 0.11 decodes CSI u by itself, so
-the chord arrives as a real <D-...> key. That is why this is better than the
-hex codes the profile also holds: Cmd+A -> 0x01 spends Ctrl+A forever, while a
-CSI-u sequence spends nothing.
+the chord arrives as a real <D-...> key; zsh and bash bind the raw sequence.
+That is why this is better than the hex codes the profile also holds: Cmd+A ->
+0x01 spends Ctrl+A forever, while a CSI-u sequence spends nothing.
 
 The GUI calls the matching action "Send Escape Sequence". This writes it as
 "Send Hex Code" instead: a hex code states every byte, and its action id is the
