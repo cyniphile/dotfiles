@@ -177,6 +177,142 @@ function proj() {
     code -- "${choice#*$'\t'}"
 }
 
+# Generate a password. The bytes come from /dev/urandom, the kernel CSPRNG, so
+# the result does not depend on $RANDOM, the clock or the pid — $RANDOM is
+# seeded per shell and the other two are guessable after the fact.
+#
+# `tr -dc` is rejection sampling, not a modulo fold: a byte outside the
+# alphabet is dropped rather than wrapped back into it, so every character
+# stays equally likely. `$RANDOM % 62`, `awk rand()` and `sort -R` all lean on
+# the low end of the alphabet, and only the first of the three looks wrong.
+#
+# Nothing is installed for this and nothing leaves the machine: tr, head and
+# /dev/urandom are on every macOS and Linux box.
+#
+# The secret goes to the clipboard, not to the screen, so it does not sit in
+# the scrollback of a terminal that stays open all day.
+#
+#   random              10 chars of A-Za-z0-9 (~59 bits), copied
+#   random 24 -s        24 chars, punctuation included
+#   random -n 5 -u      5 secrets, no 0/O/1/l/I look-alikes
+#   random -d -l 6      a 6-digit PIN
+#   random -x -l 32     32 hex chars, i.e. a 128-bit key
+#   random -p           printed instead, when you must read it off the screen
+#   pw=$(random)        captured — stdout is a pipe, so it prints
+random() {
+    local len=10 count=1 mode='' sym='' unambig='' dest='' bits=''
+    local alphabet pw out i
+
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -l|--length)
+                [ -n "$2" ] || { printf 'random: %s needs a number\n' "$1" >&2; return 2; }
+                len=$2; shift 2 ;;
+            -n|--count)
+                [ -n "$2" ] || { printf 'random: %s needs a number\n' "$1" >&2; return 2; }
+                count=$2; shift 2 ;;
+            -s|--symbols)     sym=1;       shift ;;
+            -u|--unambiguous) unambig=1;   shift ;;
+            -d|--digits)      mode=digits; shift ;;
+            -x|--hex)         mode=hex;    shift ;;
+            -c|--copy)        dest=copy;   shift ;;
+            -p|--print)       dest=print;  shift ;;
+            -b|--bits)        bits=1;      shift ;;
+            [0-9]*)           len=$1;      shift ;;
+            -h|--help)
+                cat <<'USAGE'
+random — a secret from /dev/urandom. No network, no dependencies.
+
+usage: random [LENGTH] [options]
+
+  -l, --length N       characters per secret (default 10)
+  -n, --count N        how many to make (default 1)
+  -s, --symbols        add punctuation to the letters and digits
+  -u, --unambiguous    drop the look-alikes 0 O 1 l I
+  -d, --digits         digits only, for a PIN
+  -x, --hex            lowercase hex, for a key
+  -p, --print          print it instead of copying it
+  -c, --copy           copy it even when stdout is a pipe
+  -b, --bits           report the entropy on stderr
+  -h, --help           this text
+
+The secret is copied to the clipboard and not printed, so it stays out of the
+scrollback. It is printed instead when stdout is not a terminal, so that
+`pw=$(random)` and `random | ...` still work.
+
+-s and -u shape the default alphabet only. They do not apply to -d or -x.
+USAGE
+                return 0 ;;
+            *)
+                printf 'random: unknown option %s (try --help)\n' "$1" >&2
+                return 2 ;;
+        esac
+    done
+
+    # `,*` and `*,` catch an empty length or count, which `*[!0-9,]*` cannot.
+    case "$len,$count" in
+        *[!0-9,]*|,*|*,) printf 'random: --length and --count take whole numbers\n' >&2; return 2 ;;
+    esac
+    if [ "$len" -lt 1 ] || [ "$count" -lt 1 ]; then
+        printf 'random: --length and --count must be at least 1\n' >&2
+        return 2
+    fi
+    if [ -n "$mode" ] && [ -n "$sym$unambig" ]; then
+        printf 'random: -s and -u shape the default alphabet, not -d/-x\n' >&2
+        return 2
+    fi
+    # An explicit -c that cannot copy has to fail rather than fall back to the
+    # screen, which is the one place the flag was asked to keep it away from.
+    if [ "$dest" = copy ] && ! command -v pbcopy >/dev/null 2>&1; then
+        printf 'random: -c needs pbcopy, which is not on this PATH\n' >&2
+        return 1
+    fi
+    if [ -z "$dest" ]; then
+        # Copy unless stdout is not a terminal: `pw=$(random)` and a pipe both
+        # need the text, and neither leaves anything in the scrollback anyway.
+        if [ -t 1 ] && command -v pbcopy >/dev/null 2>&1; then dest=copy; else dest=print; fi
+    fi
+
+    case "$mode" in
+        digits) alphabet=0123456789 ;;
+        hex)    alphabet=0123456789abcdef ;;
+        *)      alphabet=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+                # The pairs a person retypes wrong off a screen or a sticky note.
+                [ -n "$unambig" ] && alphabet=$(printf '%s' "$alphabet" | LC_ALL=C tr -d '0O1lI')
+                # No quote, backslash or backtick: those are the characters that
+                # break when a password is pasted into a shell command, a CSV
+                # field or a YAML value. `-` goes last because tr reads it as a
+                # range anywhere else.
+                [ -n "$sym" ] && alphabet="$alphabet"'!#$%&()*+,./:;<=>?@[]^_{|}~-' ;;
+    esac
+
+    i=1
+    out=''
+    while [ "$i" -le "$count" ]; do
+        # head closes the pipe at $len bytes and tr dies of SIGPIPE, which is
+        # the intended stop; 2>/dev/null keeps that off the terminal.
+        pw=$({ LC_ALL=C tr -dc "$alphabet" < /dev/urandom | head -c "$len"; } 2>/dev/null)
+        out="${out:+$out
+}$pw"
+        i=$((i + 1))
+    done
+
+    if [ -n "$bits" ]; then
+        awk -v n="${#alphabet}" -v l="$len" 'BEGIN {
+            printf "random: %d chars from %d symbols = %.1f bits each\n", l, n, l * log(n) / log(2)
+        }' >&2
+    fi
+
+    if [ "$dest" = copy ]; then
+        # No trailing newline: a password pasted into a browser field should not
+        # also submit the form.
+        printf '%s' "$out" | pbcopy
+        printf 'random: %s x %s chars copied\n' "$count" "$len" >&2
+    else
+        printf '%s\n' "$out"
+    fi
+}
+
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 PATH="/usr/local/bin/ctags:$PATH"
