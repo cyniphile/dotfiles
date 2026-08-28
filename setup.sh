@@ -90,6 +90,7 @@ link "$DOTFILES/nvim/after" "$HOME/.config/nvim/after"
 link "$DOTFILES/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 link "$DOTFILES/claude/keybindings.json" "$HOME/.claude/keybindings.json"
 link "$DOTFILES/claude/hooks" "$HOME/.claude/hooks"
+link "$DOTFILES/claude/commands" "$HOME/.claude/commands"
 
 # VS Code
 link "$DOTFILES/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"

@@ -20,7 +20,7 @@ git checkout macos
 | `.gitconfig` | Git settings |
 | `settings.json` | VS Code settings (vim mode) |
 | `keybindings.json` | VS Code keybindings |
-| `claude/` | Claude Code global instructions, keybindings and hooks |
+| `claude/` | Claude Code global instructions, keybindings, hooks and slash commands |
 | `yazi/` | Yazi file manager config |
 | `.p10k.zsh` | Powerlevel10k prompt theme |
 | `key_config.ron` | Gitui keybindings |
@@ -28,8 +28,12 @@ git checkout macos
 
 ### Claude Code
 
-`setup.sh` links `claude/CLAUDE.md`, `claude/keybindings.json` and
-`claude/hooks/` into `~/.claude`.
+`setup.sh` links `claude/CLAUDE.md`, `claude/keybindings.json`, `claude/hooks/`
+and `claude/commands/` into `~/.claude`.
+
+`claude/commands/` holds the personal slash commands. `pl.md` gives `/pl` as a
+short alias for the `plannotator-last` skill — it annotates the last assistant
+message. Skills themselves are not tracked here; only the commands are.
 
 `~/.claude/settings.json` is **not** tracked and **not** linked. Claude Code
 writes an `autoMode` block into it that names private repos, internal domains
@@ -89,7 +93,7 @@ dotfiles/
 ├── Shell configs     # .zshrc, .bashrc, .shellrc, etc.
 ├── .vimrc            # Neovim configuration
 ├── VS Code/          # settings.json, keybindings.json
-├── claude/           # Claude Code: CLAUDE.md, keybindings.json, hooks/
+├── claude/           # Claude Code: CLAUDE.md, keybindings.json, hooks/, commands/
 ├── nvim/after/       # Neovim after/ scripts (markdown URL conceal)
 ├── yazi/             # File manager config
 ├── old/              # Archived/deprecated configs

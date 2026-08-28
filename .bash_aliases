@@ -56,4 +56,5 @@ alias dcrwbbw='docker-compose run -p 127.0.0.1:9999:9999 web /bin/bash'
 alias dcrwbb='docker-compose run web /bin/bash'
 alias dcrwbbp='docker-compose run --service-ports web /bin/bash'
 
-
+# plannotator
+alias pa='plannotator annotate'
